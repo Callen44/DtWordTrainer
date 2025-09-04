@@ -1,4 +1,4 @@
-#include "wordset.h"
+#include "Wordset.h"
 
 #include <QFile>
 #include <QDebug>
