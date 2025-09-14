@@ -12,6 +12,6 @@ class Noun : public Word
 {
 public:
 	Gender gender;
-	const PartsOfSpeech partOfSpeech = NOUN;
+	PartOS partOfSpeech = NOUN;
     Noun(QString paramWord, Gender paramGender, QString paramTranslation);
 };

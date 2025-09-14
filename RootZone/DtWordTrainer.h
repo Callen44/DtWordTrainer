@@ -2,6 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_DtWordTrainer.h"
+#include "../DataZone/Wordset.h"
 
 class DtWordTrainer : public QMainWindow
 {
@@ -9,9 +10,11 @@ class DtWordTrainer : public QMainWindow
 
 public:
     DtWordTrainer(QWidget *parent = nullptr);
+    void addQuestions();
     ~DtWordTrainer();
 
 private:
     Ui::DtWordTrainerClass ui;
+    WordSet globalWords;
 };
 

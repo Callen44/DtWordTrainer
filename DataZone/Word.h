@@ -3,7 +3,7 @@
 #include <QString>
 #include <QList>
 
-enum PartsOfSpeech { // this is taked off of a list of the parts of speech on the internet, it may prove to have too many different items, I could cull some, we'll see
+enum PartOS { // this is taked off of a list of the parts of speech on the internet, it may prove to have too many different items, I could cull some, we'll see
 	NOUN,
 	VERB,
 	ADJECTIVE,
@@ -20,7 +20,7 @@ class Word
 {
 public:
 	QString word;
-	PartsOfSpeech partOfSpeech;
+	PartOS partOfSpeech;
 	QString translation;
 	QString details;
 };
