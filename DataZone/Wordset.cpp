@@ -2,6 +2,7 @@
 
 #include <QFile>
 #include <QDebug>
+#include <cstdlib>
 
 WordSet::WordSet() {}
 
@@ -76,11 +77,11 @@ QString WordSet::calcWDAName(QString dtwFileName) {
 
 Word* WordSet::findWordObject(QString word) {
     for (int i = 0; i < nouns.length(); i++) {
-        if (nouns[i].word == word)
+        if (nouns[i].word.toLower() == word.toLower())
             return &nouns[i];
     }
     for (int i = 0; i < verbs.length(); i++) {
-        if (verbs[i].word == word)
+        if (verbs[i].word.toLower() == word.toLower())
             return &verbs[i];
     }
 
@@ -107,11 +108,24 @@ void WordSet::parseWissenFile(QString filePath) {
         // in this case we have a word, not one of the lines as shown above
         else {
             if (cpos == NOUN) {
-                Word* word = findWordObject(line.split(" ")[0]);
-                word->
+                QStringList lineParts = line.split(" ");
+                Word* word = findWordObject(lineParts[0]);
+
+                if (!word || word->partOfSpeech == NOUN)
+                    continue;
+
+                int knowledge = lineParts[1].toInt();
+                word->defknowledge = knowledge;
             }
             else if (cpos == VERB) {
+                QStringList lineParts = line.split(" ");
+                Word* word = findWordObject(lineParts[0]);
 
+                if (!word || word->partOfSpeech == VERB)
+                    continue;
+
+                int knowledge = lineParts[1].toInt();
+                word->defknowledge = knowledge;
             }
         }
     }

@@ -20,6 +20,9 @@ DtWordTrainer::DtWordTrainer(QWidget *parent)
 }
 
 void DtWordTrainer::addQuestions() {
+    /*
+    * Add all question words to the list of questions on the homescreen of the app
+    */
     for (int i = 0; i < globalWords.nouns.size(); i++) {
         QListWidgetItem *newItem = new QListWidgetItem;
         newItem->setText(globalWords.nouns[i].word);

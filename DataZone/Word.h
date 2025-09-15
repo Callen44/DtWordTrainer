@@ -23,4 +23,5 @@ public:
 	PartOS partOfSpeech;
 	QString translation;
 	QString details;
+    int defknowledge = 0; // how well the user knows the word and it's english equivelant.
 };
