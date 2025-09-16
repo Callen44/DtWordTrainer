@@ -33,6 +33,10 @@ void WordSet::parseWordFile(QString filePath) {
     QFile questionFile(filePath);
     PartOS cpos = NOUN;
 
+    if (!questionFile.exists()) {
+        qDebug() << "Could not find file, this is a fatal error";
+        exit(1);
+    }
 
     if (!questionFile.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
@@ -75,6 +79,11 @@ QString WordSet::calcWDAName(QString dtwFileName) {
 
 }
 
+bool WordSet::makeWissenFile(QString wdaName) {
+    qDebug() << "this function has not been implemented yet (makeWissenFile)";
+    return false; // the return code indicates success or failure. TODO
+}
+
 Word* WordSet::findWordObject(QString word) {
     for (int i = 0; i < nouns.length(); i++) {
         if (nouns[i].word.toLower() == word.toLower())
@@ -95,6 +104,7 @@ void WordSet::parseWissenFile(QString filePath) {
 
     QFile wissenFile(filePath);
     if (!wissenFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        qDebug() << "Could not open the wissen file, filling word knowledge with 0s";
         return;
 
 
