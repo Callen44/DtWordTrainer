@@ -1,8 +1,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include "ui_DtWordTrainer.h"
-#include "../DataZone/Wordset.h"
+#include "../DataZone/Algorithm.h"
 
 class DtWordTrainer : public QMainWindow
 {
@@ -14,7 +13,6 @@ public:
     ~DtWordTrainer();
 
 private:
-    Ui::DtWordTrainerClass ui;
-    WordSet globalWords;
+    Algorithm algorithm;
 };
 

@@ -13,6 +13,7 @@ set(SOURCES
 
 	# RootZone
 	RootZone/DtWordTrainer.cpp
+	RootZone/MainScreen.cpp
 
 	# DataZone
 	DataZone/Noun.cpp
@@ -20,11 +21,13 @@ set(SOURCES
 	DataZone/Word.cpp
 	DataZone/Wordset.cpp
 	DataZone/Algorithm.cpp
+	DataZone/Question.cpp
 )
 
 set(HEADERS
 	# RootZone
 	RootZone/DtWordTrainer.h
+	RootZone/MainScreen.h
 
 	# DataZone
 	DataZone/Noun.h
@@ -32,10 +35,11 @@ set(HEADERS
 	DataZone/Word.h
 	DataZone/Wordset.h
 	DataZone/Algorithm.h
+	DataZone/Question.h
 )
 
 set(UIS
-	RootZone/DtWordTrainer.ui
+	RootZone/MainScreen.ui
 )
 
 set(QRCS
