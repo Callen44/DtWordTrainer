@@ -15,7 +15,9 @@ DtWordTrainer::DtWordTrainer(QWidget *parent)
     algorithm = Algorithm();
     algorithm.readFiles(fileName);
 
-    MainScreen mainScreen(this);
+    MainScreen* mainScreen = new MainScreen(this);
+    mainScreen->addQuestions(&algorithm.words);
+    setCentralWidget(mainScreen);
 }
 
 DtWordTrainer::~DtWordTrainer()
