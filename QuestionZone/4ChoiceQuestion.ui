@@ -60,7 +60,7 @@
      <item alignment="Qt::AlignmentFlag::AlignHCenter">
       <widget class="QLabel" name="questionLabel">
        <property name="text">
-        <string>qeustionText</string>
+        <string>question Text</string>
        </property>
       </widget>
      </item>

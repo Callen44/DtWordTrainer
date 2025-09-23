@@ -4,6 +4,9 @@ MainScreen::MainScreen(QWidget *parent)
     : QWidget(parent), ui(new Ui::MainScreen)
 {
     ui->setupUi(this);
+
+    // setup signals and slots to start questions
+    QObject::connect(ui->startButton, &QPushButton::pressed, this, &MainScreen::startQuestions);
 }
 
 void MainScreen::addQuestions(WordSet* rootWordSet) {

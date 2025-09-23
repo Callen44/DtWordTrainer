@@ -6,7 +6,7 @@ Algorithm::Algorithm() {
 
 bool Algorithm::readFiles(QString fileName) {
     words.parseWordFile(fileName);
-    words.parseWissenFile(words.calcWDAName(fileName));
+    firstQuestion = !words.parseWissenFile(words.calcWDAName(fileName)); // if parseWissenFile returns false, that menas there simply is no wissen file
 
     return true; // return code indicates success or failure, TODO.
 }

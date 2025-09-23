@@ -98,14 +98,14 @@ Word* WordSet::findWordObject(QString word) {
     return nullptr;
 }
 
-void WordSet::parseWissenFile(QString filePath) {
+bool WordSet::parseWissenFile(QString filePath) {
     qDebug() << "Parsing word Wissen data file: " << filePath;
     PartOS cpos;
 
     QFile wissenFile(filePath);
     if (!wissenFile.open(QIODevice::ReadOnly | QIODevice::Text))
         qDebug() << "Could not open the wissen file, filling word knowledge with 0s";
-        return;
+        return false;
 
 
     while (!wissenFile.atEnd()) {

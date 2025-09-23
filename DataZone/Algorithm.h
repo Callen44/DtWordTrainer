@@ -1,3 +1,6 @@
+#ifndef ALGORITHM_H
+#define ALGORITHM_H
+
 #include "Noun.h"
 #include "Verb.h"
 #include "Wordset.h"
@@ -19,4 +22,9 @@ public:
     // functions that use the algorithm
     Question nextQuestion();
 
+private:
+    bool firstQuestion = true; // the first question will always
+
 };
+
+#endif

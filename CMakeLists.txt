@@ -15,6 +15,9 @@ set(SOURCES
 	RootZone/DtWordTrainer.cpp
 	RootZone/MainScreen.cpp
 
+	# QuestionZone
+	QuestionZone/QuestionOverseer.cpp
+
 	# DataZone
 	DataZone/Noun.cpp
 	DataZone/Verb.cpp
@@ -29,6 +32,9 @@ set(HEADERS
 	RootZone/DtWordTrainer.h
 	RootZone/MainScreen.h
 
+	# QuestionZone
+	QuestionZone/QuestionOverseer.h
+
 	# DataZone
 	DataZone/Noun.h
 	DataZone/Verb.h
@@ -40,6 +46,7 @@ set(HEADERS
 
 set(UIS
 	RootZone/MainScreen.ui
+	QuestionZone/4ChoiceQuestion.ui
 )
 
 set(QRCS

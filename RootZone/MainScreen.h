@@ -19,6 +19,9 @@ public:
 
     void addQuestions(WordSet* rootWordSet);
 
+signals:
+    void startQuestions();
+
 private:
     Ui::MainScreen *ui;
 };
