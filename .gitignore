@@ -1,3 +1,4 @@
 CMakeLists.txt.user
 build
 CMakeUserPresets.json
+out
