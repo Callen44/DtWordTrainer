@@ -17,6 +17,7 @@ DtWordTrainer::DtWordTrainer(QWidget *parent)
     MainScreen* mainScreen = new MainScreen(this);
     mainScreen->addQuestions(&algorithm.words);
     setCentralWidget(mainScreen);
+    
 
     // setup signals and slots to start questions
     QObject::connect(mainScreen, &MainScreen::startQuestions, this, &DtWordTrainer::startQuestions);
@@ -28,6 +29,8 @@ void DtWordTrainer::startQuestions() {
     QWidget* oldCentralWidget = takeCentralWidget();
     delete oldCentralWidget;
     setCentralWidget(questionScreen);
+
+    //setMinimumSize(400, 400);
 }
 
 DtWordTrainer::~DtWordTrainer()
