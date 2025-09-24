@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>QuestionOverseer</class>
+ <widget class="QWidget" name="QuestionOverseer">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>883</width>
-    <height>571</height>
+    <width>917</width>
+    <height>761</height>
    </rect>
   </property>
   <property name="windowTitle">

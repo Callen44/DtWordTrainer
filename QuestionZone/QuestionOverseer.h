@@ -13,14 +13,14 @@ class QuestionOverseer : public QWidget
     Q_OBJECT
 
 public:
-    QuestionOverseer(QObject *parent, Algorithm* algorithm);
+    QuestionOverseer(QWidget *parent, Algorithm* algorithm);
     ~QuestionOverseer();
 
 public slots:
     void nextQuestion();
 
 private:
-    Ui::Form *ui;
+    Ui::QuestionOverseer *ui;
     Algorithm* algorithm;
 
 };
