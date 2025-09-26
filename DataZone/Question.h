@@ -6,7 +6,7 @@
 #include "Wordset.h"
 
 enum QVariety {
-    MCHOICEFOUR, // a four answer multiple choice question
+    MCHOICEFOURDEF, // a four answer multiple choice question
     TYPEWORD, // a question where there is a prompt and the user is meant to type an answer
 };
 

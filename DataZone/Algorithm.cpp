@@ -12,7 +12,7 @@ bool Algorithm::readFiles(QString fileName) {
 }
 
 Question Algorithm::nextQuestion() {
-    Question nq(MCHOICEFOUR, &words.nouns[0]); // TODO, this is very temporary
+    Question nq(MCHOICEFOURDEF, &words.nouns[0]); // TODO, this is very temporary
     return nq;
 }
 
