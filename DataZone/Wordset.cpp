@@ -14,7 +14,7 @@ Verb WordSet::parseVerb(QString verbDat) {
 }
 
 Noun WordSet::parseNoun(QString nounDat) {
-    QStringList sections = nounDat.split(" ");
+    QStringList sections = nounDat.split('\n')[0].split(" "); // split the word and chop off the newline
 
     Gender wordGender;
     if (sections[1].toLower() == "der")
