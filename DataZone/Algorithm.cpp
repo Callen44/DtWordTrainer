@@ -12,7 +12,10 @@ bool Algorithm::readFiles(QString fileName) {
 }
 
 Question Algorithm::nextQuestion() {
-    Question nq(MCHOICEFOURDEF, &words.nouns[0]); // TODO, this is very temporary
+    // this function determines the best next question and will return it, it does so by evaluating what words have been seen recently and which ones haven't, and how well the user knows what words.
+
+    // at the moment, we have a rather temoprary solution in place (always returning the same word).
+    Question nq(MCHOICEFOURDEF, &words.nouns[0], &words); // TODO, this is very temporary
     return nq;
 }
 

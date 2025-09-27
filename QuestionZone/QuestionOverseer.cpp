@@ -1,3 +1,5 @@
+#include <cstdlib>
+
 #include "QuestionOverseer.h"
 
 QuestionOverseer::QuestionOverseer(QWidget *parent, Algorithm* algorithm)
@@ -17,10 +19,41 @@ void QuestionOverseer::nextQuestion() {
     cQVariety = nQuestion.questionType;
     if (cQVariety == MCHOICEFOURDEF) {
         // setup the ui
-
         ui->questionLabel->setText(nQuestion.questionPrompt);
         
-        // place the correct 
+        // randomly select were the real answer goes
+        int loc = rand() % 4;
+        
+        // place answers, this is a very repetitive piece of code
+        if (loc == 0) {
+            ui->answer0->setText(nQuestion.correctAns);
+
+            ui->answer1->setText(nQuestion.distractor0);
+            ui->answer2->setText(nQuestion.distractor1);
+            ui->answer3->setText(nQuestion.distractor2);
+        }
+        else if (loc == 1) {
+            ui->answer1->setText(nQuestion.correctAns);
+
+            ui->answer0->setText(nQuestion.distractor0);
+            ui->answer2->setText(nQuestion.distractor1);
+            ui->answer3->setText(nQuestion.distractor2);
+        }
+        else if (loc == 2) {
+            ui->answer2->setText(nQuestion.correctAns);
+
+            ui->answer1->setText(nQuestion.distractor0);
+            ui->answer0->setText(nQuestion.distractor1);
+            ui->answer3->setText(nQuestion.distractor2);
+        }
+        else if (loc == 3) {
+            ui->answer3->setText(nQuestion.correctAns);
+
+            ui->answer1->setText(nQuestion.distractor0);
+            ui->answer2->setText(nQuestion.distractor1);
+            ui->answer0->setText(nQuestion.distractor2);
+        }
+
     }
 }
 
