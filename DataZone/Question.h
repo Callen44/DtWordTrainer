@@ -21,12 +21,12 @@ class Question
 public:
     Question(QVariety questionType, Word* associatedWord);
     const QVariety questionType; // stores what type of question this
-    const Word* associatedWord; // a pointer back to the word this is a question for, allows for the question to log it's correcness itself, the UI is not responsible for managing such data
+    QString questionPrompt;
     bool processMChoiceAnswer(int answer); // processes multiple choice answer to question, returns if it was correct
     bool processTypeWordAnswer(QString answer); // processes typeword answer to question, returns if it was correct
 
 private:
-
+    const Word* associatedWord; // a pointer back to the word this is a question for, allows for the question to log it's correcness itself, the UI is not responsible for managing such data
 };
 
 #endif // QUESTION_H
