@@ -7,6 +7,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 set(SOURCES
 	main.cpp # main.cpp is not in a zone
@@ -17,6 +18,7 @@ set(SOURCES
 
 	# QuestionZone
 	QuestionZone/QuestionOverseer.cpp
+	QuestionZone/FChoiceQuestion.cpp
 
 	# DataZone
 	DataZone/Noun.cpp
@@ -34,6 +36,7 @@ set(HEADERS
 
 	# QuestionZone
 	QuestionZone/QuestionOverseer.h
+	QuestionZone/FChoiceQuestion.h
 
 	# DataZone
 	DataZone/Noun.h
@@ -46,7 +49,7 @@ set(HEADERS
 
 set(UIS
 	RootZone/MainScreen.ui
-	QuestionZone/4ChoiceQuestion.ui
+	QuestionZone/FChoiceQuestion.ui
 )
 
 set(QRCS

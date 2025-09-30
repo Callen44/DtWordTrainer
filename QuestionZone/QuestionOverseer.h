@@ -1,31 +1,24 @@
 #ifndef QUESTIONOVERSEER_H
 #define QUESTIONOVERSEER_H
 
-#include "ui_4ChoiceQuestion.h"
 #include "../DataZone/Algorithm.h"
 #include "../DataZone/Question.h"
+#include "FChoiceQuestion.h"
 
-namespace Ui {
-class QuestionOverseer;
-}
+#include <QWidget>
 
 class QuestionOverseer : public QWidget
 {
     Q_OBJECT
-
 public:
-    QuestionOverseer(QWidget *parent, Algorithm* algorithm);
-    ~QuestionOverseer();
-
-    QVariety cQVariety;
+    explicit QuestionOverseer(Algorithm* algorithm, QWidget *parent = nullptr);
 
 public slots:
     void nextQuestion();
 
 private:
-    Ui::QuestionOverseer *ui;
+    QWidget* currentWidget;
     Algorithm* algorithm;
-
 };
 
-#endif 
+#endif // QUESTIONOVERSEER_H

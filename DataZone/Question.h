@@ -20,9 +20,19 @@ class Question
 {
 public:
     Question(QVariety questionType, Word* associatedWord, WordSet* wordSet);
-    const QVariety questionType; // stores what type of question this
+
+    /*
+    Functions
+    */
+
     bool processMChoiceAnswer(int answer); // processes multiple choice answer to question, returns if it was correct
     bool processTypeWordAnswer(QString answer); // processes typeword answer to question, returns if it was correct
+
+    /*
+    Variables
+    */
+
+    const QVariety questionType; // stores what type of question this
 
     // variables that are specific to a multiple choice question with 4 optiopns MCHOICEFOURDEF
     QString questionPrompt;

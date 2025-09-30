@@ -25,7 +25,7 @@ DtWordTrainer::DtWordTrainer(QWidget *parent)
 
 void DtWordTrainer::startQuestions() {
     // to start the next question, we need to make a new question widget to display, and then replace the current one
-    QuestionOverseer* questionScreen = new QuestionOverseer(this, &algorithm);
+    QuestionOverseer* questionScreen = new QuestionOverseer(&algorithm, this);
     QWidget* oldCentralWidget = takeCentralWidget();
     delete oldCentralWidget;
     setCentralWidget(questionScreen);
