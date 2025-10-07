@@ -4,7 +4,7 @@
 #include "Noun.h"
 #include "Verb.h"
 #include "Wordset.h"
-#include "Question.h"
+#include "../QuestionZone/FChoiceQuestion.h"
 
 class Algorithm {
 
@@ -20,7 +20,7 @@ public:
     bool readFiles(QString fileName);
 
     // functions that use the algorithm
-    Question nextQuestion();
+    Question* nextQuestion();
 
 private:
     bool firstQuestion = true; // the first question will always

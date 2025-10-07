@@ -2,7 +2,7 @@
 
 #include "FChoiceQuestion.h"
 
-FChoiceQuestion::FChoiceQuestion(QWidget *parent, Question* question)
+FChoiceQuestion::FChoiceQuestion(QWidget *parent, MChoiceFourDef* question)
     : question(question), ui(new Ui::FChoiceQuestion)
 {
     ui->setupUi(this);
@@ -67,13 +67,13 @@ FChoiceQuestion::FChoiceQuestion(QWidget *parent, Question* question)
 }
 
 void FChoiceQuestion::processCorrectAnswer() {
-    qDebug() << "correct!";
+    question->answeredCorrectly();
 }
 
 void FChoiceQuestion::processIncorrectAnswer() {
-    qDebug() << "incorrect";
+    question->answeredIncorrectly();
 }
 
 FChoiceQuestion::~FChoiceQuestion() {
-
+    delete question;
 }

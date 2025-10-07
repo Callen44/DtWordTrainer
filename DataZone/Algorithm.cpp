@@ -11,11 +11,11 @@ bool Algorithm::readFiles(QString fileName) {
     return true; // return code indicates success or failure, TODO.
 }
 
-Question Algorithm::nextQuestion() {
+Question* Algorithm::nextQuestion() {
     // this function determines the best next question and will return it, it does so by evaluating what words have been seen recently and which ones haven't, and how well the user knows what words.
 
     // at the moment, we have a rather temoprary solution in place (always returning the same word).
-    Question nq(MCHOICEFOURDEF, &words.nouns[0], &words); // TODO, this is very temporary
+    MChoiceFourDef* nq = new MChoiceFourDef(&words.nouns[0], &words);
     return nq;
 }
 

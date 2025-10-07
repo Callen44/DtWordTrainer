@@ -15,7 +15,10 @@ QuestionOverseer::QuestionOverseer(Algorithm* algorithm, QWidget *parent)
 
 void QuestionOverseer::nextQuestion() {
     // get the next question
-    Question nQ = algorithm->nextQuestion();
+    Question* nQ = algorithm->nextQuestion();
+
+    // TODO Temporary solution!!!
+    MChoiceFourDef* nQpf = reinterpret_cast<MChoiceFourDef*>(nQ);
 
     // remove the old question widget
     QLayout* myLayout = layout();
@@ -23,7 +26,7 @@ void QuestionOverseer::nextQuestion() {
     delete currentWidget;
 
     // add the next question widget
-    FChoiceQuestion* nextWidget = new FChoiceQuestion(this, &nQ);
+    FChoiceQuestion* nextWidget = new FChoiceQuestion(this, nQpf);
     currentWidget = nextWidget;
     myLayout->addWidget(nextWidget);
 }

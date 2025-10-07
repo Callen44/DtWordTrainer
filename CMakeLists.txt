@@ -19,6 +19,8 @@ set(SOURCES
 	# QuestionZone
 	QuestionZone/QuestionOverseer.cpp
 	QuestionZone/FChoiceQuestion.cpp
+	QuestionZone/MChoiceFourDef.cpp
+	QuestionZone/Question.cpp
 
 	# DataZone
 	DataZone/Noun.cpp
@@ -26,7 +28,6 @@ set(SOURCES
 	DataZone/Word.cpp
 	DataZone/Wordset.cpp
 	DataZone/Algorithm.cpp
-	DataZone/Question.cpp
 )
 
 set(HEADERS
@@ -37,6 +38,8 @@ set(HEADERS
 	# QuestionZone
 	QuestionZone/QuestionOverseer.h
 	QuestionZone/FChoiceQuestion.h
+	QuestionZone/MChoiceFourDef.h
+	QuestionZone/Question.h
 
 	# DataZone
 	DataZone/Noun.h
@@ -44,7 +47,6 @@ set(HEADERS
 	DataZone/Word.h
 	DataZone/Wordset.h
 	DataZone/Algorithm.h
-	DataZone/Question.h
 )
 
 set(UIS

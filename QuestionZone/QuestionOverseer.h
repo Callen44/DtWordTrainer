@@ -2,7 +2,7 @@
 #define QUESTIONOVERSEER_H
 
 #include "../DataZone/Algorithm.h"
-#include "../DataZone/Question.h"
+#include "Question.h"
 #include "FChoiceQuestion.h"
 
 #include <QWidget>
