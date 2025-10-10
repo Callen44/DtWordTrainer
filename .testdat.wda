@@ -1,22 +1,22 @@
 [Nouns]
-Haus 1 0
-Baum 0 0
-Katze 0 0
-Hund 0 0
-Auto 0 0
-Buch 0 0
-Tisch 0 0
-Stuhl 0 0
-Tür 0 0
-Fenster 0 0
+Haus 10/0 0/0
+Baum 0/0 0/0
+Katze 0/0 0/0
+Hund 0/0 0/0
+Auto 0/0 0/0
+Buch 0/0 0/0
+Tisch 0/0 0/0
+Stuhl 0/0 0/0
+Tür 0/0 0/0
+Fenster 0/0 0/0
 [Verbs]
-gehen 0 0 0 0 0 0 0 0
-kommen 0 0 0 0 0 0 0 0
-sehen 0 0 0 0 0 0 0 0
-sprechen 0 0 0 0 0 0 0 0
-essen 0 0 0 0 0 0 0 0
-trinken 0 0 0 0 0 0 0 0
-lesen 0 0 0 0 0 0 0 0
-schreiben 0 0 0 0 0 0 0 0
-schlafen 0 0 0 0 0 0 0 0
-laufen 0 0 0 0 0 0 0 0
+gehen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+kommen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+sehen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+sprechen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+essen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+trinken 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+lesen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+schreiben 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+schlafen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+laufen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0

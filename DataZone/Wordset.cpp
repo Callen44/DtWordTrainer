@@ -104,7 +104,6 @@ bool WordSet::parseWissenFile(QString filePath) {
 
     QFile wissenFile(filePath);
     if (!wissenFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        qDebug() << "Could not open the wissen file, filling word knowledge with 0s";
         return false;
 
 
@@ -122,10 +121,10 @@ bool WordSet::parseWissenFile(QString filePath) {
                 Word* word = findWordObject(lineParts[0]);
 
                 if (!word || word->partOfSpeech == NOUN)
-                    continue;
+                    continue; // the word was listed as a different part of speech in the wissen file and the word file
 
-                int knowledge = lineParts[1].toInt();
-                word->defknowledge = knowledge;
+                word->defCorrects = lineParts[1].split("/")[0].toInt();
+                word->defIncorrects = lineParts[1].split("/")[1].toInt();
             }
             else if (cpos == VERB) {
                 QStringList lineParts = line.split(" ");
