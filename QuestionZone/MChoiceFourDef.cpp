@@ -19,22 +19,16 @@ QString MChoiceFourDef::createDistractor() {
 
     // TODO right now it is possible for the correct answer to be chosen as a distractor, two correct answers will appear, one is correct, the other is not
 
-    int totalWords = (words->nouns.size() + words->verbs.size()); // mod the random number by the total number of words
-    int rint = std::rand() % totalWords;
-	
-	if (rint <= words->nouns.size()) {
-		return words->nouns[rint].translation;
-	}
-	else {
-		rint -= words->nouns.size();
-		return words->verbs[rint].translation;
-	}
+    int totalWords = words->allWords.size(); // mod the random number by the total number of words
+    int rint = (std::rand() % totalWords);
+
+    return words->allWords[rint]->translation;
 }
 
 void MChoiceFourDef::answeredCorrectly() {
-    qDebug() << "correct!";
+    associatedWord->defCorrects++;
 }
 
 void MChoiceFourDef::answeredIncorrectly() {
-    qDebug() << "incorrect!";
+    associatedWord->defIncorrects++;
 }

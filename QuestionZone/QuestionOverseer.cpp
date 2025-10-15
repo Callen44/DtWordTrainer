@@ -14,6 +14,7 @@ QuestionOverseer::QuestionOverseer(Algorithm* algorithm, QWidget *parent)
 }
 
 void QuestionOverseer::nextQuestion() {
+    qDebug() << "next Question";
     // get the next question
     Question* nQ = algorithm->nextQuestion();
 
@@ -29,4 +30,7 @@ void QuestionOverseer::nextQuestion() {
     FChoiceQuestion* nextWidget = new FChoiceQuestion(this, nQpf);
     currentWidget = nextWidget;
     myLayout->addWidget(nextWidget);
+
+    // ensure that the next question will be asked when the user finishes this one
+    QObject::connect(nextWidget, &FChoiceQuestion::questionCompleted, this, &QuestionOverseer::nextQuestion);
 }

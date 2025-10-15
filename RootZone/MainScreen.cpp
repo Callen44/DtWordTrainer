@@ -15,12 +15,12 @@ void MainScreen::addQuestions(WordSet* rootWordSet) {
     */
     for (int i = 0; i < rootWordSet->nouns.size(); i++) {
         QListWidgetItem *newItem = new QListWidgetItem;
-        newItem->setText(rootWordSet->nouns[i].word);
+        newItem->setText(rootWordSet->nouns[i]->word);
         ui->wordList->insertItem(i, newItem);
     }
     for (int i = 0; i < rootWordSet->verbs.size(); i++) {
         QListWidgetItem *newItem = new QListWidgetItem;
-        newItem->setText(rootWordSet->verbs[i].word);
+        newItem->setText(rootWordSet->verbs[i]->word);
         ui->wordList->insertItem(i, newItem);
     }
 }

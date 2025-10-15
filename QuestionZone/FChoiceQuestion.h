@@ -16,6 +16,9 @@ public:
     FChoiceQuestion(QWidget *parent, MChoiceFourDef* question);
     ~FChoiceQuestion();
 
+signals:
+    void questionCompleted();
+
 public slots:
     void processCorrectAnswer();
     void processIncorrectAnswer();

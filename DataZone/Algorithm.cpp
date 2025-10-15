@@ -12,10 +12,32 @@ bool Algorithm::readFiles(QString fileName) {
 }
 
 Question* Algorithm::nextQuestion() {
-    // this function determines the best next question and will return it, it does so by evaluating what words have been seen recently and which ones haven't, and how well the user knows what words.
+    // pick a question type
+    // TODO, this is very temporary as this is the only implemented question type
+    QVariety questionVariety = MCHOICEFOURDEF;
 
-    // at the moment, we have a rather temoprary solution in place (always returning the same word).
-    MChoiceFourDef* nq = new MChoiceFourDef(&words.nouns[0], &words);
+    double worstScore = 0.0;
+    Word* worstWord;
+
+    // pick the word where the user is the worst at the definition
+    for (int i = 0; i < words.allWords.size(); i++) {
+        double score = 0.0;
+
+        Word* wordInQuestion = words.allWords[i];
+        if (wordInQuestion->defIncorrects + wordInQuestion->defCorrects != 0) {
+            score = wordInQuestion->defCorrects / (wordInQuestion->defIncorrects + wordInQuestion->defCorrects);
+        } else {
+            worstWord = wordInQuestion;
+            break;
+        }
+
+        if (score < worstScore) {
+            worstScore = score;
+            worstWord = wordInQuestion;
+        }
+    }
+
+    MChoiceFourDef* nq = new MChoiceFourDef(worstWord, &words);
     return nq;
 }
 

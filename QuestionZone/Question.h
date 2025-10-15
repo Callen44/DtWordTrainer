@@ -24,7 +24,7 @@ public:
     Functions
     */
 
-    Question(QVariety questionType, const Word* associatedWord)
+    Question(QVariety questionType, Word* associatedWord)
         : questionType(questionType), associatedWord(associatedWord) {}
 
     // funcitons for handling answers are in derrived classes
@@ -34,7 +34,7 @@ public:
     */
 
     const QVariety questionType; // stores what type of question this
-    const Word* associatedWord; // a pointer back to the word this is a question for, allows for the question to log it's correcness itself, the UI is not responsible for managing such data
+    Word* associatedWord; // a pointer back to the word this is a question for, allows for the question to log it's correcness itself, the UI is not responsible for managing such data
     WordSet* words;
 };
 

@@ -62,16 +62,17 @@ FChoiceQuestion::FChoiceQuestion(QWidget *parent, MChoiceFourDef* question)
             QObject::connect(ui->answer2, &QPushButton::pressed, this, &FChoiceQuestion::processIncorrectAnswer);
             QObject::connect(ui->answer0, &QPushButton::pressed, this, &FChoiceQuestion::processIncorrectAnswer);
         }
-
     }
 }
 
 void FChoiceQuestion::processCorrectAnswer() {
     question->answeredCorrectly();
+    emit questionCompleted();
 }
 
 void FChoiceQuestion::processIncorrectAnswer() {
     question->answeredIncorrectly();
+    emit questionCompleted();
 }
 
 FChoiceQuestion::~FChoiceQuestion() {

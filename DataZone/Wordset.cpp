@@ -6,14 +6,14 @@
 
 WordSet::WordSet() {}
 
-Verb WordSet::parseVerb(QString verbDat) {
+Verb* WordSet::parseVerb(QString verbDat) {
     QStringList sections = verbDat.split('\n')[0].split(' '); // split the word and chop off the newline
 
-    Verb newVerb(sections[0].toLower(), sections[7].toLower(), sections[1].toLower(), sections[2].toLower(), sections[3].toLower(), sections[4].toLower(), sections[5].toLower(), sections[6].toLower());
+    Verb* newVerb = new Verb(sections[0].toLower(), sections[7].toLower(), sections[1].toLower(), sections[2].toLower(), sections[3].toLower(), sections[4].toLower(), sections[5].toLower(), sections[6].toLower());
     return newVerb;
 }
 
-Noun WordSet::parseNoun(QString nounDat) {
+Noun* WordSet::parseNoun(QString nounDat) {
     QStringList sections = nounDat.split('\n')[0].split(" "); // split the word and chop off the newline
 
     Gender wordGender;
@@ -24,7 +24,7 @@ Noun WordSet::parseNoun(QString nounDat) {
     else if (sections[1].toLower() == "das")
         wordGender = DAS;
 
-    Noun newNoun(sections[0].toLower(), wordGender, sections[2].toLower());
+    Noun* newNoun = new Noun(sections[0].toLower(), wordGender, sections[2].toLower());
     return newNoun;
 }
 
@@ -51,14 +51,19 @@ void WordSet::parseWordFile(QString filePath) {
         // in this case we have a word, not one of the lines as shown above
         else {
             if (cpos == NOUN) {
-                Noun noun = parseNoun(line);
+                Noun* noun = parseNoun(line);
                 nouns.append(noun);
+                allWords.append(noun);
             } else if (cpos == VERB) {
-                Verb verb = parseVerb(line);
+                Verb* verb = parseVerb(line);
                 verbs.append(verb);
+                allWords.append(verb);
             }
         }
     }
+
+    // if all was successful and we made it this far, mark this file as our dtw file
+    dtwName = filePath;
 }
 
 QString WordSet::calcWDAName(QString dtwFileName) {
@@ -79,19 +84,20 @@ QString WordSet::calcWDAName(QString dtwFileName) {
 
 }
 
-bool WordSet::makeWissenFile(QString wdaName) {
-    qDebug() << "this function has not been implemented yet (makeWissenFile)";
+bool WordSet::writeWissenFile() {
+    // TODO, rewrite this for the new file format soon
+
     return false; // the return code indicates success or failure. TODO
 }
 
 Word* WordSet::findWordObject(QString word) {
     for (int i = 0; i < nouns.length(); i++) {
-        if (nouns[i].word.toLower() == word.toLower())
-            return &nouns[i];
+        if (nouns[i]->word.toLower() == word.toLower())
+            return nouns[i];
     }
     for (int i = 0; i < verbs.length(); i++) {
-        if (verbs[i].word.toLower() == word.toLower())
-            return &verbs[i];
+        if (verbs[i]->word.toLower() == word.toLower())
+            return verbs[i];
     }
 
     // if the word cannot be found, avoid undefined behavior with a nullptr
@@ -127,17 +133,12 @@ bool WordSet::parseWissenFile(QString filePath) {
                 word->defIncorrects = lineParts[1].split("/")[1].toInt();
             }
             else if (cpos == VERB) {
-                QStringList lineParts = line.split(" ");
-                Word* word = findWordObject(lineParts[0]);
-
-                if (!word || word->partOfSpeech == VERB)
-                    continue;
-
-                int knowledge = lineParts[1].toInt();
-                word->defknowledge = knowledge;
+                // TODO, implement verbs
             }
         }
     }
+
+    return true;
 }
 
 WordSet::~WordSet() {
