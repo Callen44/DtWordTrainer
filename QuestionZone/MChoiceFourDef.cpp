@@ -17,12 +17,14 @@ MChoiceFourDef::MChoiceFourDef(Word* associatedWord, WordSet* words)
 QString MChoiceFourDef::createDistractor() {
 	// create three distractors, this uses the WordSet that was passed in the constructor
 
-    // TODO right now it is possible for the correct answer to be chosen as a distractor, two correct answers will appear, one is correct, the other is not
-
     int totalWords = words->allWords.size(); // mod the random number by the total number of words
     int rint = (std::rand() % totalWords);
 
-    return words->allWords[rint]->translation;
+    QString distractorAnswer;
+
+    while ((distractorAnswer = words->allWords[rint]->translation) == (associatedWord->translation))
+        rint = (std::rand() % totalWords);
+    return distractorAnswer;
 }
 
 void MChoiceFourDef::answeredCorrectly() {

@@ -14,7 +14,6 @@ QuestionOverseer::QuestionOverseer(Algorithm* algorithm, QWidget *parent)
 }
 
 void QuestionOverseer::nextQuestion() {
-    qDebug() << "next Question";
     // get the next question
     Question* nQ = algorithm->nextQuestion();
 
