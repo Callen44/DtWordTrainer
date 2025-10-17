@@ -6,61 +6,40 @@
 
 WordSet::WordSet() {}
 
-Verb* WordSet::parseVerb(QString verbDat) {
-    QStringList sections = verbDat.split('\n')[0].split(' '); // split the word and chop off the newline
+void WordSet::parseLine(QString line) {
+    // the words are organized in this order, nouns, verbs, TODO add other parts of speech
+    QStringList lineParts = line.split(",");
 
-    Verb* newVerb = new Verb(sections[0].toLower(), sections[7].toLower(), sections[1].toLower(), sections[2].toLower(), sections[3].toLower(), sections[4].toLower(), sections[5].toLower(), sections[6].toLower());
-    return newVerb;
-}
-
-Noun* WordSet::parseNoun(QString nounDat) {
-    QStringList sections = nounDat.split('\n')[0].split(" "); // split the word and chop off the newline
-
+    // determine noun
     Gender wordGender;
-    if (sections[1].toLower() == "der")
+    if (lineParts[1] == "Der") {
         wordGender = DER;
-    else if (sections[1].toLower() == "die")
+    } else if (lineParts[1] == "Die") {
         wordGender = DIE;
-    else if (sections[1].toLower() == "das")
+    } else if (lineParts[1] == "Das") {
         wordGender = DAS;
+    }
 
-    Noun* newNoun = new Noun(sections[0].toLower(), wordGender, sections[2].toLower());
-    return newNoun;
+    // don't parse a noun if, you know, there is one on this line (in cases where there are more verbs than nouns, there will be lines where the noun is left blank
+    if (lineParts[0] != ""){
+        Noun* newNoun = new Noun(lineParts[0], wordGender, lineParts[2]);
+        allWords.append(newNoun);
+        nouns.append(newNoun);
+    }
 }
 
 void WordSet::parseWordFile(QString filePath) {
     qDebug() << "Parsing word file: " << filePath;
     QFile questionFile(filePath);
-    PartOS cpos = NOUN;
 
-    if (!questionFile.exists()) {
-        qDebug() << "Could not find file, this is a fatal error";
-        exit(1);
-    }
-
-    if (!questionFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    if(!questionFile.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
 
-    while(!questionFile.atEnd()) {
-        QString line = questionFile.readLine();
+    // word files are really csv files, each collum contains a different part of the information, each row contains a different word, nouns and verbs are in different rows on the csv file.
 
-        if (line == "[Verbs]\n")
-            cpos = VERB;
-        else if (line == "[Nouns]\n")
-            cpos = NOUN;
-        // in this case we have a word, not one of the lines as shown above
-        else {
-            if (cpos == NOUN) {
-                Noun* noun = parseNoun(line);
-                nouns.append(noun);
-                allWords.append(noun);
-            } else if (cpos == VERB) {
-                Verb* verb = parseVerb(line);
-                verbs.append(verb);
-                allWords.append(verb);
-            }
-        }
-    }
+    // each line contains one noun, verb, or other words, the parseLine funciton extracts them
+    while (!questionFile.atEnd())
+        parseLine(questionFile.readLine());
 
     // if all was successful and we made it this far, mark this file as our dtw file
     dtwName = filePath;
@@ -105,40 +84,7 @@ Word* WordSet::findWordObject(QString word) {
 }
 
 bool WordSet::parseWissenFile(QString filePath) {
-    qDebug() << "Parsing word Wissen data file: " << filePath;
-    PartOS cpos;
-
-    QFile wissenFile(filePath);
-    if (!wissenFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        return false;
-
-
-    while (!wissenFile.atEnd()) {
-        QString line = wissenFile.readLine();
-
-        if (line == "[Verbs]\n")
-            cpos = VERB;
-        else if (line == "[Nouns]\n")
-            cpos = NOUN;
-        // in this case we have a word, not one of the lines as shown above
-        else {
-            if (cpos == NOUN) {
-                QStringList lineParts = line.split(" ");
-                Word* word = findWordObject(lineParts[0]);
-
-                if (!word || word->partOfSpeech == NOUN)
-                    continue; // the word was listed as a different part of speech in the wissen file and the word file
-
-                word->defCorrects = lineParts[1].split("/")[0].toInt();
-                word->defIncorrects = lineParts[1].split("/")[1].toInt();
-            }
-            else if (cpos == VERB) {
-                // TODO, implement verbs
-            }
-        }
-    }
-
-    return true;
+    return false;
 }
 
 WordSet::~WordSet() {

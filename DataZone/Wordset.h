@@ -19,9 +19,9 @@ public:
     ~WordSet();
 
     // functions for handling word files
-    Noun* parseNoun(QString nounDat);
-    Verb* parseVerb(QString verbDat);
+    // TODO add handling for bad files
     void parseWordFile(QString filePath);
+    void parseLine(QString line);
 
     // functions for handling wissen files
     bool parseWissenFile(QString filePath);

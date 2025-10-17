@@ -1,22 +1,155 @@
-[Nouns]
-Haus das house
-Baum der tree
-Katze die cat
-Hund der dog
-Auto das car
-Buch das book
-Tisch der table
-Stuhl der chair
-Tür die door
-Fenster das window
-[Verbs]
-gehen gehe gehst geht gehen geht gehen go
-kommen komme kommst kommt kommen kommt kommen come
-sehen sehe siehst sieht sehen seht sehen see
-sprechen spreche sprichst spricht sprechen sprecht sprechen speak
-essen esse isst isst essen esst essen eat
-trinken trinke trinkst trinkt trinken trinkt trinken drink
-lesen lese liest liest lesen lest lesen read
-schreiben schreibe schreibst schreibt schreiben schreibt schreiben write
-schlafen schlafe schläfst schläft schlafen schlaft schlafen sleep
-laufen laufe läufst läuft laufen lauft laufen run
+﻿Tisch,Der,Table,,,,,,,,,,,,,,Antworten ,Ja,Answer,Antworte,Antwortest,Antwortet,Antworten,Antwortet,Antworten,Geantwortet,Haben,Schwach,Nein,Antwortete,,,,,,Nein
+Tabelle,Die,Table as in spreadsheet,,,,,,,,,,,,,,Arbeiten,Ja,Work,Arbeite,Arbeitest,Arbeitet,Arbeiten,Arbeitet,Arbeiten,Gearbeitet,Haben,Schwach,Nein,Arbeitete,,,,,,Nein
+Wasser,Das,Water,,,,,,,,,,,,,,Beten,Ja,Pray,Bete,Betest,Betet,Beten,Betet,Beten,Gebetet,Haben,Schwach,Nein,Betete,,,,,,Nein
+Kuchen,Die,Kitchen,,,,,,,,,,,,,,Brauchen,Ja,Need,Brauche,Brauchst,Braucht,Brauchen,Braucht,Brauchen,Gebraucht,Haben,Schwach,Nein,Brauchte,,,,,,Nein
+,,,,,,,,,,,,,,,,Dauern,Ja,Last,Dauere,Dauerst,Dauert,dauern,Dauert,Dauern,Gedauert,Haben,Schwach,Nein,Dauerte,,,,,,Nein
+,,,,,,,,,,,,,,,,Diskutieren,Ja,Discuss,Diskutiere,Diskutiert,Diskutiert,Diskutieren,Diskutiert,Diskutieren,Diskutiert,Haben,Schwach,Nein,Diskutierte,,,,,,Nein
+,,,,,,,,,,,,,,,,Drücken,Ja,Hug,Drücke,Drckst,Drückt,Drücken,Drückt,Drücken,Gedrückt,Haben,Schwach,Nein,Drückte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Duschen,Ja,Shower,Dusce,Duschst,Discht,Duschen,Duscht,Duschen,Geduscht,Haben,Schwach,Nein,Duschte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Fühlen,Ja,Feel,Fühle,Fühlst,Fühlt,Fühlen,Fühlt,Fühlen,Gefühlt,Haben,Schwach,Nein,Fühlte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Fragen,Ja,Ask,Frage,Fragst,Fragt,Fragen,Fragt,Fragen,Gefragt,Haben,Schwach,Nein,Fragte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Freuen,Ja,Be happy,Freue,Freust,Freut,Freuen,Freut,Freuen,Gefreut,Haben,Schwach,Nein,Freute,,,,,,Nein
+,,,,,,,,,,,,,,,,,Glauben,Ja,Believe,Glaube,Glaubst,Glaubt,Glauben,Glaubt,Glauben,Geglaubt,Haben,Schwach,Nein,Glaubte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Hoffen,Ja,Hope,Hoffe,Hoffst,Hofft,Hoffen,Hofft,Hoffen,Gehofft,Haben,Schwach,Nein,Hoffte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Holen,Ja,Fetch,Hole,Holst,Holt,holen,Holt,Holen,Geholt,Haben,Schwach,Nein,Holte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Hören,Ja,Hear,Höre,Hörst,Hört,Hören,Hört,Hören,Gehört,Haben,Schwach,Nein,Hörte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Kaufen,Ja,Buy,Kaufe,Kaufst,Kauft,Kaufen,Kauft,Kaufen,Gekauft,Haben,Schwach,Nein,Kaufte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Kochen,Ja,Cook,Koche,kochst,Kocht,Kochen,Kocht,Kochen,Gekocht,Haben,Schwach,Nein,Kochte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Kosten,Ja,Cost,Koste,Kostetst,Kostet,Kosten,Kostet,Kosten,Gekostet,Haben,Schwach,Nein,Kostete,,,,,,Nein
+,,,,,,,,,,,,,,,,,Küssen,Ja,Kiss,Küsse,Küsst,Küsst,Küssen,Küsst,Küssen,Geküsst,Haben,Schwach,Nein,Küsste,,,,,,Nein
+,,,,,,,,,,,,,,,,,Lachen,Ja,Laugh,Lache,Lachst,Lacht,Lachen,Lacht,Lachen,Gelacht,Haben,Schwach,Nein,Lachte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Lächeln,Ja,Smile,Lächele,Lächelst,Lächelt,Lächeln,Lächelt,Lächeln,Gelächelt,Haben,Schwach,Nein,Lächelte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Lernen,Ja,Learn,Lerne,Lernst,Lernt,Lernen,Lernt,Lernen,Gelernt,Haben,Schwach,Nein,Lerte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Lieben,Ja,Love,Liebe,Liebst,Liebt,Lieben,Liebt,Lieben,Geliebt,Haben,Schwach,Nein,Liebte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Machen,Ja,Make,Mache,Machst,Macht,Machen,Macht,Machen,Gemacht,Haben,Schwach,Nein,Machte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Meinen,Ja,Mean,Meine,Meinst,Meint,Meinen,Meint,Meinen,Gemeint,Haben,Schwach,Nein,Meinte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Reisen,Ja,Travel,Reise,Reist,Reist,Reisen,Reist,Reisen,Gereist,Sein,Schwach,Nein,Reiste,,,,,,Nein
+,,,,,,,,,,,,,,,,,Passieren,Ja,Happen,Passiere,Passierst,Passiert,Passieren,Passiert,Passieren,Passiert,Sein,Schwach,Nein,Passierte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Reden,Ja,Talk,Rede,Redest,Redet,Reden,Redet,Reden,Geredet,Haben,Schwach,Nein,Redete,,,,,,Nein
+,,,,,,,,,,,,,,,,,Sagen,Ja,Say,Sage,Sagst,Sagt,Sagen,Sagt,Sagen,Gesagt,Haben,Schwach,Nein,Sagte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Schmecken,Ja,Taste,Schmecke,Schmeckst,Schmeckt,Schmecken,Schmeckt,Schmecken,Geshmeckt,Haben,Schwach,Nein,Schmeckte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Spielen,Ja,Play,Spiele,Spielst,Spielt,Spielen,Spielt,Spielen,Gespielt,Haben,Schwach,Nein,Spelte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Studieren,Ja,study,Studiere,Studierst,Studiert,Studieren,Studiert,Studieren,Studiert,Haben,Schwach,Nein,Studierte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Suchen,Ja,Look for,Suche,Suchst,Sucht,Suchen,Sucht,Suchen,Gesucht,Haben,Schwach,Nein,Suchte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Träumen,Ja,Dream,Träume,Träumst,Träumt,Träumen,Träumt,Träumen,Geträumt,Haben,Schwach,Nein,Träumte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Warten,Ja,Wait,Warte,Wartest,Wartet,Warten,Wartet,Warten,Gewartet,Haben,Schwach,Nein,Wartete,,,,,,Nein
+,,,,,,,,,,,,,,,,,Weinen,Ja,Cry,Weine,Weinst,Weint,Weinen,Weint,Weinen,Geweint,Haben,Schwach,Nein,Weinte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Wohnen,Ja,Live,Wohne,Wohnst,Wohnt,Wohnen,Wohnt,Wohnen,Gewohnt,Haben,Schwach,Nein,Wohnte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Zeigen,Ja,Show,Zeige,Zeigst,Zeigt,Zeigen,Zeigt,Zeigen,Gezeigt,Haben,Schwach,Nein,Zeigte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Angeln,Ja,Fish,Angele,Angelst,Angelt,Angeln,Angelt,Angeln,Geangelt,Haben,Schwach,Nein,Angelte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Campen,Ja,Camp,Campe,Campst,Campt,Campen,Campt,Campen,Gekampt,Haben,Schwach,Nein,Campte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Segeln,Ja,Sail,Segele,Segelst,Segelt,Segeln,Segelt,Segeln,Gesegelt,Sein,Schwach,Nein,Segelte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Grillen,Ja,Grill,Grille,Grillst,Grillt,Grillen,Grillt,Grillen,Gegrillt,Haben,Schwach,Nein,Grillte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Trainieren,Ja,Workout,Trainiere,Trainierst,Trainiert,Trainieren,Trainiert,Trainieren,Trainiert,Haben,Schwach,Nein,Trainierte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Joggen,Ja,Jog,Jogge,Joggst,Joggt,Joggen,Joggt,Joggen,Gejoggt,Haben,Schwach,Nein,Joggte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Tanzen,Ja,Dance,Tanze,Tanzt,Tanzt,Tanzen,Tanzt,Tanzen,Getanzt,Haben,Schwach,Nein,Tanzte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Surfen,Ja,Surf,Surfe,Surfst,Surft,Surfen,Surft,Surfen,Gesurft,Haben,Schwach,Nein,Surfte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Präsentieren,Ja,Present,Präsentiere,Präsentierst,Präsentiert,Präsentieren,Präsentiert,Präsentieren,Präsentiert,Haben,Schwach,Nein,Präsentierte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Abholen,Ja,Pick up,SP,SP,SP,SP,SP,SP,Abgeholt,Haben,Schwach,Holen,Holte ab,,,,,,Nein
+,,,,,,,,,,,,,,,,,Aufhören,Ja,Stop,SP,SP,SP,SP,SP,SP,Aufgehört,Haben,Schwach,Hören,Hörte auf,,,,,,Nein
+,,,,,,,,,,,,,,,,,Aufwachen,Ja,Wake up,SP,SP,SP,SP,SP,SP,Aufgewacht,Sein,Schwach,Wachen,Wachte auf,,,,,,Nein
+,,,,,,,,,,,,,,,,,Einkaufen,Ja,Shop,SP,SP,SP,SP,SP,SP,Eingekauft,Haben,Schwach,Kaufen,Kaufte ein,,,,,,Nein
+,,,,,,,,,,,,,,,,,Vorbereiten,Ja,Prepare,SP,SP,SP,SP,SP,SP,Vorbereitet,Haben,Schwach,Bereiten,Bereitete vor,,,,,,Nein
+,,,,,,,,,,,,,,,,,Vorhaben,Ja,Plan,SP,SP,SP,SP,SP,SP,Vorgehabt,Haben,Schwach,Haben,Hatte vor,,,,,,Nein
+,,,,,,,,,,,,,,,,,Vorstellen,Ja,Imagine,SP,SP,SP,SP,SP,SP,Vorgestellt,Haben,Schwach,Stellen,Stelle vor,,,,,,Nein
+,,,,,,,,,,,,,,,,,Zuhören,Ja,Listen to,SP,SP,SP,SP,SP,SP,Zugehört,Haben,Schwach,Zuhören,Hörte zu,,,,,,Nein
+,,,,,,,,,,,,,,,,,Vormachen,Ja,Pretend,SP,SP,SP,SP,SP,SP,Vergemacht,Haben,Schwach,Machen,Machte vor,,,,,,Nein
+,,,,,,,,,,,,,,,,,Sein,Ja,Be,Bin,Bist,Ist,Sind,Seid,Sind,Gewesen,Sein,Stark,Nein,War,,,,,,Nein
+,,,,,,,,,,,,,,,,,Haben,Ja,Have,Habe,Hast,Hat,Haben,Habt,Haben,Gehabt,Haben,Stark,Nein,Hatte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Werden,Ja,Become,Werde,Wirst,Wird,Werden,Werdet,Werden,Geworden,Sein,Stark,Nein,Wurde,,,,,,Nein
+,,,,,,,,,,,,,,,,,Bleiben,Ja,Stay,Bleibe,Beibst,Bleibt,Bleiben,Bleibt,Bleiben,Geblieben,Sin,Stark,Nein,Blieb,,,,,,Nein
+,,,,,,,,,,,,,,,,,Essen,Ja,Eat,Esse,Isst,Isst,Essen,Esst,Essen,Gegessen,Haben,Stark,Nein,Aß,,,,,,Nein
+,,,,,,,,,,,,,,,,,Fahren,Ja,Drive,Fahre,Fährst,Fährt,Fahren,Fahrt,Fahren,Gefahren,Sein,Stark,Nein,Fuhr,,,,,,Nein
+,,,,,,,,,,,,,,,,,Fallen,Ja,Fall,Falle,Fällst,Fällt,Fallen,Fallt,Fallen,Gefallen,Sein,Stark,Nein,Fiel,,,,,,Nein
+,,,,,,,,,,,,,,,,,Finden,Ja,Find,Finde,Findest,Findet,Finden,Findet,Finden,Gefunden,Haben,Stark,Nein,Fand,,,,,,Nein
+,,,,,,,,,,,,,,,,,Fliegen,Ja,Fly,Fliege,Fliegst,Fliegt,Fliegen,Fliegt,Fliegen,Geflogen,Sein,Stark,Nein,Flog,,,,,,Nein
+,,,,,,,,,,,,,,,,,Geben,Ja,Give,Gebe,Gibst,Gibt,Geben,Gebt,Geben,Gegeben,Haben,Stark,Nein,Gab,,,,,,Nein
+,,,,,,,,,,,,,,,,,Gehen,Ja,Go,Gehe,Gehst,Geht,Gehen,Geht,Gehen,Gegangen,Sein,Stark,Nein,Ging,,,,,,Nein
+,,,,,,,,,,,,,,,,,Gewinnen,Ja,Win,Gewinne,Gewinnst,Gewinnt,Gewinnen,Gewinnt,Gewinnen,Gewonnen,Haben,Stark,Nein,Gewann,,,,,,Nein
+,,,,,,,,,,,,,,,,,Halten,Ja,Hold,Halte,Hälst,Hält,Halten,Haltet,Halten,Gehalen,Haben,Stark,Nein,Hielt,,,,,,Nein
+,,,,,,,,,,,,,,,,,Heißen,Ja,Be called,Heiße,Heißt,Heißt,Heißen,heißt,Heißen,Geheißen,Haben,Stark,Nein,Hieß,,,,,,Nein
+,,,,,,,,,,,,,,,,,Helfen,Ja,Help,Helfe,Hilfst,Hilft,Helfen,Helft,Helfen,Geholfen,Haben,Stark,Nein,Half,,,,,,Nein
+,,,,,,,,,,,,,,,,,Klingen,Ja,Sound,Klinge,Klingst,Klingt,Klingen,Klingt,Klingen,Geklungen,Haben,Stark,Nein,Klang,,,,,,Nein
+,,,,,,,,,,,,,,,,,Kommen,Ja,Come,Komme,Kommst,Kommt,Kommen,Kommt,Kommen,Gekommen,Haben,Stark,Nein,Kam,,,,,,Nein
+,,,,,,,,,,,,,,,,,Lassen,Ja,Let ,Lasse,Lässt,Lässt,Lassen,Lasst,Lassen,Gelasssen,Haben,Stark,Nein,Ließ,,,,,,Nein
+,,,,,,,,,,,,,,,,,Laufen,Ja,Run sometimes walk,Laufe,Läufst,Läuft,Laufen,Lauft,Laufen,Gelaufen,Sein,Stark,Nein,Lief,,,,,,Nein
+,,,,,,,,,,,,,,,,,Lesen,Ja,Read,Lese,Liest,Liest,Lesen,Lest,Lesen,Gelesen,Haben,Stark,Nein,Las,,,,,,Nein
+,,,,,,,,,,,,,,,,,Nehmen,Ja,Take,Nehme,Nimmst,Nimmt,Nehmen,Nehmt,Nehmen,Genommen,Haben,Stark,Nein,Nahm,,,,,,Nein
+,,,,,,,,,,,,,,,,,Raten,Ja,Guess,Rate,Rätst,Rät,Raten,Ratet,Raten,Geraten,Haben,Stark,Nein,Riet,,,,,,Nein
+,,,,,,,,,,,,,,,,,Rufen,Ja,Call,Rufe,Rufst,Ruft,Rufen,Ruft,Rufen,Gerufen,Haben,Stark,Nein,Rief,,,,,,Nein
+,,,,,,,,,,,,,,,,,Schalfen,Ja,Sleep,Schlafe,Schläfst,Schläft,Schlafen,Schlaft,Schalen,Geschlafen,Jaben,Stark,Nein,Schlief,,,,,,Nein
+,,,,,,,,,,,,,,,,,Schreiben,Ja,Write,Schreibe,Schreibst,Schreibt,Schreiben,Schreibt,Schreiben,Geschrieben,Jaben,Stark,Nein,Schrieb,,,,,,Nein
+,,,,,,,,,,,,,,,,,Sehen,Ja,See,Sehe,Siehst,Sieht,Sehen,Seht,Sehen,Gesehen,Habe,Stark,Nein,Sah,,,,,,Nein
+,,,,,,,,,,,,,,,,,Singen,Ja,Sing,Singe,Singst,Singt,Singen,Singt,Singen,Gesungen,Haben,Stark,Nein,Sang,,,,,,Nein
+,,,,,,,,,,,,,,,,,Sprehen,Ja,Speak,Spreche,Sprichst,Spricht,Sprechen,Sprecht,Sprechen,Gesprochen,Haben,Stark,Nein,Sprach,,,,,,Nein
+,,,,,,,,,,,,,,,,,Stehen,Ja,Stand,Stehe,Stehst,Steht,Stehn,Steht,Stehen,Gestanden,Haben,Stark,Nein,Stand,,,,,,Nein
+,,,,,,,,,,,,,,,,,Sterben,Ja,Die,Sterbe,Stirbst,Stirbt,Sterben,Sterbt,Sterben,Gestorben,Sein,Stark,Nein,Starb,,,,,,Nein
+,,,,,,,,,,,,,,,,,Tragen,Ja,Carry,Trage,Trägst,Trägt,Tragen,Tragt,Tragen,Getragen,Haben,Stark,Nein,Trung,,,,,,Nein
+,,,,,,,,,,,,,,,,,Treffen,Ja,Meet,Treffe,Triffst,Trifft,Treffen,Trefft,Treffen,Getroffen,Haben,Stark,Nein,Traf,,,,,,Nein
+,,,,,,,,,,,,,,,,,Trinken,Ja,Drink,Trinke,Trinkst,Trinkt,Trinken,Trinkt,Trinken,Getrunken,Haben,Stark,Nein,Trank,,,,,,Nein
+,,,,,,,,,,,,,,,,,Tun,Ja,Do,Tue,Tust,Tut,Tun,Tut,Tun,Getan,Haben,Stark,Nein,Tat,,,,,,Nein
+,,,,,,,,,,,,,,,,,Vergessen,Ja,Forget,Vergesse,Vergisst,Verfisst,Vergessen,Vergesst,Vergessen,Vergessen,Haben,Stark,Nein,Vergaß,,,,,,Nein
+,,,,,,,,,,,,,,,,,Verlieren,Ja,Loose,Verliere,verlierst,Verliert,Verlieren,Verliert,Vrlieren,Verloren,Haben,Stark,Nein,Verlor,,,,,,Nein
+,,,,,,,,,,,,,,,,,Wachsen,Ja,Grow,Wachse,Wächst,Wächst,Wachsen,Wachst,Wachsen,Gewachsen,Sein,Stark,Nein,Wuchs,,,,,,Nein
+,,,,,,,,,,,,,,,,,Waschen,Ja,Wash,Wasche,Wäschst,Wäscht,Waschen,Wascht,Waschen,Gewaschen,Haben,Stark,Nein,Wusch,,,,,,Nein
+,,,,,,,,,,,,,,,,,Schwimmen,Ja,Swim,Schwimme,Schwimmst,Schwimmt,Schwimmen,Schwimmt,Schwimmen,Geschwommen,Haben,Stark,Nein,Schwamm,,,,,,Nein
+,,,,,,,,,,,,,,,,,Backen,Ja,Bake,Backe,Backst,Backt,Backen,Backt,Backen,Gebacken,Haben,Stark,Nein,Backte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Bestellen,Ja,Order,Bestelle,Bestellst,Bestellt,Bestellen,Berstellt,Bestellen,Bestellt,Haben,Schwach,Nein,Bestellte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Besuchen,Ja,Visit,Besuche,Besuchst,Besuct,Besuchen,Besucht,Besuchen,Besucht,Haben,Schwach,Nein,Besuchte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Bezahlen,Ja,Paz,Bezahle,Bezahlst,Bezahlt,Bezahlen,Bezahlt,Bezahlen,Bezahlt,Haben,Schwach,Nein,Beahlte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Erholen,Ja,Relax,Erhole,erholst,Erholt,Erholen,Erholt,Erholen,Erholt,Haben,Schwach,Nein,Erholte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Erinnern,Ja,Remember,Erinnere,Erinnerst,Erinnert,Erinnern,Erinnert,Erinnern,Erinnert,Haben,Schwach,Nein,Erinnerte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Erklären,Ja,Explain,Erkläre,Erklärst,Erklärt,Erklären,Erklärt,Erklären,Erklärt,Haben,Schwach,Nein,Erklärte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Erleben,Ja,Experience,Erlebe,Erlebst,Erlebt,Erleben,Erlebt,Erleben,Erlebt,Haben,Schwach,Nein,Erlebte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Erzählen,Ja,Tell,Erzähle,Erzählst,Erzählt,Erzählen,Erzählt,Erzählen,Erzählt,Haben,Schwach,Nein,Erzählte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Gehört,Ja,Belong,Gehöre,Gehörst,Gehört,Gehören,Gehört,Gehören,Gehört,Haben,Schwach,Nein,Gehörte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Übersetzen,Ja,Translate,Übersetze,Übersetzt,Übersetzt,Übersetzen,Übersetzt,Übersetzen,Übersetzt,Haben,Schwach,Nein,Übersetzte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Verkaufen,Ja,Sell,Verkaufe ,Verkaufst,Verkafut,Verkaufen,Verkauft,Verkaufen,Verkauft,Haben,Schwach,Nein,Verkafute,,,,,,Nein
+,,,,,,,,,,,,,,,,,Vermissen,Ja,Miss,Vermisse,Vermisst,Vermisst,Vermissen,Vermisst,Vermisssen,Ermisst,Haben,Schwach,Nein,Vermisste,,,,,,Nein
+,,,,,,,,,,,,,,,,,Versuchen,Ja,Trz,Versuche,Versuchst,Versucht,Versuchen,Versucht,Versuchen,Versucht,Haben,Schwach,Nein,Versuchte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Wiederholen,Ja,Repeat,Wiederhole,Wiederholst,Wiederholt,Wiederholen,Wiederholt,Wiederhoen,Wiederholt,Haben,Schwach,Nein,Wiederholte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Zerstören,Ja,Destroy,Zerstöre,Zerstörst,Zerstört,Zerstören,Zerstört,Zerstören,Zerstört,Haben,Schwach,Nein,Zerstörte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Anfangen,Ja,Begin,SP,SP,SP,SP,SP,SP,Angefangen,Haben,Stark,Fangen,Fing an,,,,,,Nein
+,,,,,,,,,,,,,,,,,Ankommen,Ja,Arrive,SP,SP,SP,SP,SP,SP,Angekommen,Sein,Stark,Kommen,Kam an,,,,,,Nein
+,,,,,,,,,,,,,,,,,Anrufen,Ja,Call with phone,SP,SP,SP,SP,SP,SP,Angerufen,Haben,Stark,Rufen,Rief an,,,,,,Nein
+,,,,,,,,,,,,,,,,,Ausgehen,Ja,Go out,SP,SP,SP,SP,SP,SP,Angegangen,Sein,Stark,Gehen,Ging aus,,,,,,Nein
+,,,,,,,,,,,,,,,,,Aussehen,Ja,Look like,SP,SP,SP,SP,SP,SP,Ausgesehen,Haben,Stark,sehen,Sah aus,,,,,,Nein
+,,,,,,,,,,,,,,,,,Einschalfen,Ja,Fall asleep,SP,SP,SP,SP,SP,SP,Eingeschlafen,Sein,Stark,Schlafen,Schlief ein,,,,,,Nein
+,,,,,,,,,,,,,,,,,Fernsehen,Ja,Watch tv,SP,SP,SP,SP,SP,SP,Fergesehen,Haben,Stark,Sehen,Sah fern,,,,,,Nein
+,,,,,,,,,,,,,,,,,Fortgehen,Ja,Go awaz,SP,SP,SP,SP,SP,SP,Forgegangen,Sein,Stark,Gehen,Ging fort,,,,,,Nein
+,,,,,,,,,,,,,,,,,Herkommen,Ja,Come from,SP,SP,SP,SP,SP,SP,Hergekommen,Sein,Stark,Kommmen,Kam her,,,,,,Nein
+,,,,,,,,,,,,,,,,,Loswerden,Ja,Geht Rind of,SP,SP,SP,SP,SP,SP,Losgeworden,Sein,Stark,Werden,Wurde los,,,,,,Nein
+,,,,,,,,,,,,,,,,,Mitnehmen,Ja,Take along,SP,SP,SP,SP,SP,SP,Mitgenommen,Haben,Stark,Nehmen,Nahm mit,,,,,,Nein
+,,,,,,,,,,,,,,,,,Stattfinden,Ja,Take place,SP,SP,SP,SP,SP,SP,Stattgefunden,Haben,Stark,Finden,Fand statt,,,,,,Nein
+,,,,,,,,,,,,,,,,,Umziehen,Ja,Change clothes,SP,SP,SP,SP,SP,SP,Umgezogen,Haben,Stark,Zeigen,Zog um,,,,,,Nein
+,,,,,,,,,,,,,,,,,Wiedersehen,Ja,See again,SP,SP,SP,SP,SP,SP,Wiedergesehen,Haben,Stark,Sehen,Sah wieder,,,,,,Nein
+,,,,,,,,,,,,,,,,,Voerschlagen,Ja,Suggest,SP,SP,SP,SP,SP,SP,Vorgeschlangen,Haben,Stark,Schlagen,Schlug vor,,,,,,Nein
+,,,,,,,,,,,,,,,,,Zugeben,Ja,Admit,SP,SP,SP,SP,SP,SP,Zugegeben,Haben,Stark,Geben,Gab zu,,,,,,Nein
+,,,,,,,,,,,,,,,,,Zurückkommen,Ja,Come back,SP,SP,SP,SP,SP,SP,Zurückgekommen,Sein,Stark,Kommen,Kam zurück,,,,,,Nein
+,,,,,,,,,,,,,,,,,Bekommen,Ja,Get,,,,,,,Bekommen,Haben,Stark,Nein,Bekam,,,,,,Nein
+,,,,,,,,,,,,,,,,,Betrügen,Ja,Cheat,,,,,,,Betrogen,Haben,Stark,Nein,Betrog,,,,,,Nein
+,,,,,,,,,,,,,,,,,Bewerben,Ja,Applz,,,,,,,Beworben,Haben,Stark,Nein,Bewarb,,,,,,Nein
+,,,,,,,,,,,,,,,,,Eintscheiden,Ja,Decide,,,,,,,Entschieden,Haben,Stark,Nein,Entschied,,,,,,Nein
+,,,,,,,,,,,,,,,,,Erfinden,Ja,Invent,,,,,,,Erfunden,Haben,Stark,Nein,Erfand,,,,,,Nein
+,,,,,,,,,,,,,,,,,Gefallen,Ja,Like,,,,,,,Gefallen,Haben,Stark,Nein,Gefiel,,,,,,Nein
+,,,,,,,,,,,,,,,,,Unterbrechen,Ja,Interrupt,,,,,,,Unterbrochen,Haben,Stark,Nein,Unterbrach,,,,,,Nein
+,,,,,,,,,,,,,,,,,Verstehen,Ja,Understand,,,,,,,Verstanden,Haben,Stark,Nein,Verstand,,,,,,Nein
+,,,,,,,,,,,,,,,,,Dürfen,Ja,May,,,,,,,Gedurft,Haben,Vermischt,Nein,Durfte,,,,,,Ja
+,,,,,,,,,,,,,,,,,Können,Ja,Can,,,,,,,Gekonnt,Haben,Vermischt,Nein,Konnte,,,,,,Ja
+,,,,,,,,,,,,,,,,,Mögen,Ja,Like,,,,,,,Gemocht,Haben,Vermischt,Nein,Mochte,,,,,,Ja
+,,,,,,,,,,,,,,,,,Müssen,Ja,Must,,,,,,,Gemusst,Haben,Vermischt,Nein,Musste,,,,,,Ja
+,,,,,,,,,,,,,,,,,Sollen,Ja,Should,,,,,,,Geollt,Haben,Vermischt,Nein,Sollte,,,,,,Ja
+,,,,,,,,,,,,,,,,,Wollen,Ja,Want,,,,,,,Gewollt,Haben,Vermischt,Nein,Wollte,,,,,,Ja
+,,,,,,,,,,,,,,,,,Brennen,Ja,Burn,,,,,,,Gebrannt,Haben,Vermischt,Nein,Brannte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Bringen,Ja,Bring,,,,,,,Gebracht,Haben,Vermischt,Nein,Brachte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Denken,Ja,Think,,,,,,,Gedacht,Haben,Vermischt,Nein,Dachte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Kennen,Ja,Know people,,,,,,,Gekannt,Haben,Vermischt,Nein,Kannte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Nennen,Ja,Call,,,,,,,Genannt,Haben,Vermischt,Nein,Nannte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Rennen,Ja,Run,,,,,,,Gerannt,Sein,Vermischt,Nein,Rannte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Senden,Ja,Send,,,,,,,Gesandt,Haben,Vermischt,Nein,Sandte,,,,,,Nein
+,,,,,,,,,,,,,,,,,Wissen,Ja,Know facts,,,,,,,Gewusst,Haben,Vermischt,Nein,Wusste,,,,,,Nein
+,,,,,,,,,,,,,,,,,Beibringen,Ja,Teach,,,,,,,Beigebracht,,,,,,,,,,
+,,,,,,,,,,,,,,,,,Kennenlernen,Ja,Meet,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,Mitbringen,Ja,Bring along,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,Nachdenken,Ja,Think about,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,Erkennen,Ja,Recognize,,,,,,,,,,,,,,,,,
