@@ -4,31 +4,72 @@
 #include <QDebug>
 #include <cstdlib>
 
+#define SUPPORTEDWDAVERSION 0.1
+
 WordSet::WordSet() {}
 
 void WordSet::parseLine(QString line) {
     // the words are organized in this order, nouns, verbs, TODO add other parts of speech
     QStringList lineParts = line.split(",");
 
-    // determine noun
-    Gender wordGender;
-    if (lineParts[1] == "Der") {
-        wordGender = DER;
-    } else if (lineParts[1] == "Die") {
-        wordGender = DIE;
-    } else if (lineParts[1] == "Das") {
-        wordGender = DAS;
-    }
-
     // don't parse a noun if, you know, there is one on this line (in cases where there are more verbs than nouns, there will be lines where the noun is left blank
-    if (lineParts[0] != ""){
-        Noun* newNoun = new Noun(lineParts[0], wordGender, lineParts[2]);
+    if (lineParts[4] != ""){
+        // determine noun gender
+        Gender wordGender;
+        if (lineParts[5].toLower() == "der") {
+            wordGender = DER;
+        } else if (lineParts[5].toLower() == "die") {
+            wordGender = DIE;
+        } else if (lineParts[5].toLower() == "das") {
+            wordGender = DAS;
+        }
+
+        Noun* newNoun = new Noun(lineParts[4], wordGender, lineParts[6]);
         allWords.append(newNoun);
         nouns.append(newNoun);
+    }
+
+    // same thing with the verbs, excpet they have more parts
+
+    if (lineParts[21] != "") {
+        Verb* newVerb = new Verb(lineParts[21], lineParts[22]);
+        newVerb->ichConj = lineParts[23];
+        newVerb->duConj = lineParts[24];
+        newVerb->erConj = lineParts[25];
+        newVerb->wirConj = lineParts[26];
+        newVerb->ihrConj = lineParts[27];
+        newVerb->sieConj = lineParts[28];
+
+        newVerb->PartizipII = lineParts[29];
+        newVerb->pratetitumIch = lineParts[33];
+
+        // determine the values of the various codes
+
+        // HSCode
+        if (lineParts[30].toLower() == "haben")
+            newVerb->HabenSein = HABEN;
+        if (lineParts[30].toLower() == "sein")
+            newVerb->HabenSein = SEIN;
+
+        // StrengthCode
+        if (lineParts[31].toLower() == "schwach")
+            newVerb->SchwachStark = SCHWACH;
+        if (lineParts[31].toLower() == "stark")
+            newVerb->SchwachStark = STARK;
+
+        // ModalCode
+        if (lineParts[39].toLower() == "nein")
+            newVerb->modal = NOTMODAL;
+        if (lineParts[29].toLower() == "ja")
+            newVerb->modal = MODAL;
+
+        allWords.append(newVerb);
+        verbs.append(newVerb);
     }
 }
 
 void WordSet::parseWordFile(QString filePath) {
+    //TODO add version indicator on the file revision to dtw files.
     qDebug() << "Parsing word file: " << filePath;
     QFile questionFile(filePath);
 
@@ -38,6 +79,12 @@ void WordSet::parseWordFile(QString filePath) {
     // word files are really csv files, each collum contains a different part of the information, each row contains a different word, nouns and verbs are in different rows on the csv file.
 
     // each line contains one noun, verb, or other words, the parseLine funciton extracts them
+
+    // TODO check the version against the supported version of this program
+    questionFile.readLine(); // while we wait to read the version line, this code keeps us from trying to turn the version line into a question
+    questionFile.readLine(); // removes the first line of headers
+    questionFile.readLine(); // removes the second one
+
     while (!questionFile.atEnd())
         parseLine(questionFile.readLine());
 

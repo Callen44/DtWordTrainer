@@ -2,16 +2,41 @@
 
 #include "Word.h"
 
+enum HSCode {
+    HABEN,
+    SEIN
+};
+
+enum StrengthCode {
+    STARK,
+    SCHWACH
+};
+
+enum ModalCode {
+    MODAL,
+    NOTMODAL
+};
+
 class Verb : public Word
 {
 public:
 	PartOS partOfSpeech = VERB;
+
 	QString ichConj;
 	QString duConj;
-	QString esConj;
+    QString erConj;
 	QString wirConj;
 	QString ihrConj;
 	QString sieConj;
 
-	Verb(QString paramInfinitive, QString paramTranslation, QString paramIchConj, QString paramDuConj, QString paramErConj, QString paramWirConj, QString paramIhrConj, QString paramSieConj);
+    HSCode HabenSein;
+    StrengthCode SchwachStark;
+    ModalCode modal;
+
+    // TODO, much later, add seperable verb support
+    QString pratetitumIch;
+
+    QString PartizipII;
+
+    Verb(QString paramInfinitive, QString paramTranslation);
 };
