@@ -5,15 +5,20 @@ Algorithm::Algorithm() {
 }
 
 bool Algorithm::readFiles(QString fileName) {
-    words.parseWordFile(fileName);
-    firstQuestion = !words.parseWissenFile(words.calcWDAName(fileName)); // if parseWissenFile returns false, that menas there simply is no wissen file
+    if (!words.parseWordFile(fileName) || !words.parseWissenFile(words.calcWDAName(fileName))){
+        qDebug() << "Files failed to open, are they writable?\nThis is a fatal error.";
+        exit(1);
+    }
 
-    return true; // return code indicates success or failure, TODO.
+    // prep step, make every possible question
+    for (int i = 0; i < words.allWords.size(); i++) {
+        PartOS pos = words.allWords[i]->partOfSpeech;
+    }
 }
 
 Question* Algorithm::nextQuestion() {
-    // pick a question type
-    // TODO, this is very temporary as this is the only implemented question type
+
+    /* ======== The old system ========
     QVariety questionVariety = MCHOICEFOURDEF;
 
     double worstScore = 0.0;
@@ -39,6 +44,18 @@ Question* Algorithm::nextQuestion() {
 
     MChoiceFourDef* nq = new MChoiceFourDef(worstWord, &words);
     return nq;
+    */
+
+    return new MChoiceFourDef(words.nouns[0], &words);
+}
+
+void Algorithm::recalculateData() {
+    // run through each word's specific information, then recalculate the overall data of the question set.
+
+}
+
+void Algorithm::moveBatchUp() {
+
 }
 
 Algorithm::~Algorithm() {

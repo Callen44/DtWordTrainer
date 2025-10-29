@@ -68,13 +68,13 @@ void WordSet::parseLine(QString line) {
     }
 }
 
-void WordSet::parseWordFile(QString filePath) {
+bool WordSet::parseWordFile(QString filePath) {
     //TODO add version indicator on the file revision to dtw files.
     qDebug() << "Parsing word file: " << filePath;
     QFile questionFile(filePath);
 
-    if(!questionFile.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;
+    if(!questionFile.open(QIODevice::ReadOnly | QIODevice::Text)) // if file fails to open
+        return false;
 
     // word files are really csv files, each collum contains a different part of the information, each row contains a different word, nouns and verbs are in different rows on the csv file.
 
@@ -90,6 +90,7 @@ void WordSet::parseWordFile(QString filePath) {
 
     // if all was successful and we made it this far, mark this file as our dtw file
     dtwName = filePath;
+    return true;
 }
 
 QString WordSet::calcWDAName(QString dtwFileName) {
@@ -131,9 +132,19 @@ Word* WordSet::findWordObject(QString word) {
 }
 
 bool WordSet::parseWissenFile(QString filePath) {
-    return false;
+    return true;
 }
 
 WordSet::~WordSet() {
-    
+    allWords.clear();
+    for (int i = 0; i < nouns.size(); i++) {
+        Word* cword = nouns[i];
+        nouns.remove(i);
+        delete cword;
+    }
+    for (int i = 0; i < verbs.size(); i++) {
+        Word* cword = verbs[i];
+        verbs.remove(i);
+        delete cword;
+    }
 }

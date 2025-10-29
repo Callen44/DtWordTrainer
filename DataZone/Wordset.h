@@ -20,7 +20,7 @@ public:
 
     // functions for handling word files
     // TODO add handling for bad files
-    void parseWordFile(QString filePath);
+    bool parseWordFile(QString filePath);
     void parseLine(QString line);
 
     // functions for handling wissen files
