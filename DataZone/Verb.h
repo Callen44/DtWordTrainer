@@ -38,5 +38,6 @@ public:
 
     QString PartizipII;
 
-    Verb(QString paramInfinitive, QString paramTranslation);
+    Verb(QString infinitive, QString translation)
+        :Word(VERB, translation, infinitive) {}
 };

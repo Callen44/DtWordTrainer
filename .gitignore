@@ -3,3 +3,4 @@ build
 CMakeUserPresets.json
 out
 .vs
+CMakeLists.txt.user

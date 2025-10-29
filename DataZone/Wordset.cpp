@@ -3,8 +3,9 @@
 #include <QFile>
 #include <QDebug>
 #include <cstdlib>
+#include <QMessageBox>
 
-#define SUPPORTEDWDAVERSION 0.1
+#define SUPPORTEDDTWVERSION 0.1
 
 WordSet::WordSet() {}
 
@@ -80,10 +81,22 @@ void WordSet::parseWordFile(QString filePath) {
 
     // each line contains one noun, verb, or other words, the parseLine funciton extracts them
 
-    // TODO check the version against the supported version of this program
-    questionFile.readLine(); // while we wait to read the version line, this code keeps us from trying to turn the version line into a question
+    // This error should not be fatal later on.
+    if (questionFile.readLine().split(',')[1].toDouble() > SUPPORTEDDTWVERSION + 0.000001) { // read the version line, QT's toDouble isn't perfectly accurate, wo we have to program in tolerance
+        qDebug() << "unsupported file version used";
+        QMessageBox error;
+        error.setIcon(QMessageBox::Critical);
+        error.setWindowTitle("Unsupported dtw file");
+        error.setText("The dtw file you opened has a version that is of the wrong version, this is a fatal error. In the future, we will give you the ability to choose a new dtw file, nag Callen44 if he forgets.");
+        error.setStandardButtons(QMessageBox::Ok);
+        error.setDefaultButton(QMessageBox::Ok);
+        error.exec();
+        exit(1);
+    }
+
     questionFile.readLine(); // removes the first line of headers
     questionFile.readLine(); // removes the second one
+
 
     while (!questionFile.atEnd())
         parseLine(questionFile.readLine());
