@@ -12,6 +12,8 @@ public:
     // funcitons for handling correct or incorrect answers
     void answeredCorrectly();
     void answeredIncorrectly();
+    int timesCorrect() override;
+    int timesIncorrect() override;
 
     /*
      * Variables

@@ -14,6 +14,7 @@
  * of questions gotten wrong in the last batch. Blank spots will be filled in with questions from calculated satistics.
  * These satistics will still not be recalculated for the seccond batch, only the first batch gets priority this way.
  * There is no end, this process will continue until the user closes the program.
+ * (I mean first batch as in the first in each cycle, not the literal first batch)
  * 
  * Before the process actually begins, a list of all possible questions is contructed.
 */
@@ -38,13 +39,16 @@ public:
     // functions that use the algorithm
     Question* nextQuestion();
 
-    // THE DATA
+    // QUESTION DATA
 
     // the current and next batch
     QList<Question> currentBatch;
+    bool currentBatchExpended;
     QList<Question> nextBatch;
+    bool nextBatchExpended;
 
-    QList<Question> allQuestions; // stores literally every possible question based on this wordset
+    QList<Question*> allQuestions; // stores literally every possible question based on this wordset
+    QList<int> allEntries; // stores the number of entries into the lottery each question gets
 
 private:
 

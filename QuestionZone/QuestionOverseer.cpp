@@ -17,7 +17,6 @@ void QuestionOverseer::nextQuestion() {
     // get the next question
     Question* nQ = algorithm->nextQuestion();
 
-    // TODO Temporary solution!!!
     MChoiceFourDef* nQpf = reinterpret_cast<MChoiceFourDef*>(nQ);
 
     // remove the old question widget

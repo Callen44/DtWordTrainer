@@ -34,3 +34,11 @@ void MChoiceFourDef::answeredCorrectly() {
 void MChoiceFourDef::answeredIncorrectly() {
     associatedWord->defIncorrects++;
 }
+
+int MChoiceFourDef::timesCorrect() {
+    return associatedWord->defCorrects;
+}
+
+int MChoiceFourDef::timesIncorrect() {
+    return associatedWord->defIncorrects;
+}

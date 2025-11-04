@@ -26,6 +26,12 @@ public:
 
     Question(QVariety questionType, Word* associatedWord)
         : questionType(questionType), associatedWord(associatedWord) {}
+        
+    virtual ~Question() = default; // Virtual destructor to ensure proper cleanup of derived classes
+
+    // functions for reporting data
+    virtual int timesCorrect();
+    virtual int timesIncorrect();
 
     // funcitons for handling answers are in derrived classes
 
@@ -33,7 +39,7 @@ public:
     Variables
     */
 
-    const QVariety questionType; // stores what type of question this
+    QVariety questionType; // stores what type of question this TODO make this properly immutable
     Word* associatedWord; // a pointer back to the word this is a question for, allows for the question to log it's correcness itself, the UI is not responsible for managing such data
     WordSet* words;
 };
