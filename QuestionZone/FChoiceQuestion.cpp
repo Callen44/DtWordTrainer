@@ -76,5 +76,5 @@ void FChoiceQuestion::processIncorrectAnswer() {
 }
 
 FChoiceQuestion::~FChoiceQuestion() {
-    delete question;
+
 }

@@ -79,7 +79,6 @@ void Algorithm::recalculateData() {
 
     // generate scores list and timesAsked
     for (int i = 0; i < allQuestions.size(); i++) {
-
         // figure out the number of times the questions has been asked
         int asks = allQuestions[i]->timesCorrect() + allQuestions[i]->timesIncorrect();
         timesAsked.append(asks);
