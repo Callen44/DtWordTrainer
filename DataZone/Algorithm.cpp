@@ -6,10 +6,14 @@ Algorithm::Algorithm() {
 }
 
 bool Algorithm::readFiles(QString fileName) {
-    if (!words.parseWordFile(fileName) || !words.parseWissenFile(words.calcWDAName(fileName))){
+    // TODO, this should not be a fatal error
+    if (!words.parseWordFile(fileName)){
         qDebug() << "Files failed to open, are they writable?\nThis is a fatal error.";
         exit(1);
     }
+
+    if (!words.parseWissenFile(words.calcWDAName(fileName)))
+        qDebug() << "Failed to open wissen file, data will be filled with blank info.";
 
     // prep step, make every possible question
     for (int i = 0; i < words.allWords.size(); i++) {
@@ -26,7 +30,6 @@ bool Algorithm::readFiles(QString fileName) {
 
         // the classic multiple choice definition question
         MChoiceFourDef* newQuestion = new MChoiceFourDef(words.allWords[i], &words);
-        qDebug() << "Current Question Num: " << i << newQuestion->correctAns;
         allQuestions.append(newQuestion);
         allEntries.append(0);
     }

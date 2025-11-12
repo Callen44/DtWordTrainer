@@ -27,7 +27,6 @@ public:
 
     int defCorrects = 0; // how well the user knows the word and it's english equivelant.
     int defIncorrects = 0;
-    int lastAppearance = -1; // this number states what question was this word's last appearance, 0 is the first question asked, 1 is the next, and so on, this is used so that we don't see the same question appear over and over.
 
     Word(PartOS partOfSpeech, QString translation, QString word)
         : partOfSpeech(partOfSpeech), translation(translation), word(word) {}

@@ -9,11 +9,11 @@
 
 WordSet::WordSet() {}
 
-void WordSet::parseLine(QString line) {
+void WordSet::parseWordLine(QString line) {
     // the words are organized in this order, nouns, verbs, TODO add other parts of speech
     QStringList lineParts = line.split(",");
 
-    // don't parse a noun if, you know, there is one on this line (in cases where there are more verbs than nouns, there will be lines where the noun is left blank
+    // don't parse a noun if, you know, there is not one on this line (in cases where there are more verbs than nouns, there will be lines where the noun is left blank
     if (lineParts[4] != ""){
         // determine noun gender
         Gender wordGender;
@@ -70,7 +70,6 @@ void WordSet::parseLine(QString line) {
 }
 
 bool WordSet::parseWordFile(QString filePath) {
-    //TODO add version indicator on the file revision to dtw files.
     qDebug() << "Parsing word file: " << filePath;
     QFile questionFile(filePath);
 
@@ -79,11 +78,12 @@ bool WordSet::parseWordFile(QString filePath) {
 
     // word files are really csv files, each collum contains a different part of the information, each row contains a different word, nouns and verbs are in different rows on the csv file.
 
-    // each line contains one noun, verb, or other words, the parseLine funciton extracts them
+    // each line contains one noun, verb, or other words, the parseWordLine funciton extracts them
 
-    // This error should not be fatal later on.
-    if (questionFile.readLine().split(',')[1].toDouble() > SUPPORTEDDTWVERSION + 0.000001) { // read the version line, QT's toDouble isn't perfectly accurate, wo we have to program in tolerance
-        qDebug() << "unsupported file version used";
+    // TODO this error should not be fatal, it should allow the user to choose a different file.
+    QList<QByteArray> z = questionFile.readLine().split(',');
+    if (z.length() > 2 && z[1].toDouble() > SUPPORTEDDTWVERSION + 0.000001) { // read the version line, QT's toDouble isn't perfectly accurate, so we have to program in tolerance, plus, let's avoid segmentations faults caused by opening the wrong file shall we?
+        qDebug() << "unsupported wda file version used";
         QMessageBox error;
         error.setIcon(QMessageBox::Critical);
         error.setWindowTitle("Unsupported dtw file");
@@ -99,10 +99,11 @@ bool WordSet::parseWordFile(QString filePath) {
 
 
     while (!questionFile.atEnd())
-        parseLine(questionFile.readLine());
+        parseWordLine(questionFile.readLine());
 
     // if all was successful and we made it this far, mark this file as our dtw file
     dtwName = filePath;
+    questionFile.close();
     return true;
 }
 
@@ -144,7 +145,87 @@ Word* WordSet::findWordObject(QString word) {
     return nullptr;
 }
 
+void WordSet::parseWissenLine(QString line) {
+    // the words are organized in this order, nouns, verbs, TODO add other parts of speech
+    QStringList lineParts = line.split(",");
+
+    // handle nouns
+    if (lineParts[4] != ""){ // the word will have it's base form on section 4, but the actual data is after that section
+        Word* thisWord = findWordObject(lineParts[4]); // make sure that we're getting a noun before risking a reinterpret cast
+        if (thisWord->partOfSpeech != NOUN)
+            return;
+        Noun* thisNoun = reinterpret_cast<Noun*>(thisWord); // call me devious, I love reinterpret casts!
+
+        thisNoun->defCorrects = lineParts[6].split("/")[0].toInt(); // fancy way to get the number of times the question was correct, little weird but compact
+        thisNoun->defIncorrects = lineParts[6].split("/")[1].toInt(); // same thing, but the incorrects
+        thisNoun->genderCorrects = lineParts[5].split("/")[0].toInt(); // same this with gender
+        thisNoun->genderIncorrects = lineParts[5].split("/")[1].toInt();
+    }
+
+    // handle verbs
+    if (lineParts[21] != "") {
+        Word* thisWord = findWordObject(lineParts[21]);
+        if (thisWord->partOfSpeech != VERB)
+            return;
+        Verb* thisVerb = reinterpret_cast<Verb*>(thisWord);
+
+        thisVerb->defCorrects = lineParts[22].split("/")[0].toInt();
+        thisVerb->defIncorrects = lineParts[22].split("/")[1].toInt();
+        thisVerb->ichCorrects = lineParts[23].split("/")[0].toInt();
+        thisVerb->ichIncorrects = lineParts[23].split("/")[1].toInt();
+        thisVerb->duCorrects = lineParts[24].split("/")[0].toInt();
+        thisVerb->duIncorrects = lineParts[24].split("/")[1].toInt();
+        thisVerb->erCorrects = lineParts[25].split("/")[0].toInt();
+        thisVerb->erIncorrects = lineParts[25].split("/")[1].toInt();
+        thisVerb->wirCorrects = lineParts[26].split("/")[0].toInt();
+        thisVerb->wirIncorrects = lineParts[26].split("/")[1].toInt();
+        thisVerb->ihrCorrects = lineParts[27].split("/")[0].toInt();
+        thisVerb->ihrIncorrects = lineParts[27].split("/")[1].toInt();
+        thisVerb->sieCorrects = lineParts[28].split("/")[0].toInt();
+        thisVerb->sieIncorrects = lineParts[28].split("/")[1].toInt();
+    }
+}
+
 bool WordSet::parseWissenFile(QString filePath) {
+    QFile wdaFile(filePath);
+
+    // make the file if it doesn't exist, then return, the word objects themselves will worry about creating blank data
+    if (!wdaFile.exists()) {
+        if (wdaFile.open(QIODevice::ReadWrite | QIODevice::Text)) {
+            // create a template Wissen file
+            wdaFile.write("Version:, 0.1, This file is usually preceeded by a \".\" making it a hidden file. This file uses the same format as dtw except that where pieces of information about the word would normally be, we see a fraction containing the number of times the user has gotten this information right over the number of times wrong.Abstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,\nWort,Definition,,,Wort,Gender,Definition,Nom.,Gen.,Dat.,Akk.,Pl. Nom.,Pl. Gen.,Pl. Dat.,Pl. Akk.,,,,,,,Infinitive,Definition,Ich,Du,Er,Wir,Ihr,Sie,Partizip II,h-s,Schwach Oder Stark,Seperable Info,Präteritum Ich,Präteritum Du,Präteritum Er,Präteritum Wir,Präteritum Ihr,Präteritum Sie,Modal\n");
+            wdaFile.close();
+            wdaName = filePath;
+            return true;
+        } else {
+            qDebug() << "Failed to create Wissen file, incorrect permissions? --- Initializing with blank data";
+            return false;
+        }
+    } else { // just open it normally if it doesn't exist
+        wdaFile.open(QIODevice::ReadWrite | QIODevice::Text);
+    }
+
+    // read the file if it does exist
+    qDebug() << "Parsing wissen file: " << filePath;
+
+    // read the wissen file version, if it fails to pass the version check then we'll return false and not open the file
+    QList<QByteArray> z = wdaFile.readLine().split(',');
+    if (z.length() > 2 && z[1].toDouble() > SUPPORTEDDTWVERSION + 0.000001) { // read the version line, QT's toDouble isn't perfectly accurate, so we have to program in tolerance, plus, let's avoid segmentations faults caused by opening the wrong file shall we?
+        qDebug() << "Unsupported wissen file version used. --- Initializing with blank data";
+        wdaFile.close();
+        return false;
+    }
+
+    wdaFile.readLine(); // removes the first line of headers
+    wdaFile.readLine(); // removes the second one
+
+
+    while (!wdaFile.atEnd())
+        parseWissenLine(wdaFile.readLine());
+
+    // if all was successful and we made it this far, mark this file as our wda File, close it, and prepare for later
+    wdaFile.close();
+    wdaName = filePath;
     return true;
 }
 

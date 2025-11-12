@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <QTimer>
 
 #include "FChoiceQuestion.h"
 
@@ -66,13 +67,30 @@ FChoiceQuestion::FChoiceQuestion(QWidget *parent, MChoiceFourDef* question)
 }
 
 void FChoiceQuestion::processCorrectAnswer() {
+    // show a conformation that this was correct
+    ui->sizingBox->hide();
+    ui->gridLayout->addWidget(new QLabel("Correct!", ui->sizingBox));
     question->answeredCorrectly();
-    emit questionCompleted();
+    closeQuestion();
 }
 
 void FChoiceQuestion::processIncorrectAnswer() {
+    ui->sizingBox->hide();
+    ui->gridLayout->addWidget(new QLabel("Incorrect", ui->sizingBox));
     question->answeredIncorrectly();
-    emit questionCompleted();
+    closeQuestion();
+}
+
+
+// this function handles the process of closing up the question after the user has had enough time to see the confirmation screen
+void FChoiceQuestion::closeQuestion() {
+    // schedule a timer to destroy itself, this question, and emit the questionCompelted signal.
+    QTimer* closeTimer = new QTimer(this);
+    closeTimer->setInterval(700);
+    QObject::connect(closeTimer, &QTimer::timeout, this, &FChoiceQuestion::questionCompleted);
+    QObject::connect(closeTimer, &QTimer::timeout, closeTimer, &QTimer::stop);
+    QObject::connect(closeTimer, &QTimer::timeout, closeTimer, &QTimer::deleteLater);
+    closeTimer->start();
 }
 
 FChoiceQuestion::~FChoiceQuestion() {

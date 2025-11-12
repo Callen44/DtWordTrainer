@@ -26,6 +26,7 @@ public slots:
 private:
     Ui::FChoiceQuestion *ui;
     MChoiceFourDef* question;
+    void closeQuestion();
 };
 
 #endif 

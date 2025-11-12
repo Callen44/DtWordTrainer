@@ -1,22 +1,4 @@
-[Nouns]
-Haus 0/0 0/0
-Baum 0/0 0/0
-Katze 0/0 0/0
-Hund 0/0 0/0
-Auto 0/0 0/0
-Buch 0/0 0/0
-Tisch 0/0 0/0
-Stuhl 0/0 0/0
-Tür 0/0 0/0
-Fenster 0/0 0/0
-[Verbs]
-gehen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
-kommen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
-sehen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
-sprechen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
-essen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
-trinken 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
-lesen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
-schreiben 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
-schlafen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
-laufen 0/0 0/0 0/0 0/0 0/0 0/0 0/0 0/0
+Version:, 0.1, This file is usually preceeded by a "." making it a hidden file. This file uses the same format as dtw except that where pieces of information about the word would normally be, we see a fraction containing the number of times the user has gotten this information right over the number of times wrong.Abstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,
+Abstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,
+Wort,Definition,,,Wort,Gender,Definition,Nom.,Gen.,Dat.,Akk.,Pl. Nom.,Pl. Gen.,Pl. Dat.,Pl. Akk.,,,,,,,Infinitive,Definition,Ich,Du,Er,Wir,Ihr,Sie,Partizip II,h-s,Schwach Oder Stark,Seperable Info,Präteritum Ich,Präteritum Du,Präteritum Er,Präteritum Wir,Präteritum Ihr,Präteritum Sie,Modal
+,,,,Tisch,1/0,2/0,,,,,,,,,,,,,,,Brauchen,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0,1/0

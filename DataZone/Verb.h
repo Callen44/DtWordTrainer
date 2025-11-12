@@ -38,6 +38,22 @@ public:
 
     QString PartizipII;
 
+    // knowledge information
+    int ichCorrects = 0;
+    int ichIncorrects = 0;
+    int duCorrects = 0;
+    int duIncorrects = 0;
+    int erCorrects = 0;
+    int erIncorrects = 0;
+    int wirCorrects = 0;
+    int wirIncorrects = 0;
+    int ihrCorrects = 0;
+    int ihrIncorrects = 0;
+    int sieCorrects = 0;
+    int sieIncorrects = 0;
+    int HSCorrects = 0;
+    int HSIncorrects = 0;
+
     Verb(QString infinitive, QString translation)
         :Word(VERB, translation, infinitive) {}
 };

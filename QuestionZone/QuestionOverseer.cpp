@@ -17,18 +17,19 @@ void QuestionOverseer::nextQuestion() {
     // get the next question
     Question* nQ = algorithm->nextQuestion();
 
-    MChoiceFourDef* nQpf = reinterpret_cast<MChoiceFourDef*>(nQ);
-
     // remove the old question widget
     QLayout* myLayout = layout();
     myLayout->removeWidget(currentWidget);
     delete currentWidget;
 
     // add the next question widget
-    FChoiceQuestion* nextWidget = new FChoiceQuestion(this, nQpf);
-    currentWidget = nextWidget;
-    myLayout->addWidget(nextWidget);
+    if (nQ->questionType == MCHOICEFOURDEF) {
+        MChoiceFourDef* nQpf = reinterpret_cast<MChoiceFourDef*>(nQ);
+        FChoiceQuestion* nextWidget = new FChoiceQuestion(this, nQpf);
+        currentWidget = nextWidget;
+        myLayout->addWidget(nextWidget);
 
-    // ensure that the next question will be asked when the user finishes this one
-    QObject::connect(nextWidget, &FChoiceQuestion::questionCompleted, this, &QuestionOverseer::nextQuestion);
+        // ensure that the next question will be asked when the user finishes this one
+        QObject::connect(nextWidget, &FChoiceQuestion::questionCompleted, this, &QuestionOverseer::nextQuestion);
+    }
 }

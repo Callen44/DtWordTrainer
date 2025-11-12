@@ -15,4 +15,7 @@ public:
 	PartOS partOfSpeech = NOUN;
     Noun(QString word, Gender gender, QString translation)
         : Word(NOUN, translation, word), gender(gender) {}
+
+    int genderCorrects;
+    int genderIncorrects;
 };
