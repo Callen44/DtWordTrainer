@@ -126,9 +126,54 @@ QString WordSet::calcWDAName(QString dtwFileName) {
 }
 
 bool WordSet::writeWissenFile() {
-    // TODO, rewrite this for the new file format soon
+    QFile wdaFile(wdaName);
 
-    return false; // the return code indicates success or failure. TODO
+    // make the file if it doesn't exist, then return, the word objects themselves will worry about creating blank data
+    if (!wdaFile.exists()) {
+        if (wdaFile.open(QIODevice::ReadWrite | QIODevice::Text)) {
+            // create a template Wissen file
+            wdaFile.write("Version:, 0.1, This file is usually preceeded by a \".\" making it a hidden file. This file uses the same format as dtw except that where pieces of information about the word would normally be, we see a fraction containing the number of times the user has gotten this information right over the number of times wrong.Abstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,\nWort,Definition,,,Wort,Gender,Definition,Nom.,Gen.,Dat.,Akk.,Pl. Nom.,Pl. Gen.,Pl. Dat.,Pl. Akk.,,,,,,,Infinitive,Definition,Ich,Du,Er,Wir,Ihr,Sie,Partizip II,h-s,Schwach Oder Stark,Seperable Info,Präteritum Ich,Präteritum Du,Präteritum Er,Präteritum Wir,Präteritum Ihr,Präteritum Sie,Modal\n");
+            wdaFile.close();
+            return true;
+        } else {
+            qDebug() << "Failed to create Wissen file, incorrect permissions? --- Initializing with blank data";
+            return false;
+        }
+    } else { // just open it normally if it doesn't exist
+        wdaFile.open(QIODevice::ReadWrite | QIODevice::Text);
+    }
+
+    wdaFile.resize(0); // resize the file to 0 bytes ... which empties it.
+    wdaFile.write("Version:, 0.1, This file is usually preceeded by a \".\" making it a hidden file. This file uses the same format as dtw except that where pieces of information about the word would normally be, we see a fraction containing the number of times the user has gotten this information right over the number of times wrong.Abstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,\nWort,Definition,,,Wort,Gender,Definition,Nom.,Gen.,Dat.,Akk.,Pl. Nom.,Pl. Gen.,Pl. Dat.,Pl. Akk.,,,,,,,Infinitive,Definition,Ich,Du,Er,Wir,Ihr,Sie,Partizip II,h-s,Schwach Oder Stark,Seperable Info,Präteritum Ich,Präteritum Du,Präteritum Er,Präteritum Wir,Präteritum Ihr,Präteritum Sie,Modal\n");
+
+    // this is where the magic happens
+    QList<QString> lines;
+    for (int i = 0; i < nouns.size(); i++) {
+        lines.append(",,,,"); // since the nouns are processed first, we need to add the commas to the beginning for proper syntax
+        lines[i] += nouns[i]->word + "," + QString::number(nouns[i]->genderCorrects) + "/" + QString::number(nouns[i]->genderIncorrects) + "," + QString::number(nouns[i]->defCorrects) + "/" + QString::number(nouns[i]->defIncorrects) + ","; // construct the long line that constains this data
+    }
+
+    for (int i = 0; i < verbs.size(); i++) {
+        // avoid segemntation faults when we have more verbs than nouns
+        if (nouns.size() <= i) {
+            lines.append(",,,,,,,,,,,,,,,,,,,,,");
+        } else {
+            lines[i] += ",,,,,,,,,,,,,,";
+        }
+
+        // I don't even want to think about how long it took me to write this single line of code...
+        lines[i] += verbs[i]->word + "," + QString::number(verbs[i]->defCorrects) + "/" + QString::number(verbs[i]->defIncorrects) + "," + QString::number(verbs[i]->ichCorrects) + "/" + QString::number(verbs[i]->ichIncorrects) + "," + QString::number(verbs[i]->duCorrects) + "/" + QString::number(verbs[i]->duIncorrects) + "," + QString::number(verbs[i]->erCorrects) + "/" + QString::number(verbs[i]->erIncorrects) + "," + QString::number(verbs[i]->wirCorrects) + "/" + QString::number(verbs[i]->wirIncorrects) + "," + QString::number(verbs[i]->ihrCorrects) + "/" + QString::number(verbs[i]->ihrIncorrects) + "," + QString::number(verbs[i]->sieCorrects) + "/" + QString::number(verbs[i]->sieIncorrects) + ",";
+    }
+
+    // write all this junk :)
+    qDebug() << "Writing wda File";
+    for (int i = 0; i < lines.size(); i++) {
+        wdaFile.write(lines[i].toUtf8());
+        wdaFile.write("\n");
+    }
+
+    wdaFile.close();
+    return true;
 }
 
 Word* WordSet::findWordObject(QString word) {

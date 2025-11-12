@@ -30,7 +30,7 @@ public:
     // functions for handling wissen files
     bool parseWissenFile(QString filePath);
     QString calcWDAName(QString dtwName); // calculates the name of the wissen data file.
-    bool writeWissenFile(); // creates a wissen file, returns error code if not possible
+    bool writeWissenFile(); // writes to a wissen file, returns false if not possible.
     void parseWissenLine(QString line);
 
     Word* findWordObject(QString word); // returns nullptr when word cannot be found

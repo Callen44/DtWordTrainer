@@ -38,6 +38,9 @@ bool Algorithm::readFiles(QString fileName) {
 }
 
 Question* Algorithm::nextQuestion() {
+    // begin with an autosave to keep things up to date
+    words.writeWissenFile();
+
     // so we don't run the loterry with no data
     if (currentBatchExpended && nextBatchExpended)
         recalculateData();

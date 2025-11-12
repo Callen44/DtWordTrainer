@@ -16,6 +16,6 @@ public:
     Noun(QString word, Gender gender, QString translation)
         : Word(NOUN, translation, word), gender(gender) {}
 
-    int genderCorrects;
-    int genderIncorrects;
+    int genderCorrects = 0;
+    int genderIncorrects = 0;
 };
