@@ -1,4 +1,4 @@
-#include "MChoiceFourDef.h"
+#include "MCFDLogic.h"
 #include <QDebug>
 
 MChoiceFourDef::MChoiceFourDef(Word* associatedWord, WordSet* words)

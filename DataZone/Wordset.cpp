@@ -165,8 +165,7 @@ bool WordSet::writeWissenFile() {
         lines[i] += verbs[i]->word + "," + QString::number(verbs[i]->defCorrects) + "/" + QString::number(verbs[i]->defIncorrects) + "," + QString::number(verbs[i]->ichCorrects) + "/" + QString::number(verbs[i]->ichIncorrects) + "," + QString::number(verbs[i]->duCorrects) + "/" + QString::number(verbs[i]->duIncorrects) + "," + QString::number(verbs[i]->erCorrects) + "/" + QString::number(verbs[i]->erIncorrects) + "," + QString::number(verbs[i]->wirCorrects) + "/" + QString::number(verbs[i]->wirIncorrects) + "," + QString::number(verbs[i]->ihrCorrects) + "/" + QString::number(verbs[i]->ihrIncorrects) + "," + QString::number(verbs[i]->sieCorrects) + "/" + QString::number(verbs[i]->sieIncorrects) + ",";
     }
 
-    // write all this junk :)
-    qDebug() << "Writing wda File";
+    // write all this junk to the file :)
     for (int i = 0; i < lines.size(); i++) {
         wdaFile.write(lines[i].toUtf8());
         wdaFile.write("\n");

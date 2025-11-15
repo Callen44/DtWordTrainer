@@ -2,8 +2,8 @@
 #define QUESTION_H
 
 #include <QString>
-#include "../DataZone/Word.h"
-#include "../DataZone/Wordset.h"
+#include "../../DataZone/Word.h"
+#include "../../DataZone/Wordset.h"
 
 /*
 * This has got to be the weirdest class in the whole project, it serves as a juction piece between the Algorithm class and the QuestionOverseer class.

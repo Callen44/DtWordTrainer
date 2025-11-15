@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include <QTimer>
 
-#include "FChoiceQuestion.h"
+#include "MCFDGui.h"
 
 FChoiceQuestion::FChoiceQuestion(QWidget *parent, MChoiceFourDef* question)
     : question(question), ui(new Ui::FChoiceQuestion)

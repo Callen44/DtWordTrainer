@@ -2,8 +2,8 @@
 #define ALGORITHM_H
 
 #include "Wordset.h"
-#include "../QuestionZone/Question.h"
-#include "../QuestionZone/FChoiceQuestion.h"
+#include "../QuestionZone/Logic/Question.h"
+#include "../QuestionZone/GUI/MCFDGui.h"
 
 /*
  * How the algorithm class works - The short version

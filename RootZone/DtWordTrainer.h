@@ -2,7 +2,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "../DataZone/Algorithm.h"
-#include "../QuestionZone/QuestionOverseer.h"
+#include "../QuestionZone/GUI/QuestionOverseer.h"
 
 class DtWordTrainer : public QMainWindow
 {

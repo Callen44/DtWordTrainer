@@ -17,10 +17,10 @@ set(SOURCES
 	RootZone/MainScreen.cpp
 
 	# QuestionZone
-	QuestionZone/QuestionOverseer.cpp
-	QuestionZone/FChoiceQuestion.cpp
-	QuestionZone/MChoiceFourDef.cpp
-	QuestionZone/Question.cpp
+	QuestionZone/Logic/MCFDLogic.cpp
+	QuestionZone/Logic/Question.cpp
+	QuestionZone/GUI/MCFDGui.cpp
+	QuestionZone/GUI/QuestionOverseer.cpp
 
 	# DataZone
 	DataZone/Noun.cpp
@@ -36,10 +36,10 @@ set(HEADERS
 	RootZone/MainScreen.h
 
 	# QuestionZone
-	QuestionZone/QuestionOverseer.h
-	QuestionZone/FChoiceQuestion.h
-	QuestionZone/MChoiceFourDef.h
-	QuestionZone/Question.h
+	QuestionZone/Logic/MCFDLogic.h
+	QuestionZone/Logic/Question.h
+	QuestionZone/GUI/MCFDGui.h
+	QuestionZone/GUI/QuestionOverseer.h
 
 	# DataZone
 	DataZone/Noun.h
@@ -51,7 +51,7 @@ set(HEADERS
 
 set(UIS
 	RootZone/MainScreen.ui
-	QuestionZone/FChoiceQuestion.ui
+	QuestionZone/GUI/MCFDGui.ui
 )
 
 set(QRCS

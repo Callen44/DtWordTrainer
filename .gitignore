@@ -4,3 +4,5 @@ CMakeUserPresets.json
 out
 .vs
 CMakeLists.txt.user
+.testdat.wda
+CMakeLists.txt.user

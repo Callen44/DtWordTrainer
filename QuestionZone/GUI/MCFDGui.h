@@ -1,9 +1,9 @@
 #ifndef FChoiceQuestion_H
 #define FChoiceQuestion_H
 
-#include "ui_FChoiceQuestion.h"
-#include "Question.h"
-#include "MChoiceFourDef.h"
+#include "ui_MCFDGui.h"
+#include "../Logic/Question.h"
+#include "../Logic/MCFDLogic.h"
 
 namespace Ui {
 class FChoiceQuestion;

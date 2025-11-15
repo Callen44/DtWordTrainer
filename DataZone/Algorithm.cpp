@@ -127,19 +127,19 @@ void Algorithm::recalculateData() {
 
         // award entries for being on the mostlyLearnt list
         if (mostlyLearnt.contains(i))
-            entriesCount += 5;
+            entriesCount += 15;
 
         // award entries for being on the learning list
         if (learning.contains(i))
-            entriesCount += 10;
+            entriesCount += 30;
 
         // award entries for being on the struggling list
         if (struggling.contains(i))
-            entriesCount += 5; // this is in addition to learning, so total we have 15
+            entriesCount += 15; // this is in addition to learning, so total we have 15
 
         // award entries for being on the known list
         if (known.contains(i))
-            entriesCount += 2;
+            entriesCount += 6;
 
         allEntries.append(entriesCount);
     }
