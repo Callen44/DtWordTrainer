@@ -23,8 +23,8 @@ void QuestionOverseer::nextQuestion() {
     delete currentWidget;
 
     // add the next question widget
-    if (nQ->questionType == MCHOICEFOURDEF) {
-        MChoiceFourDef* nQpf = reinterpret_cast<MChoiceFourDef*>(nQ);
+    if (nQ->questionType == MCFD) {
+        MCFDLogic* nQpf = reinterpret_cast<MCFDLogic*>(nQ);
         FChoiceQuestion* nextWidget = new FChoiceQuestion(this, nQpf);
         currentWidget = nextWidget;
         myLayout->addWidget(nextWidget);

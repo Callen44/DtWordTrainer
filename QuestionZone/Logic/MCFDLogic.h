@@ -1,12 +1,12 @@
 #include "Question.h"
 
-class MChoiceFourDef : public Question {
+class MCFDLogic : public Question {
 public:
 	/*
 	Functions
 	*/
 
-    MChoiceFourDef(Word* associatedWord, WordSet* words);
+    MCFDLogic(Word* associatedWord, WordSet* words);
     QString createDistractor(); // this function is implemented seperately for each subclass.
 
     // funcitons for handling correct or incorrect answers

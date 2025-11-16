@@ -1,8 +1,8 @@
 #include "MCFDLogic.h"
 #include <QDebug>
 
-MChoiceFourDef::MChoiceFourDef(Word* associatedWord, WordSet* words)
-    : Question(MCHOICEFOURDEF, associatedWord), words(words)
+MCFDLogic::MCFDLogic(Word* associatedWord, WordSet* words)
+    : Question(MCFD, associatedWord), words(words)
 {
     this->associatedWord = associatedWord;
 
@@ -14,7 +14,7 @@ MChoiceFourDef::MChoiceFourDef(Word* associatedWord, WordSet* words)
     correctAns = associatedWord->translation;
 }
 
-QString MChoiceFourDef::createDistractor() {
+QString MCFDLogic::createDistractor() {
 	// create three distractors, this uses the WordSet that was passed in the constructor
 
     int totalWords = words->allWords.size(); // mod the random number by the total number of words
@@ -27,18 +27,18 @@ QString MChoiceFourDef::createDistractor() {
     return distractorAnswer;
 }
 
-void MChoiceFourDef::answeredCorrectly() {
+void MCFDLogic::answeredCorrectly() {
     associatedWord->defCorrects++;
 }
 
-void MChoiceFourDef::answeredIncorrectly() {
+void MCFDLogic::answeredIncorrectly() {
     associatedWord->defIncorrects++;
 }
 
-int MChoiceFourDef::timesCorrect() {
+int MCFDLogic::timesCorrect() {
     return associatedWord->defCorrects;
 }
 
-int MChoiceFourDef::timesIncorrect() {
+int MCFDLogic::timesIncorrect() {
     return associatedWord->defIncorrects;
 }

@@ -29,7 +29,7 @@ bool Algorithm::readFiles(QString fileName) {
         // Questions that all words can have
 
         // the classic multiple choice definition question
-        MChoiceFourDef* newQuestion = new MChoiceFourDef(words.allWords[i], &words);
+        MCFDLogic* newQuestion = new MCFDLogic(words.allWords[i], &words);
         allQuestions.append(newQuestion);
         allEntries.append(0);
     }

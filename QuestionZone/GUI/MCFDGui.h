@@ -13,7 +13,7 @@ class FChoiceQuestion : public QWidget
 {
     Q_OBJECT
 public:
-    FChoiceQuestion(QWidget *parent, MChoiceFourDef* question);
+    FChoiceQuestion(QWidget *parent, MCFDLogic* question);
     ~FChoiceQuestion();
 
 signals:
@@ -25,7 +25,7 @@ public slots:
 
 private:
     Ui::FChoiceQuestion *ui;
-    MChoiceFourDef* question;
+    MCFDLogic* question;
     void closeQuestion();
 };
 

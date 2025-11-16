@@ -12,8 +12,8 @@
 */
 
 enum QVariety {
-    MCHOICEFOURDEF, // a four answer multiple choice question
-    TYPEWORD, // a question where there is a prompt and the user is meant to type an answer
+    MCFD, // a four answer multiple choice question
+    TPDTW, // a question where there is a prompt and the user is meant to type an answer
 };
 
 class Question

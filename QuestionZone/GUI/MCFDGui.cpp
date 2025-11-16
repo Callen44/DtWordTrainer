@@ -3,14 +3,14 @@
 
 #include "MCFDGui.h"
 
-FChoiceQuestion::FChoiceQuestion(QWidget *parent, MChoiceFourDef* question)
+FChoiceQuestion::FChoiceQuestion(QWidget *parent, MCFDLogic* question)
     : question(question), ui(new Ui::FChoiceQuestion)
 {
     ui->setupUi(this);
 
     // check the variety of the question, set the ui file, and fill it out
     QVariety cQVariety = question->questionType;
-    if (cQVariety == MCHOICEFOURDEF) {
+    if (cQVariety == MCFD) {
         // setup the ui
         ui->questionLabel->setText(question->questionPrompt);
 
