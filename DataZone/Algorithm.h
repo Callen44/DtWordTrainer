@@ -4,6 +4,7 @@
 #include "Wordset.h"
 #include "../QuestionZone/Logic/Question.h"
 #include "../QuestionZone/GUI/MCFDGui.h"
+#include "../QuestionZone/Logic/TPDTWLogic.h"
 
 /*
  * How the algorithm class works - The short version

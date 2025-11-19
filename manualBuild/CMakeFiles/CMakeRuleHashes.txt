@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+dc72be014f23bfa46a931512a994401e CMakeFiles/DtWordTrainer_autogen
+f488e90f0be82118906a19f0e02a54ab DtWordTrainer_autogen/67R4SO6XBU/qrc_DtWordTrainer.cpp
+eb1ffb380a3d1db8c6e1ecfe227a72f1 DtWordTrainer_autogen/timestamp

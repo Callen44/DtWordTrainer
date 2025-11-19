@@ -3,7 +3,6 @@
 
 #include "../../DataZone/Algorithm.h"
 #include "../Logic/Question.h"
-#include "MCFDGui.h"
 
 #include <QWidget>
 

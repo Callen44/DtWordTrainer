@@ -6,3 +6,4 @@ out
 CMakeLists.txt.user
 .testdat.wda
 CMakeLists.txt.user
+manualBuild # for cases when Qt Creator's built in build system is insufficent

@@ -1,4 +1,6 @@
 #include "QuestionOverseer.h"
+#include "MCFDGui.h"
+#include "TPDTWGui.h"
 
 #include <QVBoxLayout>
 
@@ -25,11 +27,16 @@ void QuestionOverseer::nextQuestion() {
     // add the next question widget
     if (nQ->questionType == MCFD) {
         MCFDLogic* nQpf = reinterpret_cast<MCFDLogic*>(nQ);
-        FChoiceQuestion* nextWidget = new FChoiceQuestion(this, nQpf);
+        MCFDGui* nextWidget = new MCFDGui(this, nQpf);
         currentWidget = nextWidget;
         myLayout->addWidget(nextWidget);
 
         // ensure that the next question will be asked when the user finishes this one
-        QObject::connect(nextWidget, &FChoiceQuestion::questionCompleted, this, &QuestionOverseer::nextQuestion);
+        QObject::connect(nextWidget, &MCFDGui::questionCompleted, this, &QuestionOverseer::nextQuestion);
+    } else if (nQ->questionType == TPDTW) {
+        TPDTWLogic* realQuestion = reinterpret_cast<TPDTWLogic*>(nQ);
+        TPDTWGui* nextWidget = new TPDTWGui(realQuestion, this);
+        currentWidget = nextWidget;
+        myLayout->addWidget(currentWidget);
     }
 }

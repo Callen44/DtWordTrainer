@@ -29,8 +29,13 @@ bool Algorithm::readFiles(QString fileName) {
         // Questions that all words can have
 
         // the classic multiple choice definition question
-        MCFDLogic* newQuestion = new MCFDLogic(words.allWords[i], &words);
-        allQuestions.append(newQuestion);
+        MCFDLogic* newMCFD = new MCFDLogic(words.allWords[i], &words);
+        allQuestions.append(newMCFD);
+        allEntries.append(0);
+
+        // type the word in German
+        TPDTWLogic* newTPDTW = new TPDTWLogic(words.allWords[i], &words);
+        allQuestions.append(newTPDTW);
         allEntries.append(0);
     }
 

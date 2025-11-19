@@ -1,20 +1,20 @@
-#ifndef FChoiceQuestion_H
-#define FChoiceQuestion_H
+#ifndef MCFDGui_H
+#define MCFDGui_H
 
 #include "ui_MCFDGui.h"
 #include "../Logic/Question.h"
 #include "../Logic/MCFDLogic.h"
 
 namespace Ui {
-class FChoiceQuestion;
+class MCFDGui;
 }
 
-class FChoiceQuestion : public QWidget
+class MCFDGui : public QWidget
 {
     Q_OBJECT
 public:
-    FChoiceQuestion(QWidget *parent, MCFDLogic* question);
-    ~FChoiceQuestion();
+    MCFDGui(QWidget *parent, MCFDLogic* question);
+    ~MCFDGui();
 
 signals:
     void questionCompleted();
@@ -24,7 +24,7 @@ public slots:
     void processIncorrectAnswer();
 
 private:
-    Ui::FChoiceQuestion *ui;
+    Ui::MCFDGui *ui;
     MCFDLogic* question;
     void closeQuestion();
 };

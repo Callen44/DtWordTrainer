@@ -8,6 +8,7 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 set(SOURCES
 	main.cpp # main.cpp is not in a zone
@@ -18,8 +19,12 @@ set(SOURCES
 
 	# QuestionZone
 	QuestionZone/Logic/MCFDLogic.cpp
+	QuestionZone/Logic/TPDTWLogic.cpp
 	QuestionZone/Logic/Question.cpp
+
+	QuestionZone/GUI/GuiTemplate.h
 	QuestionZone/GUI/MCFDGui.cpp
+	QuestionZone/GUI/TPDTWGui.cpp
 	QuestionZone/GUI/QuestionOverseer.cpp
 
 	# DataZone
@@ -37,8 +42,12 @@ set(HEADERS
 
 	# QuestionZone
 	QuestionZone/Logic/MCFDLogic.h
+	QuestionZone/Logic/TPDTWLogic.h
 	QuestionZone/Logic/Question.h
+
+	QuestionZone/GUI/GuiTemplate.h
 	QuestionZone/GUI/MCFDGui.h
+	QuestionZone/GUI/TPDTWGui.h
 	QuestionZone/GUI/QuestionOverseer.h
 
 	# DataZone

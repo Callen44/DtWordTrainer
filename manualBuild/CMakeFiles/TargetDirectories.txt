@@ -1,0 +1,5 @@
+/home/caleb/code/DtWordTrainerLinux/manualBuild/CMakeFiles/DtWordTrainer.dir
+/home/caleb/code/DtWordTrainerLinux/manualBuild/CMakeFiles/edit_cache.dir
+/home/caleb/code/DtWordTrainerLinux/manualBuild/CMakeFiles/rebuild_cache.dir
+/home/caleb/code/DtWordTrainerLinux/manualBuild/CMakeFiles/DtWordTrainer_autogen_timestamp_deps.dir
+/home/caleb/code/DtWordTrainerLinux/manualBuild/CMakeFiles/DtWordTrainer_autogen.dir
