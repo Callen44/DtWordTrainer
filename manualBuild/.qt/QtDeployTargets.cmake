@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_DtWordTrainer_FILE /home/caleb/code/DtWordTrainerLinux/manualBuild/DtWordTrainer)
-set(__QT_DEPLOY_TARGET_DtWordTrainer_TYPE EXECUTABLE)
