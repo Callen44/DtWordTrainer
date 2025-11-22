@@ -5,11 +5,13 @@ TPDTWLogic::TPDTWLogic(Word* associatedWord, WordSet* words)
 
 }
 
-void TPDTWLogic::answer(QString answer) {
+bool TPDTWLogic::answer(QString answer) {
     if (associatedWord->word.toLower().trimmed() == answer.toLower().trimmed()) {
         associatedWord->defCorrects++;
+        return true;
     } else {
         associatedWord->defIncorrects++;
+        return false;
     }
 }
 

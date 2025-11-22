@@ -14,10 +14,20 @@ class TPDTWGui : public QWidget
 
 public:
     explicit TPDTWGui(TPDTWLogic* logic, QWidget *parent = nullptr);
+    void processCorrectAnswer();
+    void processIncorrectAnswer();
     ~TPDTWGui();
+
+signals:
+    void questionCompleted();
+
+public slots:
+    void processAnswer();
 
 private:
     Ui::TPDTWGui *ui;
+    TPDTWLogic* logic;
+    void closeQuestion();
 };
 
 #endif // TPDTWGui_H

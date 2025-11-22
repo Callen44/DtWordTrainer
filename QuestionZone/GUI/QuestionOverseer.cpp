@@ -38,5 +38,8 @@ void QuestionOverseer::nextQuestion() {
         TPDTWGui* nextWidget = new TPDTWGui(realQuestion, this);
         currentWidget = nextWidget;
         myLayout->addWidget(currentWidget);
+        
+        // ensure that the next question will be asked when... you get the point
+        QObject::connect(nextWidget, &TPDTWGui::questionCompleted, this, &QuestionOverseer::nextQuestion);
     }
 }

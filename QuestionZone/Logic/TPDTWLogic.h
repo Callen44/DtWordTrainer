@@ -17,7 +17,7 @@ public:
     TPDTWLogic(Word* associatedWord, WordSet* words);
 
     // funcitons for handling correct or incorrect answers
-    void answer(QString answer);
+    bool answer(QString answer);
     int timesCorrect() override;
     int timesIncorrect() override;
 
