@@ -15,7 +15,7 @@ TPDTWGui::TPDTWGui(TPDTWLogic* logic, QWidget *parent)
 }
 
 void TPDTWGui::processAnswer() {
-    if (logic->answer(ui->enterButton->text())) {
+    if (logic->answer(ui->entryField->text())) {
         processCorrectAnswer();
     } else {
         processIncorrectAnswer();
@@ -23,12 +23,12 @@ void TPDTWGui::processAnswer() {
 }
 
 void TPDTWGui::processCorrectAnswer() {
-    ui->questionPrompt->setText("Correct");
+    ui->questionPrompt->setText(ui->questionPrompt->text() + ": Correct");
     closeQuestion();
 }
 
 void TPDTWGui::processIncorrectAnswer() {
-    ui->questionPrompt->setText("Incorrect");
+    ui->questionPrompt->setText(ui->questionPrompt->text() + ": Incorrect");
     closeQuestion();
 }
 
