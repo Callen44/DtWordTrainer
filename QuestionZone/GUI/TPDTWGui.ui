@@ -45,7 +45,7 @@
      <item>
       <layout class="QHBoxLayout" name="entryBox">
        <item>
-        <widget class="QLineEdit" name="entry"/>
+        <widget class="QLineEdit" name="entryField"/>
        </item>
        <item>
         <widget class="QPushButton" name="enterButton">
@@ -73,7 +73,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>entry</sender>
+   <sender>entryField</sender>
    <signal>returnPressed()</signal>
    <receiver>enterButton</receiver>
    <slot>animateClick()</slot>

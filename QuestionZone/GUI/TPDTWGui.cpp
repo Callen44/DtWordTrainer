@@ -23,13 +23,11 @@ void TPDTWGui::processAnswer() {
 }
 
 void TPDTWGui::processCorrectAnswer() {
-    ui->sizingBox->removeItem(ui->entryBox);
     ui->questionPrompt->setText("Correct");
     closeQuestion();
 }
 
 void TPDTWGui::processIncorrectAnswer() {
-    ui->sizingBox->removeItem(ui->entryBox);
     ui->questionPrompt->setText("Incorrect");
     closeQuestion();
 }
@@ -37,6 +35,10 @@ void TPDTWGui::processIncorrectAnswer() {
 
 // this function handles the process of closing up the question after the user has had enough time to see the confirmation screen
 void TPDTWGui::closeQuestion() {
+    // gray out the textBox
+    ui->entryField->setReadOnly(true);
+    ui->enterButton->setEnabled(false);
+
     // schedule a timer to destroy itself, this question, and emit the questionCompelted signal.
     QTimer* closeTimer = new QTimer(this);
     closeTimer->setInterval(700);

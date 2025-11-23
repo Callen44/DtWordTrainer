@@ -22,7 +22,7 @@ set(SOURCES
 	QuestionZone/Logic/TPDTWLogic.cpp
 	QuestionZone/Logic/Question.cpp
 
-	QuestionZone/GUI/GuiTemplate.h
+
 	QuestionZone/GUI/MCFDGui.cpp
 	QuestionZone/GUI/TPDTWGui.cpp
 	QuestionZone/GUI/QuestionOverseer.cpp
@@ -45,7 +45,6 @@ set(HEADERS
 	QuestionZone/Logic/TPDTWLogic.h
 	QuestionZone/Logic/Question.h
 
-	QuestionZone/GUI/GuiTemplate.h
 	QuestionZone/GUI/MCFDGui.h
 	QuestionZone/GUI/TPDTWGui.h
 	QuestionZone/GUI/QuestionOverseer.h
