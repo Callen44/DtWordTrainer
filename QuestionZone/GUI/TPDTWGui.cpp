@@ -9,6 +9,8 @@ TPDTWGui::TPDTWGui(TPDTWLogic* logic, QWidget *parent)
     ui->setupUi(this);
     // set the prompt
     ui->questionPrompt->setText("German Translation of: " + logic->associatedWord->translation);
+    // make the textbox automatically in focus (user can begin typing without clicking it)
+    ui->entryField->setFocus();
 
     // connect the button's signal so that we can check the answer when it is clicked.
     QObject::connect(ui->enterButton, &QPushButton::clicked, this, &TPDTWGui::processAnswer);
