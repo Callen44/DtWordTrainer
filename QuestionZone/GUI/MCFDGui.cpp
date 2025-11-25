@@ -69,15 +69,18 @@ MCFDGui::MCFDGui(QWidget *parent, MCFDLogic* question)
 void MCFDGui::processCorrectAnswer() {
     // show a conformation that this was correct
     ui->sizingBox->hide();
-    ui->gridLayout->addWidget(new QLabel("Correct!", ui->sizingBox));
+    QLabel* newLabel = new QLabel("Correct!", this);
+    newLabel->setAlignment(Qt::AlignCenter);
+    ui->gridLayout->addWidget(newLabel);
     question->answeredCorrectly();
     closeQuestion();
 }
 
 void MCFDGui::processIncorrectAnswer() {
     ui->sizingBox->hide();
-    ui->gridLayout->addWidget(new QLabel("Incorrect", ui->sizingBox));
-    question->answeredIncorrectly();
+    QLabel* newLabel = new QLabel("Incorrect.", this);
+    newLabel->setAlignment(Qt::AlignCenter);
+    ui->gridLayout->addWidget(newLabel);
     closeQuestion();
 }
 
