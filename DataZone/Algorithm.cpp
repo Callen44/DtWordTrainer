@@ -37,13 +37,11 @@ bool Algorithm::readFiles(QString fileName) {
 
         // the classic multiple choice definition question
         MCFDLogic* newMCFD = new MCFDLogic(words.allWords[i], &words);
-        allQuestions.append(newMCFD);
-        allEntries.append(0);
+        questionPool.append(newMCFD);
 
         // type the word in German
         TPDTWLogic* newTPDTW = new TPDTWLogic(words.allWords[i], &words);
-        allQuestions.append(newTPDTW);
-        allEntries.append(0);
+        questionPool.append(newTPDTW);
     }
 
     // run initial data calculation for the first questions
@@ -100,27 +98,27 @@ Question* Algorithm::produceQuestion() {
     }
 
     // return the questions we've chosen
-    return allQuestions[currentQuestionIndex];
+    return questionPool[currentQuestionIndex];
 }
 
 void Algorithm::recalculateData() {
     // run through each word's specific information, then recalculate the overall data of the question set.
     allEntries.clear(); // clear out all old information
 
-    // on the lists below we store our data, questions are identified by their indexes on the allQuestions list
-    QList<double> scores; // a list that allighns with allQuestions, keeps track of the percentage of times that user gets that question correct.
-    QList<int> timesAsked; // keeps track of the number of times a questions has been asked
+    // on the lists below we store our data, questions are identified by their indexes on the questionPool list
+    QList<double> scores; // a list that aligns with questionPool, keeps track of the percentage of times that user has gotten that question correct.
+    QList<int> timesAsked; // keeps track of the number of times a question has been asked
     QList<int> unseen; // a list of the indexes of questions that have never been asked before
     QList<int> seen; // the opposite of unseen
     QList<int> known; // questions that have a score (from scores list) of over 93% and three askings
     QList<int> mostlyLearnt; // questions that the user has been asked at least 3 times, with a score between 80% and 90%
     QList<int> learning; // questions that the user is actively learning, been asked at least thrice, but with under 80% score
     QList<int> struggling; // these are questions from either the learning or mostlyLearnt lists that the user has been asked 6 or more times
-
+    QList<int> inFocus; // a combination of mostlyLearnt, learning, and struggling, this is the bulk of the questions we're learning
     // generate scores list and timesAsked
-    for (int i = 0; i < allQuestions.size(); i++) {
+    for (int i = 0; i < questionPool.size(); i++) {
         // figure out the number of times the questions has been asked
-        int asks = allQuestions[i]->timesCorrect() + allQuestions[i]->timesIncorrect();
+        int asks = questionPool[i]->timesCorrect() + questionPool[i]->timesIncorrect();
         timesAsked.append(asks);
 
         // sort into seen and unseen
@@ -133,20 +131,24 @@ void Algorithm::recalculateData() {
         if (asks == 0)
             scores.append(0);
         else {
-            int score = allQuestions[i]->timesCorrect() / asks;
+            int score = questionPool[i]->timesCorrect() / asks;
             scores.append(score);
 
             // the known list
-            if (score >= 0.93 && asks >= 3)
+            if (score >= 0.93 && asks >= 3) {
                 known.append(i);
+                inFocus.append(i);
 
             // the mostlyLearnt list
-            else if (score >= 0.80 && asks >= 3)
+            } else if (score >= 0.80 && asks >= 3) {
                 mostlyLearnt.append(i);
+                inFocus.append(i);
 
             // the learning list
-            else if (score < 0.8 && asks >= 3)
+            } else if (score < 0.8 && asks >= 3) {
                 learning.append(i);
+                inFocus.append(i);
+            }
 
             // the struggling list
             if (score < 0.93 && asks >= 6)
@@ -154,30 +156,66 @@ void Algorithm::recalculateData() {
         }
     }
 
-    // the final step, calculating entries in the lottery
-    for (int i = 0; i < allQuestions.size(); i++) {
+    // ----------- create livePool ----------
+    double compoundedScores = 0; // get the average score of the inFocus questions
+    for (int i = 0; i < inFocus.size(); i++)
+        compoundedScores += scores[inFocus[i]];
+    
+    double averageInFocusScore;
+    if (inFocus.size() > 0)
+        averageInFocusScore = compoundedScores / inFocus.size();
+    else
+        averageInFocusScore = 0.0;
+
+    // clear out livePool, re-add questions that have been seen, and then add our new questions (if applicable)
+    livePool.clear();
+    livePoolIndexes.clear();
+    for (int i = 0; i < seen.size(); i++) {
+        livePool.append(questionPool[seen[i]]);
+        livePoolIndexes.append(seen[i]);
+    }
+
+    // don't add new questions if the user isn't ready for them
+    if (averageInFocusScore >= 0.8) {
+        for (int i = 0; i < 5; i++) {
+            // add five new questions
+            livePool.append(questionPool[unseen[i]]);
+            livePoolIndexes.append(unseen[i]);
+        }
+    }
+
+    // last but not least, let's make sure that if there are at least 10 in livePool at all times
+    if (livePool.size() < 10) {
+        for (int i = 0; i < 10; i++){
+            int a = std::rand() % questionPool.size();
+            livePool.append(questionPool[unseen[a]]);
+            livePoolIndexes.append(unseen[a]);
+        }
+    }
+
+    // ----------- the final step, calculating entries in the lottery ---------
+    for (int i = 0; i < livePoolIndexes.size(); i++) {
         // let's calculate entries!
         int entriesCount = 1; // all questions start with 1 entry
 
         // award entries for being on the mostlyLearnt list
-        if (mostlyLearnt.contains(i))
+        if (mostlyLearnt.contains(livePoolIndexes[i]))
             entriesCount += 15;
 
         // award entries for being on the learning list
-        if (learning.contains(i))
+        if (learning.contains(livePoolIndexes[i]))
             entriesCount += 30;
 
         // award entries for being on the struggling list
-        if (struggling.contains(i))
+        if (struggling.contains(livePoolIndexes[i]))
             entriesCount += 15; // this is in addition to learning, so total we have 15
 
         // award entries for being on the known list
-        if (known.contains(i))
+        if (known.contains(livePoolIndexes[i]))
             entriesCount += 6;
 
         allEntries.append(entriesCount);
     }
-
 }
 
 void Algorithm::moveBatchUp() {
@@ -194,9 +232,9 @@ void Algorithm::moveBatchUp() {
 }
 
 Algorithm::~Algorithm() {
-    for (int i = 0; i < allQuestions.size(); i++) {
-        Question* nq = allQuestions[i];
-        allQuestions.remove(i);
+    for (int i = 0; i < questionPool.size(); i++) {
+        Question* nq = questionPool[i];
+        questionPool.remove(i);
         delete nq;
     }
 }

@@ -6,6 +6,15 @@
 #include "../QuestionZone/GUI/MCFDGui.h"
 #include "../QuestionZone/Logic/TPDTWLogic.h"
 
+/*
+The algorithm has several stages, first it generates every possible question, and it sorts the questions based off
+the derrived words. Entire words are introduced at once. There are two QLists, questionPool and livePool. questionPool
+is every possible question, live pool only contains questions that are "live" live questions are only from words that
+have been introduced to it. Entire words and all their questions are introduced to the pool at once, so that the user
+won't be asked for the conjugation of a word he's never seen before. We don't want to memorize the ich conjugation of
+a word we otherwise know nothing about.
+*/
+
 class Algorithm {
 
 public:
@@ -38,8 +47,10 @@ public:
     Question* nextBatch[10];
     int batchIndex = 0;
 
-    QList<Question*> allQuestions; // stores literally every possible question based on this wordset
-    QList<int> allEntries; // stores the number of entries into the lottery each question gets
+    QList<Question*> questionPool; // stores literally every possible question based on this wordset
+    QList<Question*> livePool; // stores "live questions" those that have been introduced to the user's question pool
+    QList<int> livePoolIndexes; // stores list of the indexes in question pool of each question in live pool
+    QList<int> allEntries; // stores the number of entries into the lottery each question gets, indexes synced on livePool
 
 private:
 
