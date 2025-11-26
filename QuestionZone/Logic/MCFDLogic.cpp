@@ -29,10 +29,12 @@ QString MCFDLogic::createDistractor() {
 
 void MCFDLogic::answeredCorrectly() {
     associatedWord->defCorrects++;
+    correctLast = true;
 }
 
 void MCFDLogic::answeredIncorrectly() {
     associatedWord->defIncorrects++;
+    correctLast = false;
 }
 
 int MCFDLogic::timesCorrect() {

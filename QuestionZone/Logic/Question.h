@@ -33,6 +33,9 @@ public:
     virtual int timesCorrect();
     virtual int timesIncorrect();
 
+    // stores if the question was answered correctly last time.
+    bool correctLast = true;
+
     // funcitons for handling answers are in derrived classes
 
     /*

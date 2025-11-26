@@ -56,6 +56,11 @@ Question* Algorithm::nextQuestion() {
     // begin with an autosave to keep things up to date
     words.writeWissenFile();
 
+    // ------- Handle cleanup steps from last question -------
+    if (batchIndex > 1 && !currentBatch[batchIndex-1]->correctLast)
+        nextBatch[batchIndex-1] = currentBatch[batchIndex-1]; // if the last question was answered wrongly, then we reschedule it to be asked again
+
+    // -------- Handle this question --------
     // fill a question if it is not already filled (in the event that a new one hasn't been scheduled)
     if (currentBatch[batchIndex] == nullptr)
         currentBatch[batchIndex] = produceQuestion();
@@ -181,6 +186,8 @@ void Algorithm::moveBatchUp() {
         currentBatch[i] = nextBatch[i];
         nextBatch[i] = nullptr;
     }
+
+    batchIndex = 0;
 
     // so we don't run the loterry with no data
     recalculateData();
