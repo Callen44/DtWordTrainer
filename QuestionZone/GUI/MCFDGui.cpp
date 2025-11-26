@@ -81,6 +81,7 @@ void MCFDGui::processIncorrectAnswer() {
     QLabel* newLabel = new QLabel("Incorrect.", this);
     newLabel->setAlignment(Qt::AlignCenter);
     ui->gridLayout->addWidget(newLabel);
+    question->answeredIncorrectly();
     closeQuestion();
 }
 
