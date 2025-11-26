@@ -6,20 +6,6 @@
 #include "../QuestionZone/GUI/MCFDGui.h"
 #include "../QuestionZone/Logic/TPDTWLogic.h"
 
-/*
- * How the algorithm class works - The short version
- *
- * Questions are created in rounds, questions are arranged into batches of ten questions. Batches will be constructed
- * using a set of satistics gathered from the last batches. These satistics will be recalculated every other batch,
- * the first batch will be created purely off of the dataset, while the seccond will consist primarily of reappearnces
- * of questions gotten wrong in the last batch. Blank spots will be filled in with questions from calculated satistics.
- * These satistics will still not be recalculated for the seccond batch, only the first batch gets priority this way.
- * There is no end, this process will continue until the user closes the program.
- * (I mean first batch as in the first in each cycle, not the literal first batch)
- * 
- * Before the process actually begins, a list of all possible questions is contructed.
-*/
-
 class Algorithm {
 
 public:
@@ -37,16 +23,20 @@ public:
     // functions that help manage the algorithm
     bool readFiles(QString fileName);
 
-    // functions that use the algorithm
+    // -------- functions that use the algorithm ----------
+    
+    // finds the question that is scheduled next and returns it (use most of the time)
     Question* nextQuestion();
 
-    // QUESTION DATA
+    // runs a new lottery evaluation and spits out a question that is not scheduled (don't use this much)
+    Question* produceQuestion();
+
+    // ----------- QUESTION DATA ---------
 
     // the current and next batch
-    QList<Question> currentBatch;
-    bool currentBatchExpended;
-    QList<Question> nextBatch;
-    bool nextBatchExpended;
+    Question* currentBatch[10];
+    Question* nextBatch[10];
+    int batchIndex = 0;
 
     QList<Question*> allQuestions; // stores literally every possible question based on this wordset
     QList<int> allEntries; // stores the number of entries into the lottery each question gets

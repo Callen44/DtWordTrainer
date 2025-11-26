@@ -1,11 +1,18 @@
 #include "Algorithm.h"
 
 Algorithm::Algorithm() {
-    currentBatchExpended = true;
-    nextBatchExpended = true;
+    // -------- initialize data ---------
+
+    // fill both batches with nullptrs to stop memory leaks
+    for (int i = 0; i < 10; i++) {
+        currentBatch[i] = nullptr;
+        nextBatch[i] = nullptr;
+    }
 }
 
 bool Algorithm::readFiles(QString fileName) {
+    // ---------- actually read the files ------------
+
     // TODO, this should not be a fatal error
     if (!words.parseWordFile(fileName)){
         qDebug() << "Files failed to open, are they writable?\nThis is a fatal error.";
@@ -15,7 +22,7 @@ bool Algorithm::readFiles(QString fileName) {
     if (!words.parseWissenFile(words.calcWDAName(fileName)))
         qDebug() << "Failed to open wissen file, data will be filled with blank info.";
 
-    // prep step, make every possible question
+    // --------- prep step, make every possible question ----------
     for (int i = 0; i < words.allWords.size(); i++) {
         if (words.allWords[i]->partOfSpeech == NOUN) {
             // Questions that only nouns can have
@@ -39,6 +46,9 @@ bool Algorithm::readFiles(QString fileName) {
         allEntries.append(0);
     }
 
+    // run initial data calculation for the first questions
+    recalculateData();
+
     return true;
 }
 
@@ -46,9 +56,23 @@ Question* Algorithm::nextQuestion() {
     // begin with an autosave to keep things up to date
     words.writeWissenFile();
 
-    // so we don't run the loterry with no data
-    if (currentBatchExpended && nextBatchExpended)
-        recalculateData();
+    // fill a question if it is not already filled (in the event that a new one hasn't been scheduled)
+    if (currentBatch[batchIndex] == nullptr)
+        currentBatch[batchIndex] = produceQuestion();
+
+    // extract our question from the batch before incrmenting the index
+    Question* returnQuestion = currentBatch[batchIndex];
+    batchIndex++;
+
+    // move up batches in case we need to
+    if (batchIndex >= 10)
+        moveBatchUp();
+
+    return returnQuestion;
+}
+
+Question* Algorithm::produceQuestion() {
+    // --------- the lottery program -----------
 
     // let's pick a question!
     int totalEntries = 0;
@@ -152,8 +176,14 @@ void Algorithm::recalculateData() {
 }
 
 void Algorithm::moveBatchUp() {
-    currentBatch = nextBatch;
-    nextBatch.clear();
+    // since these are arrays, it's more complicated to move them up
+    for (int i = 0; i < 10; i++) {
+        currentBatch[i] = nextBatch[i];
+        nextBatch[i] = nullptr;
+    }
+
+    // so we don't run the loterry with no data
+    recalculateData();
 }
 
 Algorithm::~Algorithm() {
