@@ -131,7 +131,7 @@ void Algorithm::recalculateData() {
         if (asks == 0)
             scores.append(0);
         else {
-            int score = questionPool[i]->timesCorrect() / asks;
+            double score = questionPool[i]->timesCorrect() / asks;
             scores.append(score);
 
             // the known list
@@ -151,7 +151,7 @@ void Algorithm::recalculateData() {
             }
 
             // the struggling list
-            if (score < 0.93 && asks >= 6)
+            if (score < 0.8 && asks >= 6)
                 struggling.append(i);
         }
     }
@@ -178,19 +178,15 @@ void Algorithm::recalculateData() {
     // don't add new questions if the user isn't ready for them
     if (averageInFocusScore >= 0.8) {
         for (int i = 0; i < 5; i++) {
-            // add five new questions
-            livePool.append(questionPool[unseen[i]]);
-            livePoolIndexes.append(unseen[i]);
+            // add two new words
+            introduceAnyWord();
+            introduceAnyWord();
         }
     }
 
-    // last but not least, let's make sure that if there are at least 10 in livePool at all times
-    if (livePool.size() < 10) {
-        for (int i = 0; i < 10; i++){
-            int a = std::rand() % questionPool.size();
-            livePool.append(questionPool[unseen[a]]);
-            livePoolIndexes.append(unseen[a]);
-        }
+    // last but not least, let's make sure that if there are at least questions in livePool at all times
+    while (livePool.size() < 10) {
+        introduceAnyWord();
     }
 
     // ----------- the final step, calculating entries in the lottery ---------
@@ -229,6 +225,20 @@ void Algorithm::moveBatchUp() {
 
     // so we don't run the loterry with no data
     recalculateData();
+}
+
+void Algorithm::introduceWord(Word* word) {
+    for (int i = 0; i < questionPool.size(); i++) {
+        if (questionPool[i]->associatedWord == word) {
+            livePool.append(questionPool[i]);
+            livePoolIndexes.append(i);
+        }
+    }
+}
+
+void Algorithm::introduceAnyWord() {
+    int a = std::rand() % words.allWords.size();
+    introduceWord(words.allWords[a]);
 }
 
 Algorithm::~Algorithm() {

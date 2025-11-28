@@ -32,7 +32,7 @@ public:
     // functions that help manage the algorithm
     bool readFiles(QString fileName);
 
-    // -------- functions that use the algorithm ----------
+    // -------- Functions that use the algorithm ----------
     
     // finds the question that is scheduled next and returns it (use most of the time)
     Question* nextQuestion();
@@ -52,6 +52,9 @@ public:
     QList<int> livePoolIndexes; // stores list of the indexes in question pool of each question in live pool
     QList<int> allEntries; // stores the number of entries into the lottery each question gets, indexes synced on livePool
 
+    // --------- Functions the help the algorithm work ----------
+    void introduceWord(Word* word); // takes the word given in the paramater and introduces it to the livePool
+    void introduceAnyWord(); // introduces one random word, useful when the exact word doesn't matter
 private:
 
 };
