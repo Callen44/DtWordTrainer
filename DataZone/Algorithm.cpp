@@ -135,24 +135,24 @@ void Algorithm::recalculateData() {
             scores.append(score);
 
             // the known list
-            if (score >= 0.93 && asks >= 3) {
+            if (score >= 0.93 && asks >= 4) {
                 known.append(i);
-                inFocus.append(i);
 
             // the mostlyLearnt list
-            } else if (score >= 0.80 && asks >= 3) {
+            } else if (score >= 0.80 && asks >= 4) {
                 mostlyLearnt.append(i);
                 inFocus.append(i);
 
             // the learning list
-            } else if (score < 0.8 && asks >= 3) {
+            } else if (score < 0.7 && asks >= 6) {
                 learning.append(i);
                 inFocus.append(i);
             }
 
             // the struggling list
-            if (score < 0.8 && asks >= 6)
+            if (score < 0.7 && asks >= 9)
                 struggling.append(i);
+                inFocus.append(i);
         }
     }
 
