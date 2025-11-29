@@ -184,22 +184,25 @@ void Algorithm::recalculateData() {
     // clear out livePool, re-add questions that have been seen, and then add our new questions (if applicable)
     livePool.clear();
     livePoolIndexes.clear();
-    for (int i = 0; i < seen.size(); i++) {
-        livePool.append(questionPool[seen[i]]);
-        livePoolIndexes.append(seen[i]);
+    for (int i = 0; i < inFocus.size(); i++) {
+        livePool.append(questionPool[inFocus[i]]);
+        livePoolIndexes.append(inFocus[i]);
     }
 
     // don't add new questions if the user isn't ready for them
-    if (averageInFocusScore >= 0.8) {
+    if (averageInFocusScore >= 0.8 && livePool.size() < 45) {
         for (int i = 0; i < 5; i++) {
-            // add two new words
+            // add five new words
+            introduceAnyWord();
+            introduceAnyWord();
+            introduceAnyWord();
             introduceAnyWord();
             introduceAnyWord();
         }
     }
 
-    // last but not least, let's make sure that if there are at least questions in livePool at all times
-    while (livePool.size() < 10) {
+    // last but not least, let's make sure that if there are at least 20 questions in livePool at all times
+    while (livePool.size() < 20) {
         introduceAnyWord();
     }
 
@@ -218,7 +221,7 @@ void Algorithm::recalculateData() {
 
         // award entries for being on the struggling list
         if (struggling.contains(livePoolIndexes[i]))
-            entriesCount += 15; // this is in addition to learning, so total we have 15
+            entriesCount += 40; // this is in addition to learning, so total we have 15
 
         // award entries for being on the known list
         if (known.contains(livePoolIndexes[i]))
@@ -226,6 +229,13 @@ void Algorithm::recalculateData() {
 
         allEntries.append(entriesCount);
     }
+    qDebug() << "known: " << known.size();
+    qDebug() << "mostlyLearnt: " << mostlyLearnt.size();
+    qDebug() << "learning: " << learning.size();
+    qDebug() << "struggling: " << struggling.size();
+    qDebug() << "livePool: " << livePool.size();
+    qDebug() << "seen: " << seen.size();
+    qDebug() << "unseen: " << unseen.size();
 }
 
 void Algorithm::moveBatchUp() {

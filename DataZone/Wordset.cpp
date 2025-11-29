@@ -196,10 +196,16 @@ void WordSet::parseWissenLine(QString line) {
     // handle nouns
     if (lineParts[4] != ""){ // the word will have it's base form on section 4, but the actual data is after that section
         Word* thisWord = findWordObject(lineParts[4]); // make sure that we're getting a noun before risking a reinterpret cast
+
+        // avoid segemntation faults
+        if (thisWord == nullptr)
+            return;
+
         if (thisWord->partOfSpeech != NOUN)
             return;
-        Noun* thisNoun = reinterpret_cast<Noun*>(thisWord); // call me devious, I love reinterpret casts!
 
+
+        Noun* thisNoun = reinterpret_cast<Noun*>(thisWord); // call me devious, I love reinterpret casts!
         thisNoun->defCorrects = lineParts[6].split("/")[0].toInt(); // fancy way to get the number of times the question was correct, little weird but compact
         thisNoun->defIncorrects = lineParts[6].split("/")[1].toInt(); // same thing, but the incorrects
         thisNoun->genderCorrects = lineParts[5].split("/")[0].toInt(); // same this with gender
@@ -209,10 +215,15 @@ void WordSet::parseWissenLine(QString line) {
     // handle verbs
     if (lineParts[21] != "") {
         Word* thisWord = findWordObject(lineParts[21]);
+
+        // avoid segemntation faults
+        if (thisWord == nullptr)
+            return;
+
         if (thisWord->partOfSpeech != VERB)
             return;
-        Verb* thisVerb = reinterpret_cast<Verb*>(thisWord);
 
+        Verb* thisVerb = reinterpret_cast<Verb*>(thisWord);
         thisVerb->defCorrects = lineParts[22].split("/")[0].toInt();
         thisVerb->defIncorrects = lineParts[22].split("/")[1].toInt();
         thisVerb->ichCorrects = lineParts[23].split("/")[0].toInt();
