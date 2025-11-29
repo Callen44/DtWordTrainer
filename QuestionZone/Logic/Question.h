@@ -45,6 +45,7 @@ public:
     QVariety questionType; // stores what type of question this TODO make this properly immutable
     Word* associatedWord; // a pointer back to the word this is a question for, allows for the question to log it's correcness itself, the UI is not responsible for managing such data
     WordSet* words;
+    int questionLevel;
 };
 
 #endif // QUESTION_H

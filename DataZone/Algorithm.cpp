@@ -96,9 +96,23 @@ Question* Algorithm::produceQuestion() {
 
         currentQuestionIndex++;
     }
+    Question* chosenQuestion = questionPool[currentQuestionIndex];
+
+    // TODO THIS IS A VERY DIRTY SYSTEM HERE!!!!! PLEASE UPDATE (will require a redesign of most of the algorithm
+    if ((chosenQuestion->timesIncorrect() > 0 && (chosenQuestion->timesCorrect() / chosenQuestion->timesIncorrect()) >= 0.8) || (chosenQuestion->timesIncorrect() == 0 && chosenQuestion->timesCorrect() > 0)) {
+        for (int i = 0; i < questionPool.size(); i++) {
+            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 2)
+                chosenQuestion = questionPool[i];
+        }
+    } else {
+        for (int i = 0; i < questionPool.size(); i++) {
+            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 1)
+                chosenQuestion = questionPool[i];
+        }
+    }
 
     // return the questions we've chosen
-    return questionPool[currentQuestionIndex];
+    return chosenQuestion;
 }
 
 void Algorithm::recalculateData() {
