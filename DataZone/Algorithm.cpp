@@ -191,12 +191,7 @@ void Algorithm::recalculateData() {
 
     // don't add new questions if the user isn't ready for them
     if (averageInFocusScore >= 0.8 && livePool.size() < 45) {
-        for (int i = 0; i < 5; i++) {
-            // add five new words
-            introduceAnyWord();
-            introduceAnyWord();
-            introduceAnyWord();
-            introduceAnyWord();
+        for (int i = 0; i < 5; i++) { // add five new words
             introduceAnyWord();
         }
     }
