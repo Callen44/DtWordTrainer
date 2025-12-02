@@ -191,7 +191,12 @@ Word* WordSet::findWordObject(QString word) {
 
 void WordSet::parseWissenLine(QString line) {
     // the words are organized in this order, nouns, verbs, TODO add other parts of speech
-    QStringList lineParts = line.split(",");
+    QStringList lineParts = line.split(",");\
+
+    // we need this string to be the same length every time, otherwise when parsing the nouns or verbs we'll get out of bounds errors.
+    // the solution is quite simple
+    while (lineParts.size() < 28)
+        lineParts += "";
 
     // handle nouns
     if (lineParts[4] != ""){ // the word will have it's base form on section 4, but the actual data is after that section
