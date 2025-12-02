@@ -64,14 +64,28 @@ Question* Algorithm::nextQuestion() {
         currentBatch[batchIndex] = produceQuestion();
 
     // extract our question from the batch before incrmenting the index
-    Question* returnQuestion = currentBatch[batchIndex];
+    Question* chosenQuestion = currentBatch[batchIndex];
     batchIndex++;
 
     // move up batches in case we need to
     if (batchIndex >= 10)
         moveBatchUp();
 
-    return returnQuestion;
+
+    // TODO THIS IS A VERY DIRTY SYSTEM HERE!!!!! PLEASE UPDATE (will require a redesign of most of the algorithm
+    if ((chosenQuestion->timesIncorrect() > 0 && (chosenQuestion->timesCorrect() / chosenQuestion->timesIncorrect()) >= 0.8) || (chosenQuestion->timesIncorrect() == 0 && chosenQuestion->timesCorrect() > 0)) {
+        for (int i = 0; i < questionPool.size(); i++) {
+            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 2)
+                chosenQuestion = questionPool[i];
+        }
+    } else {
+        for (int i = 0; i < questionPool.size(); i++) {
+            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 1)
+                chosenQuestion = questionPool[i];
+        }
+    }
+
+    return chosenQuestion;
 }
 
 Question* Algorithm::produceQuestion() {
