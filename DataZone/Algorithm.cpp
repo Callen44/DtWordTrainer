@@ -54,18 +54,29 @@ Question* Algorithm::nextQuestion() {
     // begin with an autosave to keep things up to date
     words.writeWissenFile();
 
+    // set lastAsked
+    lastAsked = currentBatch[batchIndex-1];
+
     // ------- Handle cleanup steps from last question -------
-    if (batchIndex > 1 && !currentBatch[batchIndex-1]->correctLast)
-        nextBatch[batchIndex-1] = currentBatch[batchIndex-1]; // if the last question was answered wrongly, then we reschedule it to be asked again
+    if (batchIndex > 1 && lastAsked->correctLast == false)
+        nextBatch[batchIndex-1] = lastAsked; // if the last question was answered wrongly, then we reschedule it to be asked again
 
     // -------- Handle this question --------
     // fill a question if it is not already filled (in the event that a new one hasn't been scheduled)
-    if (currentBatch[batchIndex] == nullptr)
+    Question* chosenQuestion;
+    
+    if (currentBatch[batchIndex] == nullptr) {
         currentBatch[batchIndex] = produceQuestion();
-
-    // extract our question from the batch before incrmenting the index
-    Question* chosenQuestion = currentBatch[batchIndex];
-    batchIndex++;
+        // extract our question from the batch before incrmenting the index
+        chosenQuestion = currentBatch[batchIndex];
+        batchIndex++;
+    }
+    
+    // prevent the annoying situation where the same question is repeatedly asked over and over
+    while (chosenQuestion == lastAsked) {
+        chosenQuestion = produceQuestion();
+        currentBatch[batchIndex] = chosenQuestion;
+    }
 
     // move up batches in case we need to
     if (batchIndex >= 10)
@@ -110,9 +121,12 @@ Question* Algorithm::produceQuestion() {
 
         currentQuestionIndex++;
     }
-    Question* chosenQuestion = questionPool[currentQuestionIndex];
+    Question* chosenQuestion = livePool[currentQuestionIndex];
 
     // return the questions we've chosen
+    if (chosenQuestion == nullptr) // TODO for some reason it's possible for this statment to be true, I don't know why
+        return livePool[1];    
+
     return chosenQuestion;
 }
 
@@ -165,16 +179,19 @@ void Algorithm::recalculateData() {
             }
 
             // the struggling list
-            if (score < 0.7 && asks >= 9)
+            if (score < 0.7 && asks >= 9) {
                 struggling.append(i);
                 inFocus.append(i);
+            }
         }
     }
 
     // ----------- create livePool ----------
     double compoundedScores = 0; // get the average score of the inFocus questions
-    for (int i = 0; i < inFocus.size(); i++)
+    for (int i = 0; i < inFocus.size(); i++) {
         compoundedScores += scores[inFocus[i]];
+        qDebug() << scores[inFocus[i]];
+    }
     
     double averageInFocusScore;
     if (inFocus.size() > 0)
@@ -205,33 +222,41 @@ void Algorithm::recalculateData() {
     // ----------- the final step, calculating entries in the lottery ---------
     for (int i = 0; i < livePoolIndexes.size(); i++) {
         // let's calculate entries!
-        int entriesCount = 1; // all questions start with 1 entry
+        int entriesCount = 5; // all questions start with 5 entries
 
         // award entries for being on the mostlyLearnt list
         if (mostlyLearnt.contains(livePoolIndexes[i]))
-            entriesCount += 15;
+            entriesCount += 10;
 
         // award entries for being on the learning list
         if (learning.contains(livePoolIndexes[i]))
-            entriesCount += 30;
+            entriesCount += 25;
 
         // award entries for being on the struggling list
         if (struggling.contains(livePoolIndexes[i]))
-            entriesCount += 40; // this is in addition to learning, so total we have 15
+            entriesCount += 35; // this is in addition to learning, so total we have 15
 
         // award entries for being on the known list
         if (known.contains(livePoolIndexes[i]))
-            entriesCount += 6;
+            entriesCount += 1;
+
+        if (unseen.contains(livePoolIndexes[i]))
+            entriesCount += 10;
 
         allEntries.append(entriesCount);
     }
+    qDebug() << "-----------------------------------------------------";
     qDebug() << "known: " << known.size();
     qDebug() << "mostlyLearnt: " << mostlyLearnt.size();
     qDebug() << "learning: " << learning.size();
     qDebug() << "struggling: " << struggling.size();
-    qDebug() << "livePool: " << livePool.size();
+    qDebug() << "";
     qDebug() << "seen: " << seen.size();
     qDebug() << "unseen: " << unseen.size();
+    qDebug() << "";
+    qDebug() << "livePool: " << livePool.size();
+    qDebug() << "average inFocus score: " << averageInFocusScore;
+    qDebug() << "compounded scores: " << compoundedScores;
 }
 
 void Algorithm::moveBatchUp() {
@@ -242,8 +267,6 @@ void Algorithm::moveBatchUp() {
     }
 
     batchIndex = 0;
-
-    // so we don't run the loterry with no data
     recalculateData();
 }
 

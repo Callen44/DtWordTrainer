@@ -52,6 +52,8 @@ public:
     QList<int> livePoolIndexes; // stores list of the indexes in question pool of each question in live pool
     QList<int> allEntries; // stores the number of entries into the lottery each question gets, indexes synced on livePool
 
+    Question* lastAsked; // makes code less redundant
+
     // --------- Functions the help the algorithm work ----------
     void introduceWord(Word* word); // takes the word given in the paramater and introduces it to the livePool
     void introduceAnyWord(); // introduces one random word, useful when the exact word doesn't matter
