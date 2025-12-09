@@ -17,6 +17,7 @@ public:
 
     // variables for handling wda files
     QString wdaName;
+    bool wdaLess = false;
 
     // functions
     WordSet();
@@ -29,7 +30,7 @@ public:
 
     // functions for handling wissen files
     bool parseWissenFile(QString filePath);
-    QString calcWDAName(QString dtwName); // calculates the name of the wissen data file.
+    QString produceWDAName(); // calculates the name of the wissen data file.
     bool writeWissenFile(); // writes to a wissen file, returns false if not possible.
     void parseWissenLine(QString line);
 

@@ -1,9 +1,12 @@
 #include "Wordset.h"
 
 #include <QFile>
+#include <QFileInfo>
+#include <QDir>
 #include <QDebug>
 #include <cstdlib>
 #include <QMessageBox>
+#include <QStandardPaths>
 
 #define SUPPORTEDDTWVERSION 0.1
 
@@ -107,25 +110,33 @@ bool WordSet::parseWordFile(QString filePath) {
     return true;
 }
 
-QString WordSet::calcWDAName(QString dtwFileName) {
-/*
- * finding the wissen data file (contains how well the user knows the words) is harder
- * this data file is a hidden file so that the user doesn't need to know it's there.
- * because the user doesn't know about it, we have to be creative with finding it's location
-*/
+QString WordSet::produceWDAName() {
+    // Derive a base filename from the dtw filename (without extension)
+    QString newFileName = "wordData.wda"; // hidden wda file name
 
-    // calculate the wissen data file filename.
-    QStringList fileNameParts = dtwFileName.split("/");
-    QString actualFileName = fileNameParts.back();
-    QString newFileName = "." + actualFileName.split(".")[0] + ".wda"; // will return .[filename before extension].wda
+    // Prefer the platform-appropriate writable application data location.
+    QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
-    // generate the full path
-    fileNameParts.back() = newFileName;
-    return fileNameParts.join("/");
+    // fallbacks if AppDataLocation is not available for some reason
+    if (dataDir.isEmpty())
+        dataDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+    if (dataDir.isEmpty())
+        dataDir = QDir::homePath();
 
+    // Ensure the directory exists (create if necessary). If creation fails, fallback to home.
+    QDir dir(dataDir);
+    if (!dir.exists()) {
+        if (!QDir().mkpath(dataDir))
+            dataDir = QDir::homePath();
+    }
+
+    return QDir(dataDir).filePath(newFileName);
 }
 
 bool WordSet::writeWissenFile() {
+    if (wdaLess)
+        return false;
+
     QFile wdaFile(wdaName);
 
     // make the file if it doesn't exist, then return, the word objects themselves will worry about creating blank data
@@ -259,9 +270,10 @@ bool WordSet::parseWissenFile(QString filePath) {
             return true;
         } else {
             qDebug() << "Failed to create Wissen file, incorrect permissions? --- Initializing with blank data";
+            wdaLess = true;
             return false;
         }
-    } else { // just open it normally if it doesn't exist
+    } else { // just open it normally if it does exist
         wdaFile.open(QIODevice::ReadWrite | QIODevice::Text);
     }
 
@@ -273,6 +285,7 @@ bool WordSet::parseWissenFile(QString filePath) {
     if (z.length() > 2 && z[1].toDouble() > SUPPORTEDDTWVERSION + 0.000001) { // read the version line, QT's toDouble isn't perfectly accurate, so we have to program in tolerance, plus, let's avoid segmentations faults caused by opening the wrong file shall we?
         qDebug() << "Unsupported wissen file version used. --- Initializing with blank data";
         wdaFile.close();
+        wdaLess = true;
         return false;
     }
 

@@ -19,7 +19,7 @@ bool Algorithm::readFiles(QString fileName) {
         exit(1);
     }
 
-    if (!words.parseWissenFile(words.calcWDAName(fileName)))
+    if (!words.parseWissenFile(words.produceWDAName()))
         qDebug() << "Failed to open wissen file, data will be filled with blank info.";
 
     // --------- prep step, make every possible question ----------
