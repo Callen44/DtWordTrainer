@@ -8,7 +8,6 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 set(SOURCES
 	main.cpp # main.cpp is not in a zone
@@ -66,11 +65,20 @@ set(QRCS
 	RootZone/DtWordTrainer.qrc
 )
 
-add_executable(${PROJECT_NAME}
+qt_add_executable(${PROJECT_NAME} MANUAL_FINALIZATION
 	${SOURCES}
 	${HEADERS}
 	${UIS}
 	${QRCS}
 )
 
-target_link_libraries(${PROJECT_NAME} Qt6::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    QT_ANDROID_PACKAGE_NAME "com.caleb.DtWordTrainer"
+    QT_ANDROID_TARGET_SDK_VERSION 34
+    QT_ANDROID_VERSION_CODE 10
+    QT_ANDROID_VERSION_NAME "1.0"
+)
+
+qt_finalize_executable(${PROJECT_NAME})
