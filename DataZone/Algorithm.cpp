@@ -189,13 +189,13 @@ void Algorithm::recalculateData() {
                 inFocus.append(i);
 
             // the learning list
-            } else if (score < 0.7 && asks >= 6) {
+            } else if (score < 0.7 && asks <= 3) {
                 learning.append(i);
                 inFocus.append(i);
             }
 
             // the struggling list
-            if (score < 0.7 && asks >= 9) {
+            if (score < 0.7 && asks >= 6) {
                 struggling.append(i);
                 inFocus.append(i);
             }
