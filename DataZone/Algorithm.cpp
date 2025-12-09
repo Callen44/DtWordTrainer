@@ -55,7 +55,10 @@ Question* Algorithm::nextQuestion() {
     words.writeWissenFile();
 
     // set lastAsked
-    lastAsked = currentBatch[batchIndex-1];
+    if (batchIndex != 0)
+        lastAsked = currentBatch[batchIndex-1];
+    else
+        lastAsked = nullptr;
 
     // ------- Handle cleanup steps from last question -------
     if (batchIndex > 1 && lastAsked->correctLast == false)
@@ -65,34 +68,47 @@ Question* Algorithm::nextQuestion() {
     // fill a question if it is not already filled (in the event that a new one hasn't been scheduled)
     Question* chosenQuestion;
     
-    if (currentBatch[batchIndex] == nullptr) {
-        currentBatch[batchIndex] = produceQuestion();
-        // extract our question from the batch before incrmenting the index
+    if (currentBatch[batchIndex] == nullptr) { // check for a scheduled question
+        // prevent the annoying situation where the same question is repeatedly asked over and over
+        if (lastAsked == nullptr) {
+            chosenQuestion = produceQuestion();
+            currentBatch[batchIndex] = chosenQuestion;
+        } else {
+            chosenQuestion = produceQuestion();
+            currentBatch[batchIndex] = chosenQuestion;
+            while (chosenQuestion == lastAsked) {
+                chosenQuestion = produceQuestion();
+                currentBatch[batchIndex] = chosenQuestion;
+            }
+        }
+    } else {
         chosenQuestion = currentBatch[batchIndex];
-        batchIndex++;
     }
-    
-    // prevent the annoying situation where the same question is repeatedly asked over and over
-    while (chosenQuestion == lastAsked) {
-        chosenQuestion = produceQuestion();
-        currentBatch[batchIndex] = chosenQuestion;
-    }
+
+    // extract our question from the batch before incermenting the index
+    batchIndex++;
 
     // move up batches in case we need to
     if (batchIndex >= 10)
         moveBatchUp();
 
+    int timesCorrect = chosenQuestion->timesCorrect();
+    int timesIncorrect = chosenQuestion->timesIncorrect();
 
     // TODO THIS IS A VERY DIRTY SYSTEM HERE!!!!! PLEASE UPDATE (will require a redesign of most of the algorithm
-    if ((chosenQuestion->timesIncorrect() > 0 && (chosenQuestion->timesCorrect() / chosenQuestion->timesIncorrect()) >= 0.8) || (chosenQuestion->timesIncorrect() == 0 && chosenQuestion->timesCorrect() > 0)) {
+    if ((timesIncorrect > 0 && (timesCorrect / timesIncorrect) >= 0.8) || (timesIncorrect == 0 && timesCorrect > 0)) {
         for (int i = 0; i < questionPool.size(); i++) {
-            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 2)
+            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 2) {
                 chosenQuestion = questionPool[i];
+                currentBatch[batchIndex-1] = chosenQuestion;
+            }
         }
     } else {
         for (int i = 0; i < questionPool.size(); i++) {
-            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 1)
+            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 1) {
                 chosenQuestion = questionPool[i];
+                currentBatch[batchIndex-1] = chosenQuestion;
+            }
         }
     }
 
