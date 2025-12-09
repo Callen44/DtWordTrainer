@@ -76,7 +76,7 @@ Question* Algorithm::nextQuestion() {
         } else {
             chosenQuestion = produceQuestion();
             currentBatch[batchIndex] = chosenQuestion;
-            while (chosenQuestion == lastAsked) {
+            while (chosenQuestion->associatedWord == lastAsked->associatedWord) {
                 chosenQuestion = produceQuestion();
                 currentBatch[batchIndex] = chosenQuestion;
             }
