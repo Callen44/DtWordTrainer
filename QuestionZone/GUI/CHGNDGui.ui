@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MCFDGui</class>
- <widget class="QWidget" name="MCFDGui">
+ <class>CHGNDGui</class>
+ <widget class="QWidget" name="CHGNDGui">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -26,7 +26,7 @@
       <item row="0" column="0">
        <layout class="QVBoxLayout" name="questionPanel">
         <item>
-         <spacer name="verticalSpacer_5">
+         <spacer name="verticalSpacer_2">
           <property name="orientation">
            <enum>Qt::Orientation::Vertical</enum>
           </property>
@@ -38,15 +38,18 @@
           </property>
          </spacer>
         </item>
-        <item alignment="Qt::AlignmentFlag::AlignHCenter">
-         <widget class="QLabel" name="questionLabel">
+        <item>
+         <widget class="QLabel" name="wordInput">
           <property name="text">
-           <string>question Text</string>
+           <string>Word Name</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
          </widget>
         </item>
         <item>
-         <spacer name="verticalSpacer_6">
+         <spacer name="verticalSpacer">
           <property name="orientation">
            <enum>Qt::Orientation::Vertical</enum>
           </property>
@@ -59,32 +62,25 @@
          </spacer>
         </item>
         <item>
-         <layout class="QGridLayout" name="answerGrid">
-          <item row="1" column="0">
-           <widget class="QPushButton" name="answer2">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QPushButton" name="DerButton">
             <property name="text">
-             <string>blank</string>
+             <string>Der</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QPushButton" name="answer0">
+          <item>
+           <widget class="QPushButton" name="DieButton">
             <property name="text">
-             <string>blank</string>
+             <string>Die</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="answer1">
+          <item>
+           <widget class="QPushButton" name="DasButton">
             <property name="text">
-             <string>blank</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="answer3">
-            <property name="text">
-             <string>blank</string>
+             <string>Das</string>
             </property>
            </widget>
           </item>

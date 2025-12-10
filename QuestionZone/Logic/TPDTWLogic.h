@@ -14,7 +14,8 @@ public:
     Functions
     */
 
-    TPDTWLogic(Word* associatedWord, WordSet* words);
+    TPDTWLogic(Word* associatedWord, WordSet* words)
+        : Question(TPDTW, associatedWord, 2), words(words) {}
 
     // funcitons for handling correct or incorrect answers
     bool answer(QString answer);

@@ -2,11 +2,8 @@
 #include <QDebug>
 
 MCFDLogic::MCFDLogic(Word* associatedWord, WordSet* words)
-    : Question(MCFD, associatedWord), words(words)
+    : Question(MCFD, associatedWord, 1), words(words)
 {
-    this->associatedWord = associatedWord;
-    questionLevel = 1;
-
     // this creates the multiple choice question where there are 4 choices presented to the user, one is correct, and three are distracters
     questionPrompt = associatedWord->word;
     distractor0 = createDistractor();

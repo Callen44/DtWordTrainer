@@ -1,6 +1,7 @@
 #include "QuestionOverseer.h"
 #include "MCFDGui.h"
 #include "TPDTWGui.h"
+#include "CHGNDGui.h"
 
 #include <QVBoxLayout>
 
@@ -41,5 +42,13 @@ void QuestionOverseer::nextQuestion() {
         
         // ensure that the next question will be asked when... you get the point
         QObject::connect(nextWidget, &TPDTWGui::questionCompleted, this, &QuestionOverseer::nextQuestion);
+    } else if (nQ->questionType == CHGND) {
+        CHGNDLogic* realQuestion = reinterpret_cast<CHGNDLogic*>(nQ);
+        CHGNDGui* nextWidget = new CHGNDGui(realQuestion, this);
+        currentWidget = nextWidget;
+        myLayout->addWidget(currentWidget);
+
+        // ensure that the next question will be asked when... you get the point
+        QObject::connect(nextWidget, &CHGNDGui::questionCompleted, this, &QuestionOverseer::nextQuestion);
     }
 }

@@ -17,14 +17,15 @@ set(SOURCES
 	RootZone/MainScreen.cpp
 
 	# QuestionZone
+	QuestionZone/Logic/Question.cpp
 	QuestionZone/Logic/MCFDLogic.cpp
 	QuestionZone/Logic/TPDTWLogic.cpp
-	QuestionZone/Logic/Question.cpp
+	QuestionZone/Logic/CHGNDLogic.cpp
 
-
+	QuestionZone/GUI/QuestionOverseer.cpp
 	QuestionZone/GUI/MCFDGui.cpp
 	QuestionZone/GUI/TPDTWGui.cpp
-	QuestionZone/GUI/QuestionOverseer.cpp
+	QuestionZone/GUI/CHGNDGui.cpp
 
 	# DataZone
 	DataZone/Noun.cpp
@@ -40,13 +41,15 @@ set(HEADERS
 	RootZone/MainScreen.h
 
 	# QuestionZone
+	QuestionZone/Logic/Question.h
 	QuestionZone/Logic/MCFDLogic.h
 	QuestionZone/Logic/TPDTWLogic.h
-	QuestionZone/Logic/Question.h
+	QuestionZone/Logic/CHGNDLogic.h
 
+	QuestionZone/GUI/QuestionOverseer.h
 	QuestionZone/GUI/MCFDGui.h
 	QuestionZone/GUI/TPDTWGui.h
-	QuestionZone/GUI/QuestionOverseer.h
+	QuestionZone/GUI/CHGNDGui.h
 
 	# DataZone
 	DataZone/Noun.h
@@ -59,6 +62,8 @@ set(HEADERS
 set(UIS
 	RootZone/MainScreen.ui
 	QuestionZone/GUI/MCFDGui.ui
+	QuestionZone/GUI/TPDTWGui.ui
+	QuestionZone/GUI/CHGNDGui.ui
 )
 
 set(QRCS

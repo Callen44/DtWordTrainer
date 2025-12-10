@@ -1,10 +1,13 @@
 #ifndef ALGORITHM_H
 #define ALGORITHM_H
 
+#include <QDebug>
+
 #include "Wordset.h"
 #include "../QuestionZone/Logic/Question.h"
-#include "../QuestionZone/GUI/MCFDGui.h"
+#include "../QuestionZone/Logic/MCFDLogic.h"
 #include "../QuestionZone/Logic/TPDTWLogic.h"
+#include "../QuestionZone/Logic/CHGNDLogic.h"
 
 /*
 The algorithm has several stages, first it generates every possible question, and it sorts the questions based off

@@ -14,6 +14,7 @@
 enum QVariety {
     MCFD, // a four answer multiple choice question
     TPDTW, // a question where there is a prompt and the user is meant to type an answer
+    CHGND, // choose the gender of the noun, multiple choice
 };
 
 class Question
@@ -24,8 +25,8 @@ public:
     Functions
     */
 
-    Question(QVariety questionType, Word* associatedWord)
-        : questionType(questionType), associatedWord(associatedWord) {}
+    Question(QVariety questionType, Word* associatedWord, int questionLevel)
+        : questionType(questionType), associatedWord(associatedWord), questionLevel(questionLevel) {}
         
     virtual ~Question() = default; // Virtual destructor to ensure proper cleanup of derived classes
 

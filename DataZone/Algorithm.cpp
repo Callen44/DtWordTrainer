@@ -1,4 +1,5 @@
 #include "Algorithm.h"
+#include <random>
 
 Algorithm::Algorithm() {
     // -------- initialize data ---------
@@ -27,7 +28,11 @@ bool Algorithm::readFiles(QString fileName) {
         if (words.allWords[i]->partOfSpeech == NOUN) {
             // Questions that only nouns can have
             Noun* wordIQ = reinterpret_cast<Noun*>(words.allWords[i]); // stands for word in question
-            // TODO Make some!
+
+            // choose gender question
+            CHGNDLogic* newCHGND = new CHGNDLogic(wordIQ);
+            questionPool.append(newCHGND);
+
         } else if (words.allWords[i]->partOfSpeech == VERB) {
             // Questions that only verbs can have
             Verb* wordIQ = reinterpret_cast<Verb*>(words.allWords[i]); // stands for word in question
@@ -43,7 +48,6 @@ bool Algorithm::readFiles(QString fileName) {
         TPDTWLogic* newTPDTW = new TPDTWLogic(words.allWords[i], &words);
         questionPool.append(newTPDTW);
     }
-
     // run initial data calculation for the first questions
     recalculateData();
 
@@ -91,26 +95,6 @@ Question* Algorithm::nextQuestion() {
     // move up batches in case we need to
     if (batchIndex >= 10)
         moveBatchUp();
-
-    int timesCorrect = chosenQuestion->timesCorrect();
-    int timesIncorrect = chosenQuestion->timesIncorrect();
-
-    // TODO THIS IS A VERY DIRTY SYSTEM HERE!!!!! PLEASE UPDATE (will require a redesign of most of the algorithm
-    if ((timesIncorrect > 0 && (timesCorrect / timesIncorrect) >= 0.8) || (timesIncorrect == 0 && timesCorrect > 0)) {
-        for (int i = 0; i < questionPool.size(); i++) {
-            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 2) {
-                chosenQuestion = questionPool[i];
-                currentBatch[batchIndex-1] = chosenQuestion;
-            }
-        }
-    } else {
-        for (int i = 0; i < questionPool.size(); i++) {
-            if (questionPool[i]->associatedWord == chosenQuestion->associatedWord && questionPool[i]->questionLevel == 1) {
-                chosenQuestion = questionPool[i];
-                currentBatch[batchIndex-1] = chosenQuestion;
-            }
-        }
-    }
 
     return chosenQuestion;
 }
