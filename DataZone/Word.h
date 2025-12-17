@@ -14,7 +14,8 @@ enum PartOS { // this is taked off of a list of the parts of speech on the inter
 	CONJUNCTION,
 	ARTICLE,
 	INTERJUINCTION,
-	PARTICIPLE
+    PARTICIPLE,
+    ABSTRACT // allows the part of speech to be unspecified used by DummyWord
 };
 
 class Word
