@@ -177,22 +177,22 @@ void Algorithm::recalculateData() {
             scores.append(score);
 
             // the known list
-            if (score >= 0.93 && asks >= 4) {
+            if (score >= 0.93 && asks >= 3) {
                 known.append(i);
 
             // the mostlyLearnt list
-            } else if (score >= 0.80 && asks >= 4) {
+            } else if (score >= 0.80 && asks >= 3) {
                 mostlyLearnt.append(i);
                 inFocus.append(i);
 
             // the learning list
-            } else if (score < 0.7 && asks <= 3) {
+            } else if (score < 0.7 && asks <= 2) {
                 learning.append(i);
                 inFocus.append(i);
             }
 
             // the struggling list
-            if (score < 0.7 && asks >= 6) {
+            if (score < 0.7 && asks >= 4) {
                 struggling.append(i);
                 inFocus.append(i);
             }
@@ -203,7 +203,6 @@ void Algorithm::recalculateData() {
     double compoundedScores = 0; // get the average score of the inFocus questions
     for (int i = 0; i < inFocus.size(); i++) {
         compoundedScores += scores[inFocus[i]];
-        qDebug() << scores[inFocus[i]];
     }
     
     double averageInFocusScore;
