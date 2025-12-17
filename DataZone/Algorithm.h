@@ -4,6 +4,7 @@
 #include <QDebug>
 
 #include "Wordset.h"
+#include "QuestionBlock.h"
 #include "../QuestionZone/Logic/Question.h"
 #include "../QuestionZone/Logic/MCFDLogic.h"
 #include "../QuestionZone/Logic/TPDTWLogic.h"
@@ -50,12 +51,15 @@ public:
     Question* nextBatch[10];
     int batchIndex = 0;
 
-    QList<Question*> questionPool; // stores literally every possible question based on this wordset
-    QList<Question*> livePool; // stores "live questions" those that have been introduced to the user's question pool
-    QList<int> livePoolIndexes; // stores list of the indexes in question pool of each question in live pool
-    QList<int> allEntries; // stores the number of entries into the lottery each question gets, indexes synced on livePool
+    QList<QuestionBlock> questionPool; // stores literally every possible questionBlock based on this wordset
+    QList<QuestionBlock> livePool; // stores "live questionBlocks" those that the user is ready to see (so that we don't see everythingthing at once)
+    QList<int> livePoolIndexes; // stores list of the indexes in question pool of each questionBlock in live pool
+    QList<int> allEntries; // stores the number of entries into the lottery each questionBlock gets, indexes synced on livePool
 
-    Question* lastAsked; // makes code less redundant
+    Question* lastAsked; // makes code less redundant in the implementation file
+
+    // and last but not least, the actual questions themselves
+    QList<Question*> questionObjects;
 
     // --------- Functions the help the algorithm work ----------
     void introduceWord(Word* word); // takes the word given in the paramater and introduces it to the livePool

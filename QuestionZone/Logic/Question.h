@@ -37,7 +37,7 @@ public:
     // stores if the question was answered correctly last time.
     bool correctLast = true;
 
-    // funcitons for handling answers are in derrived classes
+    // funcitons for handling answers are in derrived classes, since each one is slightly different
 
     /*
     Variables
@@ -46,7 +46,10 @@ public:
     QVariety questionType; // stores what type of question this TODO make this properly immutable
     Word* associatedWord; // a pointer back to the word this is a question for, allows for the question to log it's correcness itself, the UI is not responsible for managing such data
     WordSet* words;
-    int questionLevel;
+    int questionLevel;  /* questionLevel is how hard a question is relative to others that quiz the same thing.
+                          In other words, of all the questions that ask the user about the definition of a word, which are the easiest,
+                          a multiple choice question is easier than typing the definition, so we'll consider the multiple choid question to have a lower level.
+                        */
 };
 
 #endif // QUESTION_H

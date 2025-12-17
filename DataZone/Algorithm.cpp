@@ -16,7 +16,7 @@ bool Algorithm::readFiles(QString fileName) {
 
     // TODO, this should not be a fatal error
     if (!words.parseWordFile(fileName)){
-        qDebug() << "Files failed to open, are they writable?\nThis is a fatal error.";
+        qDebug() << "Word files failed to open, are they writable?\nThis is a fatal error.";
         exit(1);
     }
 
@@ -28,25 +28,38 @@ bool Algorithm::readFiles(QString fileName) {
         if (words.allWords[i]->partOfSpeech == NOUN) {
             // Questions that only nouns can have
             Noun* wordIQ = reinterpret_cast<Noun*>(words.allWords[i]); // stands for word in question
-
-            // choose gender question
-            CHGNDLogic* newCHGND = new CHGNDLogic(wordIQ);
-            questionPool.append(newCHGND);
+            
+            {
+                // choose noun gender question
+                CHGNDLogic* newCHGND = new CHGNDLogic(wordIQ);
+                questionObjects.append(newCHGND);
+                
+                QuestionBlock newBlock;
+                newBlock.addQuestion(newCHGND);
+                questionPool.append(newBlock);
+            }
 
         } else if (words.allWords[i]->partOfSpeech == VERB) {
             // Questions that only verbs can have
             Verb* wordIQ = reinterpret_cast<Verb*>(words.allWords[i]); // stands for word in question
             // TODO Make some!
         }
+
         // Questions that all words can have
 
-        // the classic multiple choice definition question
-        MCFDLogic* newMCFD = new MCFDLogic(words.allWords[i], &words);
-        questionPool.append(newMCFD);
+        // because creating a block is long and complex, we're going to put each block in brackets
+        {
+            // the classic multiple choice definition question
+            MCFDLogic* newMCFD = new MCFDLogic(words.allWords[i], &words);
 
-        // type the word in German
-        TPDTWLogic* newTPDTW = new TPDTWLogic(words.allWords[i], &words);
-        questionPool.append(newTPDTW);
+            // type the word in German
+            TPDTWLogic* newTPDTW = new TPDTWLogic(words.allWords[i], &words);
+
+            QuestionBlock newBlock;
+            newBlock.addQuestion(newMCFD);
+            newBlock.addQuestion(newTPDTW);
+            questionPool.append(newBlock);
+        }
     }
     // run initial data calculation for the first questions
     recalculateData();
@@ -121,11 +134,11 @@ Question* Algorithm::produceQuestion() {
 
         currentQuestionIndex++;
     }
-    Question* chosenQuestion = livePool[currentQuestionIndex];
+    Question* chosenQuestion = livePool[currentQuestionIndex].produce();
 
     // return the questions we've chosen
     if (chosenQuestion == nullptr) // TODO for some reason it's possible for this statment to be true, I don't know why
-        return livePool[1];    
+        return livePool[1].produce();    
 
     return chosenQuestion;
 }
@@ -147,7 +160,7 @@ void Algorithm::recalculateData() {
     // generate scores list and timesAsked
     for (int i = 0; i < questionPool.size(); i++) {
         // figure out the number of times the questions has been asked
-        int asks = questionPool[i]->timesCorrect() + questionPool[i]->timesIncorrect();
+        int asks = questionPool[i].timesCorrect() + questionPool[i].timesIncorrect();
         timesAsked.append(asks);
 
         // sort into seen and unseen
@@ -160,7 +173,7 @@ void Algorithm::recalculateData() {
         if (asks == 0)
             scores.append(0);
         else {
-            double score = questionPool[i]->timesCorrect() / asks;
+            double score = questionPool[i].timesCorrect() / asks;
             scores.append(score);
 
             // the known list
@@ -272,7 +285,7 @@ void Algorithm::moveBatchUp() {
 
 void Algorithm::introduceWord(Word* word) {
     for (int i = 0; i < questionPool.size(); i++) {
-        if (questionPool[i]->associatedWord == word) {
+        if (questionPool[i].associatedWord == word) {
             livePool.append(questionPool[i]);
             livePoolIndexes.append(i);
         }
@@ -285,9 +298,9 @@ void Algorithm::introduceAnyWord() {
 }
 
 Algorithm::~Algorithm() {
-    for (int i = 0; i < questionPool.size(); i++) {
-        Question* nq = questionPool[i];
-        questionPool.remove(i);
+    for (int i = 0; i < questionObjects.size(); i++) {
+        Question* nq = questionObjects[i];
+        questionObjects.remove(i);
         delete nq;
     }
 }

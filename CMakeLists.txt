@@ -32,6 +32,7 @@ set(SOURCES
 	DataZone/Verb.cpp
 	DataZone/Word.cpp
 	DataZone/Wordset.cpp
+	DataZone/QuestionBlock.cpp
 	DataZone/Algorithm.cpp
 )
 
@@ -56,6 +57,7 @@ set(HEADERS
 	DataZone/Verb.h
 	DataZone/Word.h
 	DataZone/Wordset.h
+	DataZone/QuestionBlock.h
 	DataZone/Algorithm.h
 )
 
