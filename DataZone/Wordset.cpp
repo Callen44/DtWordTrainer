@@ -213,13 +213,16 @@ void WordSet::parseWissenLine(QString line) {
     if (lineParts[4] != ""){ // the word will have it's base form on section 4, but the actual data is after that section
         Word* thisWord = findWordObject(lineParts[4]); // make sure that we're getting a noun before risking a reinterpret cast
 
-        // avoid segemntation faults
-        if (thisWord == nullptr)
-            return;
+        // create a dummy noun if we can't find a real one
+        if (thisWord == nullptr) {
+            thisWord = new Noun(lineParts[4], DER, "Dummy");
+            dummys.append(reinterpret_cast<Noun*>(thisWord));
+            nouns.append(reinterpret_cast<Noun*>(thisWord));
+        }
 
-        if (thisWord->partOfSpeech != NOUN)
+        if (thisWord->partOfSpeech != NOUN) {
             return;
-
+        }
 
         Noun* thisNoun = reinterpret_cast<Noun*>(thisWord); // call me devious, I love reinterpret casts!
         thisNoun->defCorrects = lineParts[6].split("/")[0].toInt(); // fancy way to get the number of times the question was correct, little weird but compact
@@ -232,9 +235,12 @@ void WordSet::parseWissenLine(QString line) {
     if (lineParts[21] != "") {
         Word* thisWord = findWordObject(lineParts[21]);
 
-        // avoid segemntation faults
-        if (thisWord == nullptr)
-            return;
+        // create a dummy verb if we can't find a real one
+        if (thisWord == nullptr) {
+            thisWord = new Verb(lineParts[21], "Dummy");
+            dummys.append(reinterpret_cast<Verb*>(thisWord));
+            verbs.append(reinterpret_cast<Verb*>(thisWord));
+        }
 
         if (thisWord->partOfSpeech != VERB)
             return;

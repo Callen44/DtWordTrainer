@@ -11,7 +11,8 @@ public:
     QList<Noun*> nouns;
     QList<Verb*> verbs;
     QList<Word*> allWords; // this list keeps the programmer from redundently searching both arrays when the kind of word is not needed.
-    
+    QList<Word*> dummys; // a list of all dummy words, words that are placeholders for those we don't have the whole word definition of, not included in all words, but they are in allnouns and allverbs
+
     // variables for handling dtw files
     QString dtwName;
 
