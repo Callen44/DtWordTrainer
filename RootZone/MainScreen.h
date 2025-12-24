@@ -20,7 +20,8 @@ public:
     void addQuestions(WordSet* rootWordSet);
 
 signals:
-    void startQuestions();
+    void startQuestions(); // signal to start the questions
+    void addNewWord(); // signal to add a new word
 
 private:
     Ui::MainScreen *ui;

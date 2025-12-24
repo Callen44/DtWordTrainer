@@ -15,6 +15,7 @@ set(SOURCES
 	# RootZone
 	RootZone/DtWordTrainer.cpp
 	RootZone/MainScreen.cpp
+	RootZone/newWordScreen.cpp
 
 	# QuestionZone
 	QuestionZone/Logic/Question.cpp
@@ -40,6 +41,7 @@ set(HEADERS
 	# RootZone
 	RootZone/DtWordTrainer.h
 	RootZone/MainScreen.h
+	RootZone/newWordScreen.h
 
 	# QuestionZone
 	QuestionZone/Logic/Question.h
@@ -62,7 +64,7 @@ set(HEADERS
 )
 
 set(UIS
-	RootZone/MainScreen.ui
+
 	QuestionZone/GUI/MCFDGui.ui
 	QuestionZone/GUI/TPDTWGui.ui
 	QuestionZone/GUI/CHGNDGui.ui

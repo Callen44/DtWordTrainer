@@ -61,6 +61,11 @@ bool Algorithm::readFiles(QString fileName) {
             questionPool.append(newBlock);
         }
     }
+
+    // check if we have a blank wordset, in which case we need to abort, we can't recalculate data
+    if (questionPool.size() == 0)
+        return true;
+
     // run initial data calculation for the first questions
     recalculateData();
 

@@ -1,6 +1,4 @@
-#ifndef WORDSET_H
-#define WORDSET_H
-
+#pragma once
 #include "Noun.h"
 #include "Verb.h"
 
@@ -37,5 +35,3 @@ public:
 
     Word* findWordObject(QString word); // returns nullptr when word cannot be found
 };
-
-#endif // WORDSET_H

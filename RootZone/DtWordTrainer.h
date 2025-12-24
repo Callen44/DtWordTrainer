@@ -14,6 +14,8 @@ public:
 
 public slots:
     void startQuestions();
+    void addNewWord();
+    void showMainScreen();
 
 private:
     Algorithm algorithm;

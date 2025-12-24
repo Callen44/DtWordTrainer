@@ -7,20 +7,16 @@ MainScreen::MainScreen(QWidget *parent)
 
     // setup signals and slots to start questions
     QObject::connect(ui->startButton, &QPushButton::pressed, this, &MainScreen::startQuestions);
+    QObject::connect(ui->addNewWord, &QPushButton::pressed, this, &MainScreen::addNewWord);
 }
 
 void MainScreen::addQuestions(WordSet* rootWordSet) {
     /*
     * Add all question words to the list of questions on the homescreen of the app
     */
-    for (int i = 0; i < rootWordSet->nouns.size(); i++) {
+    for (int i = 0; i < rootWordSet->allWords.size(); i++) {
         QListWidgetItem *newItem = new QListWidgetItem;
-        newItem->setText(rootWordSet->nouns[i]->word);
-        ui->wordList->insertItem(i, newItem);
-    }
-    for (int i = 0; i < rootWordSet->verbs.size(); i++) {
-        QListWidgetItem *newItem = new QListWidgetItem;
-        newItem->setText(rootWordSet->verbs[i]->word);
+        newItem->setText(rootWordSet->allWords[i]->word);
         ui->wordList->insertItem(i, newItem);
     }
 }
