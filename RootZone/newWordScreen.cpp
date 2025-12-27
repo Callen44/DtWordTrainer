@@ -44,9 +44,8 @@ void newWordScreen::addWord() {
         else if (genderBox->currentText() == "Das")
             wordGender = DAS;
 
-        Noun* newNoun = new Noun(wortBox->text(), wordGender, definitionBox->text());
-        words->allWords.append(newNoun);
-        words->nouns.append(newNoun);
+        Noun newNoun(wortBox->text(), wordGender, definitionBox->text());
+        words->addWord(newNoun);
     }
 
     emit done();

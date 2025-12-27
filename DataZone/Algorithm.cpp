@@ -23,17 +23,23 @@ bool Algorithm::readFiles(QString fileName) {
     if (!words.parseWissenFile(words.produceWDAName()))
         qDebug() << "Failed to open wissen file, data will be filled with blank info.";
 
-    // --------- prep step, make every possible question ----------
+    createAllQuestions(); // we run this function every time new words are added to wordset. especially if we open a new file.
+
+    return true;
+}
+
+void Algorithm::createAllQuestions() {
+    // --------- make every possible question, needed whenever new words are added to wordset ----------
     for (int i = 0; i < words.allWords.size(); i++) {
         if (words.allWords[i]->partOfSpeech == NOUN) {
             // Questions that only nouns can have
             Noun* wordIQ = reinterpret_cast<Noun*>(words.allWords[i]); // stands for word in question
-            
+
             {
                 // choose noun gender question
                 CHGNDLogic* newCHGND = new CHGNDLogic(wordIQ);
                 questionObjects.append(newCHGND);
-                
+
                 QuestionBlock newBlock;
                 newBlock.addQuestion(newCHGND);
                 questionPool.append(newBlock);
@@ -61,15 +67,6 @@ bool Algorithm::readFiles(QString fileName) {
             questionPool.append(newBlock);
         }
     }
-
-    // check if we have a blank wordset, in which case we need to abort, we can't recalculate data
-    if (questionPool.size() == 0)
-        return true;
-
-    // run initial data calculation for the first questions
-    recalculateData();
-
-    return true;
 }
 
 Question* Algorithm::nextQuestion() {

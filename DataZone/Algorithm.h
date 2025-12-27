@@ -64,6 +64,7 @@ public:
     // --------- Functions the help the algorithm work ----------
     void introduceWord(Word* word); // takes the word given in the paramater and introduces it to the livePool
     void introduceAnyWord(); // introduces one random word, useful when the exact word doesn't matter
+    void createAllQuestions(); // make every possible question, needed whenever new words are added to wordset, adds them to questionsPool
 private:
 
 };

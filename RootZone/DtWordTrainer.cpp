@@ -30,6 +30,10 @@ void DtWordTrainer::showMainScreen() {
 }
 
 void DtWordTrainer::startQuestions() {
+    // prep the algorithm for the words (since they might or might not change on the mainscreen with the newwordscreen)
+    algorithm.createAllQuestions();
+    algorithm.recalculateData();
+
     // to start the next question, we need to make a new question widget to display, and then replace the current one
     QuestionOverseer* questionScreen = new QuestionOverseer(&algorithm, this);
     QWidget* oldCentralWidget = takeCentralWidget();

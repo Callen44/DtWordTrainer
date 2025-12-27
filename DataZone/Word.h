@@ -22,7 +22,7 @@ class Word
 {
 public:
 	QString word;
-    const PartOS partOfSpeech;
+    PartOS partOfSpeech;
 	QString translation;
     QString details = "";
 

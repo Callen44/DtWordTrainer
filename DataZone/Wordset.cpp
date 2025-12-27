@@ -110,6 +110,45 @@ bool WordSet::parseWordFile(QString filePath) {
     return true;
 }
 
+void WordSet::addWord(Noun word) {
+    // copy the parameter word onto the heap
+    Noun* heapWord = new Noun("", DER, "");
+    *heapWord = word;
+
+    // register the word
+    allWords.append(heapWord);
+    nouns.append(heapWord);
+    save();
+}
+
+void WordSet::addWord(Word word) {
+    // copy the parameter word onto the heap
+    Word* heapWord = new Word(ABSTRACT, "", "");
+    *heapWord = word;
+
+    // register the word
+    allWords.append(heapWord);
+    save();
+}
+
+void WordSet::addWord(Verb word) {
+    // copy the parameter word onto the heap
+    Verb* heapWord = new Verb("", "");
+    *heapWord = word;
+
+    // register the word
+    allWords.append(heapWord);
+    verbs.append(heapWord);
+    save();
+}
+
+bool WordSet::save() {
+    // save our wordset file, this takes the words in allWords, but not dummy words, and saves them to the dtw file, this includes edits or new words the user has created this session
+    // TODO, this function is currently a placeholder
+
+    return true;
+}
+
 QString WordSet::produceWDAName() {
     // Derive a base filename from the dtw filename (without extension)
     QString newFileName = "wordData.wda"; // hidden wda file name

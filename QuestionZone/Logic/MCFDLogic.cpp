@@ -20,6 +20,10 @@ QString MCFDLogic::createDistractor() {
 
     QString distractorAnswer;
 
+    // in the event that there's only one word in the wordset, and we can never find a word other than this one, let's not crash
+    if (totalWords < 2)
+        return "Duck";
+
     while ((distractorAnswer = words->allWords[rint]->translation) == (associatedWord->translation))
         rint = (std::rand() % totalWords);
     return distractorAnswer;

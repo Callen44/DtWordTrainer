@@ -18,9 +18,15 @@ public:
     QString wdaName;
     bool wdaLess = false;
 
-    // functions
+    // misc. functions
     WordSet();
     ~WordSet();
+    bool save(); // saves the wordset to its file
+
+    // three function signitures for adding different parts of speech, these functions add the word and then save it
+    void addWord(Noun word);
+    void addWord(Verb word);
+    void addWord(Word word);
 
     // functions for handling word files
     // TODO add handling for bad files
