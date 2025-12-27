@@ -12,7 +12,8 @@ class Noun : public Word
 {
 public:
 	Gender gender;
-	PartOS partOfSpeech = NOUN;
+    PartOS partOfSpeech = NOUN;
+    Noun(Word* word);
     Noun(QString word, Gender gender, QString translation)
         : Word(NOUN, translation, word), gender(gender) {}
 

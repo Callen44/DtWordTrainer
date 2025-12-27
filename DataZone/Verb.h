@@ -54,6 +54,7 @@ public:
     int HSCorrects = 0;
     int HSIncorrects = 0;
 
+    Verb(Word* word);
     Verb(QString infinitive, QString translation)
         :Word(VERB, translation, infinitive) {}
 };
