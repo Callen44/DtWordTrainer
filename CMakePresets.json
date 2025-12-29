@@ -1,34 +1,34 @@
 {
-    "version": 3,
-    "configurePresets": [
-        {
-            "hidden": true,
-            "name": "Qt",
-            "cacheVariables": {
-                "CMAKE_PREFIX_PATH": "$env{QTDIR}"
-            },
-            "vendor": {
-                "qt-project.org/Qt": {
-                    "checksum": "wVa86FgEkvdCTVp1/nxvrkaemJc="
-                }
-            }
-        },
-        {
-            "name": "default-ubuntu",
-            "displayName": "Default Ubuntu",
-            "description": "Using compilers: C = /usr/bin/clang-cl-20, CXX = /usr/bin/clang-cl-20",
-            "binaryDir": "${sourceDir}/out/build/${presetName}",
-            "cacheVariables": {
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
-                "CMAKE_C_COMPILER": "/usr/bin/clang",
-                "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
+  "version": 3,
+  "configurePresets": [
+    {
+      "hidden": true,
+      "name": "Qt",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "$env{QTDIR}"
+      },
+      "vendor": {
+        "qt-project.org/Qt": {
+          "checksum": "wVa86FgEkvdCTVp1/nxvrkaemJc="
         }
-    ],
-    "vendor": {
-        "qt-project.org/Presets": {
-            "checksum": "67SmY24ZeVbebyKD0fGfIzb/bGI="
-        }
+      }
+    },
+    {
+      "name": "default-ubuntu",
+      "displayName": "Default Ubuntu",
+      "description": "Using compilers: C = /usr/bin/clang-cl-20, CXX = /usr/bin/clang-cl-20",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+        "CMAKE_C_COMPILER": "/usr/bin/clang",
+        "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
     }
+  ],
+  "vendor": {
+    "qt-project.org/Presets": {
+      "checksum": "JEr7EHutOxNZ93aC0FX2PjT+278="
+    }
+  }
 }
