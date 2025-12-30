@@ -21,7 +21,7 @@ public:
     // misc. functions
     WordSet();
     ~WordSet();
-    bool save(); // saves the wordset to its file
+    bool saveDTWFile(); // saves the wordset to its file
 
     // three function signitures for adding different parts of speech, these functions add the word and then save it
     void addWord(Noun word);

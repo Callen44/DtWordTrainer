@@ -34,7 +34,7 @@ public:
     ModalCode modal;
 
     // TODO, much later, add seperable verb support
-    QString pratetitumIch;
+    QString prateritumIch;
 
     QString PartizipII;
 

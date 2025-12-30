@@ -45,7 +45,7 @@ void WordSet::parseWordLine(QString line) {
         newVerb->sieConj = lineParts[28];
 
         newVerb->PartizipII = lineParts[29];
-        newVerb->pratetitumIch = lineParts[33];
+        newVerb->prateritumIch = lineParts[33];
 
         // determine the values of the various codes
 
@@ -64,7 +64,7 @@ void WordSet::parseWordLine(QString line) {
         // ModalCode
         if (lineParts[39].toLower() == "nein")
             newVerb->modal = NOTMODAL;
-        if (lineParts[29].toLower() == "ja")
+        if (lineParts[39].toLower() == "ja")
             newVerb->modal = MODAL;
 
         allWords.append(newVerb);
@@ -118,7 +118,7 @@ void WordSet::addWord(Noun word) {
     // register the word
     allWords.append(heapWord);
     nouns.append(heapWord);
-    save();
+    saveDTWFile();
 }
 
 void WordSet::addWord(Word word) {
@@ -128,7 +128,7 @@ void WordSet::addWord(Word word) {
 
     // register the word
     allWords.append(heapWord);
-    save();
+    saveDTWFile();
 }
 
 void WordSet::addWord(Verb word) {
@@ -139,12 +139,76 @@ void WordSet::addWord(Verb word) {
     // register the word
     allWords.append(heapWord);
     verbs.append(heapWord);
-    save();
+    saveDTWFile();
 }
 
-bool WordSet::save() {
+bool WordSet::saveDTWFile() {
     // save our wordset file, this takes the words in allWords, but not dummy words, and saves them to the dtw file, this includes edits or new words the user has created this session
-    // TODO, this function is currently a placeholder
+    QFile saveFile(dtwName);
+    if (!saveFile.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        qDebug() << "Could not open dtw file! Not saving!";
+        return false;
+    }
+
+    saveFile.write("Version:,0.1,Developers welcome this file is a CSV file with the collum headers conveniently left for happy scripting! Change the file extension to such and have fun!,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\nAbstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,\nWort,Definition,,,Wort,Gender,Definition,Nom.,Gen.,Dat.,Akk.,Pl. Nom.,Pl. Gen.,Pl. Dat.,Pl. Akk.,,,,,,,Infinitive,Definition,Ich,Du,Er,Wir,Ihr,Sie,Partizip II,h-s,Schwach Oder Stark,Seperable Info,Präteritum Ich,Präteritum Du,Präteritum Er,Präteritum Wir,Präteritum Ihr,Präteritum Sie,Modal");
+
+    // this is where the magic happens
+    QList<QString> lines;
+
+    int lineI = 0; // the index of the line we're working on doesn't always allign with the nouns list, especially in the case of dummy words
+    for (int i = 0; i < nouns.size(); i++) {
+        // first we need to make sure we aren't saving a dummy word
+        if (nouns[i]->translation == "Dummy")
+            continue;
+
+        lines.append(",,,,"); // since the nouns are processed first, we need to add the commas to the beginning for proper syntax
+        lines[lineI] += nouns[i]->word + "," + nouns[i]->genderAsString() + "," + nouns[i]->translation + ","; // construct the long line that constains this data
+        lineI++;
+    }
+
+    lineI = 0;
+    for (int i = 0; i < verbs.size(); i++) {
+        // first we need to make sure we aren't saving a dummy word
+        if (verbs[i]->translation == "Dummy")
+            continue;
+
+        // avoid segemntation faults when we have more verbs than nouns
+        if (lines.size() <= i) {
+            lines.append(",,,,,,,,,,,,,,,,,,,,,");
+        } else {
+            lines[lineI] += ",,,,,,,,,,,,,,";
+        }
+
+        QString HSString;
+        if (verbs[i]->HabenSein == HABEN) {
+            HSString = "Haben";
+        } else {
+            HSString = "Sein";
+        }
+
+        QString SSString;
+        if (verbs[i]->SchwachStark == SCHWACH)
+            SSString = "Schwach";
+        else
+            SSString = "Stark";
+
+        QString ModalString;
+        if (verbs[i]->modal == MODAL)
+            ModalString = "Ja";
+        else
+            ModalString = "Nein";
+
+        lines[lineI] += verbs[i]->word + "," + verbs[i]->translation + "," + verbs[i]->ichConj + "," + verbs[i]->duConj + "," + verbs[i]->erConj + "," + verbs[i]->wirConj + "," + verbs[i]->ihrConj + "," + verbs[i]->sieConj + "," + verbs[i]->PartizipII + "," + HSString + "," + SSString + "," + verbs[i]->prateritumIch + "," + QString(",") + QString(",") + QString(",") + QString(",") + QString(",") + QString(",") + ModalString;
+        lineI++;
+    }
+
+    // write all this junk to the file :)
+    for (int i = 0; i < lines.size(); i++) {
+        saveFile.write(lines[i].toUtf8());
+        saveFile.write("\n");
+    }
+
+    qDebug() << "dtw file saved.";
 
     return true;
 }
@@ -182,7 +246,7 @@ bool WordSet::writeWissenFile() {
     if (!wdaFile.exists()) {
         if (wdaFile.open(QIODevice::ReadWrite | QIODevice::Text)) {
             // create a template Wissen file
-            wdaFile.write("Version:, 0.1, This file is usually preceeded by a \".\" making it a hidden file. This file uses the same format as dtw except that where pieces of information about the word would normally be, we see a fraction containing the number of times the user has gotten this information right over the number of times wrong.Abstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,\nWort,Definition,,,Wort,Gender,Definition,Nom.,Gen.,Dat.,Akk.,Pl. Nom.,Pl. Gen.,Pl. Dat.,Pl. Akk.,,,,,,,Infinitive,Definition,Ich,Du,Er,Wir,Ihr,Sie,Partizip II,h-s,Schwach Oder Stark,Seperable Info,Präteritum Ich,Präteritum Du,Präteritum Er,Präteritum Wir,Präteritum Ihr,Präteritum Sie,Modal\n");
+            wdaFile.write("Version:, 0.1, This file uses the same format as dtw except that where pieces of information about the word would normally be, we see a fraction containing the number of times the user has gotten this information right over the number of times wrong.Abstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,\nWort,Definition,,,Wort,Gender,Definition,Nom.,Gen.,Dat.,Akk.,Pl. Nom.,Pl. Gen.,Pl. Dat.,Pl. Akk.,,,,,,,Infinitive,Definition,Ich,Du,Er,Wir,Ihr,Sie,Partizip II,h-s,Schwach Oder Stark,Seperable Info,Präteritum Ich,Präteritum Du,Präteritum Er,Präteritum Wir,Präteritum Ihr,Präteritum Sie,Modal\n");
             wdaFile.close();
             return true;
         } else {
