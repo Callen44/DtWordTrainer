@@ -1,5 +1,4 @@
 #include <QTimer>
-
 #include "CHGNDGui.h"
 #include "ui_CHGNDGui.h"
 
@@ -10,23 +9,22 @@ CHGNDGui::CHGNDGui(CHGNDLogic* logic, QWidget *parent)
     // set the prompt
     ui->wordInput->setText("Gramatical Gender of: " + logic->associatedWord->word);
 
-    // connect the buttons to the correct or Incorrect answer slots (this isn't as bad as MCFDLogic, trust me)
+    // figure out which button is correct
     if (logic->correctGender == DER) {
-        QObject::connect(ui->DerButton, &QPushButton::clicked, this, &CHGNDGui::processCorrectAnswer);
-
-        QObject::connect(ui->DieButton, &QPushButton::clicked, this, &CHGNDGui::processIncorrectAnswer);
-        QObject::connect(ui->DasButton, &QPushButton::clicked, this, &CHGNDGui::processIncorrectAnswer);
+        correctButton = DerButton;
     } else if (logic->correctGender == DIE) {
-        QObject::connect(ui->DieButton, &QPushButton::clicked, this, &CHGNDGui::processCorrectAnswer);
-
-        QObject::connect(ui->DerButton, &QPushButton::clicked, this, &CHGNDGui::processIncorrectAnswer);
-        QObject::connect(ui->DasButton, &QPushButton::clicked, this, &CHGNDGui::processIncorrectAnswer);
+        correctButton = DieButton;
     } else if (logic->correctGender == DAS) {
-        QObject::connect(ui->DasButton, &QPushButton::clicked, this, &CHGNDGui::processCorrectAnswer);
-
-        QObject::connect(ui->DerButton, &QPushButton::clicked, this, &CHGNDGui::processIncorrectAnswer);
-        QObject::connect(ui->DieButton, &QPushButton::clicked, this, &CHGNDGui::processIncorrectAnswer);
+        correctButton = DasButton;
     }
+
+    // set all buttons to the incorrect answer
+    QObject::connect(DerButton, &QPushButton::pressed, this, &CHGNDGui::processIncorrectAnswer);
+    QObject::connect(DieButton, &QPushButton::pressed, this, &CHGNDGui::processIncorrectAnswer);
+    QObject::connect(DasButton, &QPushButton::pressed, this, &CHGNDGui::processIncorrectAnswer);
+
+    // make the right button right
+    QObject::connect(correctButton, &QPushButton::pressed, this, &CHGNDGui::processCorrectAnswer);
 }
 
 void CHGNDGui::processCorrectAnswer() {

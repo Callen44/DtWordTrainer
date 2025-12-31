@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QPushButton>
 #include "../Logic/CHGNDLogic.h"
 
 namespace Ui {
@@ -26,4 +27,5 @@ private:
     Ui::CHGNDGui *ui;
     CHGNDLogic* logic;
     void closeQuestion(bool correct);
+    QPushButton* correctButton;
 };
