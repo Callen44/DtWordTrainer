@@ -11,17 +11,17 @@ CHGNDGui::CHGNDGui(CHGNDLogic* logic, QWidget *parent)
 
     // figure out which button is correct
     if (logic->correctGender == DER) {
-        correctButton = DerButton;
+        correctButton = ui->DerButton;
     } else if (logic->correctGender == DIE) {
-        correctButton = DieButton;
+        correctButton = ui->DieButton;
     } else if (logic->correctGender == DAS) {
-        correctButton = DasButton;
+        correctButton = ui->DasButton;
     }
 
     // set all buttons to the incorrect answer
-    QObject::connect(DerButton, &QPushButton::pressed, this, &CHGNDGui::processIncorrectAnswer);
-    QObject::connect(DieButton, &QPushButton::pressed, this, &CHGNDGui::processIncorrectAnswer);
-    QObject::connect(DasButton, &QPushButton::pressed, this, &CHGNDGui::processIncorrectAnswer);
+    QObject::connect(ui->DerButton, &QPushButton::pressed, this, &CHGNDGui::processIncorrectAnswer);
+    QObject::connect(ui->DieButton, &QPushButton::pressed, this, &CHGNDGui::processIncorrectAnswer);
+    QObject::connect(ui->DasButton, &QPushButton::pressed, this, &CHGNDGui::processIncorrectAnswer);
 
     // make the right button right
     QObject::connect(correctButton, &QPushButton::pressed, this, &CHGNDGui::processCorrectAnswer);
