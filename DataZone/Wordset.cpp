@@ -150,7 +150,7 @@ bool WordSet::saveDTWFile() {
         return false;
     }
 
-    saveFile.write("Version:,0.1,Developers welcome this file is a CSV file with the collum headers conveniently left for happy scripting! Change the file extension to such and have fun!,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\nAbstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,\nWort,Definition,,,Wort,Gender,Definition,Nom.,Gen.,Dat.,Akk.,Pl. Nom.,Pl. Gen.,Pl. Dat.,Pl. Akk.,,,,,,,Infinitive,Definition,Ich,Du,Er,Wir,Ihr,Sie,Partizip II,h-s,Schwach Oder Stark,Seperable Info,Präteritum Ich,Präteritum Du,Präteritum Er,Präteritum Wir,Präteritum Ihr,Präteritum Sie,Modal");
+    saveFile.write("Version:,0.1,Developers welcome this file is a CSV file with the collum headers conveniently left for happy scripting! Change the file extension to such and have fun!,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\nAbstraktes Wort,,,,Nomen,,,,,,,,,,,,,,,,,Verben,,,,,,,,,,,,,,,,,,\nWort,Definition,,,Wort,Gender,Definition,Nom.,Gen.,Dat.,Akk.,Pl. Nom.,Pl. Gen.,Pl. Dat.,Pl. Akk.,,,,,,,Infinitive,Definition,Ich,Du,Er,Wir,Ihr,Sie,Partizip II,h-s,Schwach Oder Stark,Seperable Info,Präteritum Ich,Präteritum Du,Präteritum Er,Präteritum Wir,Präteritum Ihr,Präteritum Sie,Modal\n");
 
     // this is where the magic happens
     QList<QString> lines;
@@ -208,8 +208,8 @@ bool WordSet::saveDTWFile() {
         saveFile.write("\n");
     }
 
+    saveFile.close();
     qDebug() << "dtw file saved.";
-
     return true;
 }
 

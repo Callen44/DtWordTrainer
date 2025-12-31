@@ -46,6 +46,9 @@ void newWordScreen::addWord() {
 
         Noun newNoun(wortBox->text(), wordGender, definitionBox->text());
         words->addWord(newNoun);
+    } else if (wortartBox->currentText() == "Verb") {
+        Verb newVerb(wortBox->text(), definitionBox->text());
+        words->addWord(newVerb);
     }
 
     emit done();
