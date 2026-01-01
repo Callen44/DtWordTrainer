@@ -34,8 +34,8 @@ void WordSet::parseWordLine(QString line) {
     }
 
     // same thing with the verbs, excpet they have more parts
-
-    if (lineParts[21] != "") {
+    // if there are more nouns than verbs, there won't be enough columns to check column 21, so we need to be more smart
+    if (lineParts.size() >= 34 && lineParts[21] != "") {
         Verb* newVerb = new Verb(lineParts[21], lineParts[22]);
         newVerb->ichConj = lineParts[23];
         newVerb->duConj = lineParts[24];
