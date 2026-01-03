@@ -25,6 +25,7 @@ CHGNDGui::CHGNDGui(CHGNDLogic* logic, QWidget *parent)
 
     // make the right button right
     QObject::connect(correctButton, &QPushButton::pressed, this, &CHGNDGui::processCorrectAnswer);
+    QObject::disconnect(correctButton, &QPushButton::pressed, this, &CHGNDGui::processCorrectAnswer);
 }
 
 void CHGNDGui::processCorrectAnswer() {
