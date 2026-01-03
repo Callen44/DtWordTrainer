@@ -6,3 +6,4 @@
 - Strange bug if there is just one or two words in the wordset
 - Migrate as much as possible in the algorithm and wordset classes to the stack
 - make part of speech an unchangable variable again
+- Make a new, more sophisticated inheritance syste for similar questions, both in their GUI and Logic
